@@ -1,0 +1,1098 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Sogo Clock Wall</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,600;1,6..96,400&family=IBM+Plex+Mono:wght@400;500&family=Shippori+Mincho+B1:wght@500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
+<style>
+/* Layout: a bright gallery page — projector-white ground, SOGO blue as the one accent, brass for the clock.
+   The night shots and the wall simulator are the only dark things, so they read as "the wall at showtime".
+   Single light theme by choice. */
+:root{
+  --hall:#f6f8fb;        /* page ground: cool projector white */
+  --hall-2:#ffffff;      /* raised panels */
+  --marble:#9a6048;      /* the orange-brown wall */
+  --light:#111a2b;       /* ink */
+  --fg-2:#3a4659;        /* secondary text */
+  --sogo:#2563d6;        /* SOGO blue, the one accent */
+  --sogo-tint:#e8effc;   /* blue wash for bands */
+  --brass:#8c6a22;       /* clock frame, used sparingly */
+  --muted:#67748a;
+  --line:#dce3ed;
+  --ok:#23825a; --warn:#a46c12; --no:#bf4536;
+  --f-jp:"Shippori Mincho B1","Hiragino Mincho ProN","Yu Mincho",serif;
+  --f-display:"Bodoni Moda","Didot","Times New Roman",serif;
+  --f-body:"Zen Kaku Gothic New","Hiragino Sans","Noto Sans JP",system-ui,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  color-scheme:light;
+}
+#frames,#day{background:var(--sogo-tint)}
+#frames .frame-btn[aria-pressed="true"],#day .slot-detail,#day .slot{background:var(--hall-2)}
+.hero-photo{margin:0;display:grid;gap:8px}
+.hero-photo img{width:100%;border-radius:8px;display:block;box-shadow:0 18px 40px -18px rgba(17,26,43,.45)}
+.hero-photo figcaption{font-size:12px;color:var(--muted)}
+*{box-sizing:border-box}
+body{background:var(--hall);color:var(--light);font-family:var(--f-body);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--hall)}
+a{color:var(--light);text-decoration-color:var(--sogo);text-underline-offset:3px}
+a:hover{color:var(--sogo)}
+:focus-visible{outline:2px solid var(--sogo);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+section{padding-block:72px;border-top:1px solid var(--line)}
+h1,h2,h3{text-wrap:balance;margin:0;font-weight:500}
+h2{font-family:var(--f-display);font-size:clamp(30px,4.4vw,46px);line-height:1.08;letter-spacing:-.01em}
+h2 .jp{display:block;font-family:var(--f-jp);font-size:.42em;color:var(--muted);letter-spacing:.12em;margin-bottom:10px}
+h3{font-size:19px;font-weight:700;line-height:1.35}
+p{margin:0}
+.lede{max-width:64ch;color:var(--fg-2);font-size:17px}
+.eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.stack{display:grid;gap:16px}
+.sec-head{display:grid;gap:14px;margin-bottom:36px}
+
+/* ---------- top bar ---------- */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:rgba(247,249,252,.9);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.bar .wrap{display:flex;align-items:center;gap:20px;min-height:52px;flex-wrap:wrap}
+.bar .mark{font-family:var(--f-mono);font-size:12px;letter-spacing:.12em;color:var(--muted)}
+.bar nav{display:flex;gap:16px;flex-wrap:wrap;margin-left:auto}
+.bar nav a{font-size:13px;color:var(--muted);text-decoration:none}
+.bar nav a:hover{color:var(--light)}
+.jst{font-family:var(--f-mono);font-size:12px;color:var(--brass)}
+
+/* ---------- hero ---------- */
+.hero{padding-block:56px 40px;border-top:0}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:44px;align-items:center}
+.slot-detail.has-img{grid-template-columns:220px auto minmax(0,1fr) auto}
+.slot-img{width:100%;aspect-ratio:1344/768;object-fit:cover;border-radius:4px;display:block}
+.slot .cam{position:absolute;top:6px;right:6px;width:7px;height:7px;border-radius:50%;background:var(--sogo)}
+.hero h1{font-family:var(--f-jp);font-weight:700;font-size:clamp(40px,7vw,84px);line-height:1.05;letter-spacing:.02em}
+.hero .en{font-family:var(--f-display);font-style:italic;font-size:clamp(20px,2.4vw,28px);color:var(--brass);margin-top:10px}
+.hero .facts{display:grid;grid-template-columns:auto 1fr;gap:6px 18px;font-size:14px;color:var(--fg-2)}
+.hero .facts dt{font-family:var(--f-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding-top:3px}
+.hero .facts dd{margin:0}
+
+/* ---------- simulator ---------- */
+.sim{margin-top:40px;display:grid;gap:14px}
+.sim-scroll{overflow-x:auto;border-radius:6px;border:1px solid var(--line);background:#05080d}
+.sim canvas{display:block;width:100%;min-width:760px;aspect-ratio:16/3}
+.controls{display:flex;flex-wrap:wrap;gap:10px 22px;align-items:center}
+.seg{display:inline-flex;flex-wrap:wrap;gap:6px}
+.seg button,.chip{font:500 13px/1 var(--f-body);color:var(--light);background:var(--hall-2);border:1px solid var(--line);padding:9px 14px;border-radius:999px;cursor:pointer}
+.seg button[aria-pressed="true"],.chip[aria-pressed="true"]{background:var(--light);color:var(--hall);border-color:var(--light)}
+.seg button:hover,.chip:hover{border-color:var(--sogo)}
+.ctl{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted)}
+.ctl input[type=range]{accent-color:var(--sogo);width:130px}
+.ctl input[type=checkbox]{accent-color:var(--sogo);width:16px;height:16px}
+.sim-caption{font-size:13px;color:var(--muted);max-width:90ch}
+.sim-caption b{color:var(--light);font-weight:500}
+
+/* ---------- concept frames: before / after ---------- */
+.frames-grid{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:28px;align-items:start}
+.compare{position:relative;border-radius:6px;overflow:hidden;aspect-ratio:1344/768;max-width:100%;background:#05080d;user-select:none}
+.compare img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.compare .after{clip-path:inset(0 0 0 var(--cut,50%))}
+.compare .handle{position:absolute;top:0;bottom:0;left:var(--cut,50%);width:2px;background:var(--light);transform:translateX(-1px);pointer-events:none}
+.compare .handle::after{content:"↔";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:38px;height:38px;border-radius:50%;background:var(--light);color:var(--hall);display:grid;place-items:center;font:600 16px/1 var(--f-mono)}
+.compare input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;margin:0}
+.compare .lbl{position:absolute;top:12px;font:500 11px/1 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;padding:6px 8px;border-radius:4px;background:rgba(11,16,25,.75);color:#fff;pointer-events:none}
+.compare .lbl.l{left:12px} .compare .lbl.r{right:12px}
+.frame-list{display:grid;gap:6px}
+.frame-btn{all:unset;cursor:pointer;display:grid;grid-template-columns:84px minmax(0,1fr);gap:12px;align-items:center;padding:6px;border-radius:6px;border:1px solid transparent}
+.frame-btn img{width:84px;aspect-ratio:1344/768;object-fit:cover;border-radius:3px;display:block}
+.frame-btn span{font-size:13px;line-height:1.35}
+.frame-btn small{display:block;font-family:var(--f-mono);font-size:10px;letter-spacing:.1em;color:var(--muted);text-transform:uppercase;margin-bottom:2px}
+.frame-btn[aria-pressed="true"]{border-color:var(--light);background:var(--hall-2)}
+.frame-btn:focus-visible{outline:2px solid var(--sogo);outline-offset:2px}
+.frame-note{margin-top:14px;font-size:14px;color:var(--fg-2);max-width:80ch}
+.frame-note .flag{color:var(--warn)}
+@media (max-width:900px){.frames-grid{grid-template-columns:minmax(0,1fr)} .frame-list{grid-template-columns:repeat(auto-fill,minmax(220px,1fr))}}
+
+/* ---------- shadow seasons ---------- */
+.months{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+.month{all:unset;cursor:pointer;display:grid;gap:2px;padding:10px 16px;border:1px solid var(--line);border-radius:6px;background:var(--hall-2);min-width:96px}
+.month b{font-family:var(--f-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.month span{font-family:var(--f-jp);font-size:17px;font-weight:700}
+.month[aria-selected="true"]{background:var(--light);border-color:var(--light);color:var(--hall)}
+.month[aria-selected="true"] b{color:rgba(255,255,255,.7)}
+.month:focus-visible{outline:2px solid var(--sogo);outline-offset:2px}
+.season-stage{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:32px;align-items:start}
+.season-stage img{width:100%;aspect-ratio:1344/768;object-fit:cover;border-radius:8px;display:block;box-shadow:0 18px 40px -18px rgba(17,26,43,.45)}
+.beat{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 14px;align-items:baseline}
+.beat .step{font-family:var(--f-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.beat .what{font-size:16px}
+.beat .arrow{grid-column:1/-1;font-family:var(--f-display);font-size:26px;line-height:1;color:var(--sogo);padding-left:2px}
+.season-card h3{font-family:var(--f-jp);font-size:28px;font-weight:700;margin-bottom:2px}
+.season-card .when{font-family:var(--f-mono);font-size:12px;color:var(--brass)}
+.season-card .tie{font-size:14px;color:var(--fg-2);border-top:1px solid var(--line);padding-top:14px}
+.season-card .tie b{display:block;font-family:var(--f-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:500;margin-bottom:4px}
+.season-card .flag{font-size:13px;color:var(--warn)}
+.season-strip{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin-top:18px}
+.season-strip button{all:unset;cursor:pointer;border-radius:4px;overflow:hidden;opacity:.55;outline-offset:2px}
+.season-strip button[aria-current="true"]{opacity:1;box-shadow:0 0 0 2px var(--sogo)}
+.season-strip button:focus-visible{outline:2px solid var(--sogo)}
+.season-strip img{width:100%;aspect-ratio:1344/768;object-fit:cover;display:block}
+@media (max-width:900px){.season-stage{grid-template-columns:minmax(0,1fr)}}
+
+/* ---------- brief ---------- */
+.keys{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
+.key{background:var(--hall);padding:22px 20px 24px;display:grid;gap:6px;align-content:start}
+.key .w{font-family:var(--f-display);font-size:30px;letter-spacing:.04em}
+.key .j{font-family:var(--f-jp);color:var(--brass);font-size:14px}
+.key p{color:var(--fg-2);font-size:14px}
+.voices{margin-top:28px;display:flex;flex-wrap:wrap;gap:10px}
+.voice{font-family:var(--f-jp);font-size:15px;padding:10px 16px;border:1px solid var(--line);border-radius:999px;color:var(--fg-2)}
+.numbers{margin-top:28px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.num{display:grid;gap:2px}
+.num .v{font-family:var(--f-display);font-size:34px;line-height:1.1;font-variant-numeric:lining-nums tabular-nums}
+.num .l{font-size:13px;color:var(--muted)}
+.history{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px;margin-top:44px;align-items:start}
+
+/* ---------- season ---------- */
+.season{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;position:relative;margin-top:8px}
+.season::before{content:"";position:absolute;left:0;right:0;top:15px;height:1px;background:var(--line)}
+.s-item{position:relative;padding:0 18px 0 0;display:grid;gap:6px}
+.s-dot{width:31px;height:31px;border-radius:50%;border:1px solid var(--line);background:var(--hall);display:grid;place-items:center;font-family:var(--f-mono);font-size:11px;color:var(--muted);position:relative}
+.s-item.live .s-dot{border-color:var(--brass);color:var(--brass)}
+.s-item.us .s-dot{border-color:var(--sogo);background:var(--sogo);color:#fff}
+.s-item .when{font-family:var(--f-mono);font-size:12px;color:var(--muted);margin-top:8px}
+.s-item p{font-size:14px;color:var(--fg-2)}
+.pill{display:inline-block;font:500 11px/1 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;padding:5px 8px;border-radius:4px;border:1px solid currentColor;width:max-content}
+.pill.live{color:var(--brass)} .pill.plan{color:var(--muted)} .pill.us{color:var(--sogo)}
+.xmas{margin-top:44px;display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:28px;align-items:center}
+.xmas img{border-radius:6px;display:block}
+.chapters{display:grid;gap:14px;counter-reset:ch}
+.chapters div{display:grid;gap:2px;padding-left:44px;position:relative}
+.chapters div::before{counter-increment:ch;content:counter(ch);position:absolute;left:0;top:0;font-family:var(--f-display);font-size:30px;line-height:1;color:var(--brass)}
+.chapters b{font-family:var(--f-jp);font-weight:700}
+.chapters span{font-size:14px;color:var(--fg-2)}
+
+/* ---------- site ---------- */
+.site-grid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:32px;align-items:start}
+.photo{position:relative;border-radius:6px;overflow:hidden}
+.photo img{display:block;width:100%}
+.hot{position:absolute;width:30px;height:30px;margin:-15px 0 0 -15px;border-radius:50%;background:var(--sogo);color:#fff;border:2px solid #fff;font:700 13px/26px var(--f-mono);text-align:center;cursor:pointer;padding:0;box-shadow:0 0 0 6px rgba(61,123,224,.25)}
+.hot[aria-pressed="true"]{background:#fff;color:var(--sogo)}
+.hot-note{margin-top:14px;min-height:5.2em;padding:16px 18px;background:var(--hall-2);border-radius:6px;font-size:14px;color:var(--fg-2)}
+.hot-note b{display:block;font-size:15px;margin-bottom:4px;color:var(--light)}
+.specs{width:100%;border-collapse:collapse;font-size:14px}
+.specs th{text-align:left;font-weight:400;color:var(--muted);padding:9px 12px 9px 0;vertical-align:top;width:42%;font-size:13px}
+.specs td{padding:9px 0;border-bottom:1px solid var(--line)}
+.specs tr:first-child td{border-top:1px solid var(--line)}
+.specs th{border-bottom:1px solid var(--line)}
+.specs tr:first-child th{border-top:1px solid var(--line)}
+.rules{margin-top:44px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:32px;align-items:start}
+.swatches{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px}
+.sw{display:grid;gap:6px;text-align:center;font-size:12px;color:var(--muted)}
+.sw .on{aspect-ratio:1;border-radius:4px;position:relative;overflow:hidden;background:repeating-linear-gradient(176deg,#5b3424 0 7px,#734331 7px 12px,#64392a 12px 21px,#7b4a36 21px 25px)}
+.sw .on i{position:absolute;inset:18%;border-radius:2px;mix-blend-mode:screen}
+.sw b{font-weight:500;font-size:12px}
+.sw b.ok{color:var(--ok)} .sw b.no{color:var(--no)}
+.constraints{display:grid;gap:12px}
+.constraints li{list-style:none;display:grid;grid-template-columns:110px 1fr;gap:12px;font-size:14px;color:var(--fg-2);padding-bottom:12px;border-bottom:1px solid var(--line)}
+.constraints li span:first-child{font-family:var(--f-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding-top:3px}
+.constraints{padding:0;margin:0}
+
+/* ---------- directions ---------- */
+.dir-tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-bottom:32px}
+.dir-tab{all:unset;cursor:pointer;display:grid;gap:6px;padding:18px 20px 20px;border:1px solid var(--line);border-radius:6px;background:var(--hall-2)}
+.dir-tab .k{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;color:var(--muted);text-transform:uppercase}
+.dir-tab .t{font-family:var(--f-display);font-size:26px;line-height:1.1}
+.dir-tab .s{font-size:13px;color:var(--muted)}
+.dir-tab[aria-selected="true"]{border-color:var(--light);background:var(--light);color:var(--hall)}
+.dir-tab[aria-selected="true"] .k,.dir-tab[aria-selected="true"] .s{color:rgba(255,255,255,.72)}
+.dir-tab:focus-visible{outline:2px solid var(--sogo);outline-offset:3px}
+.dir-body{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px;align-items:start}
+.dir-body .para{font-size:17px;color:var(--fg-2);max-width:60ch}
+.mediums{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+.mediums span{font-size:12px;font-family:var(--f-mono);padding:5px 9px;border:1px solid var(--line);border-radius:4px;color:var(--fg-2)}
+.ideas{display:grid;gap:0;margin-top:6px}
+.idea{border-top:1px solid var(--line)}
+.idea:last-child{border-bottom:1px solid var(--line)}
+.idea button{all:unset;cursor:pointer;display:flex;gap:14px;align-items:baseline;width:100%;padding:13px 0;font-weight:500}
+.idea button:focus-visible{outline:2px solid var(--sogo);outline-offset:2px}
+.idea button::after{content:"+";margin-left:auto;font-family:var(--f-mono);color:var(--muted)}
+.idea button[aria-expanded="true"]::after{content:"–"}
+.idea .ts{font-family:var(--f-mono);font-size:11px;color:var(--muted);min-width:56px}
+.idea p{padding:0 0 16px 70px;font-size:14px;color:var(--fg-2)}
+.mood{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.mood figure{margin:0;display:grid;gap:6px}
+.mood figure:first-child{grid-column:1/-1}
+.mood img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:4px;display:block}
+.mood figure:first-child img{aspect-ratio:16/9}
+.mood figcaption{font-size:12px;color:var(--muted)}
+.tiers{margin-top:36px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.tier{border:1px solid var(--line);border-radius:6px;padding:18px 18px 20px;display:grid;gap:8px;align-content:start}
+.tier .n{font-family:var(--f-display);font-size:22px}
+.tier .films{font-family:var(--f-mono);font-size:12px;color:var(--brass)}
+.tier p{font-size:14px;color:var(--fg-2)}
+.tier.rec{border-color:var(--sogo)}
+.tier .rec-tag{font:500 11px/1 var(--f-mono);color:var(--sogo);letter-spacing:.1em;text-transform:uppercase}
+
+/* ---------- day schedule ---------- */
+.day{display:grid;grid-template-columns:repeat(11,minmax(0,1fr));gap:6px}
+.slot{all:unset;cursor:pointer;display:grid;gap:8px;padding:12px 8px;border-radius:6px;border:1px solid var(--line);text-align:center;background:var(--hall-2);position:relative}
+.slot .h{font-family:var(--f-mono);font-size:13px}
+.slot .g{height:46px;border-radius:3px;background:var(--marble);position:relative;overflow:hidden}
+.slot .g i{position:absolute;inset:8px;border-radius:2px;opacity:.9}
+.slot[aria-pressed="true"]{border-color:var(--light)}
+.slot.next::before{content:"next";position:absolute;top:-9px;left:50%;transform:translateX(-50%);font:500 10px/1 var(--f-mono);background:var(--sogo);color:#fff;padding:3px 6px;border-radius:3px;letter-spacing:.08em;text-transform:uppercase}
+.slot.past{opacity:.5}
+.slot:focus-visible{outline:2px solid var(--sogo);outline-offset:2px}
+.slot-detail{margin-top:20px;display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:24px;align-items:center;padding:22px 24px;background:var(--hall-2);border-radius:6px}
+.slot-detail .big{font-family:var(--f-display);font-size:48px;line-height:1;font-variant-numeric:lining-nums tabular-nums}
+.slot-detail h3{margin-bottom:4px}
+.slot-detail p{font-size:14px;color:var(--fg-2)}
+.countdown{font-family:var(--f-mono);font-size:13px;color:var(--brass);text-align:right}
+.day-scroll{overflow-x:auto;padding-top:12px}
+.day-scroll .day{min-width:720px}
+
+/* ---------- characters ---------- */
+.verdicts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.verdict{border:1px solid var(--line);border-radius:6px;padding:18px 18px 20px;display:grid;gap:8px;align-content:start}
+.verdict .tag{font:500 11px/1 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;width:max-content;padding:5px 8px;border-radius:4px}
+.tag.no{background:rgba(224,122,109,.15);color:var(--no)}
+.tag.maybe{background:rgba(230,184,92,.15);color:var(--warn)}
+.tag.later{background:rgba(139,151,171,.15);color:var(--muted)}
+.verdict p{font-size:14px;color:var(--fg-2)}
+.callout{margin-top:24px;padding:20px 24px;border-left:3px solid var(--sogo);background:var(--hall-2);font-size:16px;max-width:80ch}
+
+/* ---------- reference wall ---------- */
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
+.refs{columns:4 230px;column-gap:14px}
+.ref{break-inside:avoid;margin:0 0 14px;display:grid;gap:6px}
+.ref img{width:100%;display:block;border-radius:4px}
+.ref figcaption{font-size:12px;color:var(--muted)}
+.ref figcaption b{color:var(--light);font-weight:500;display:block;font-size:13px}
+.ref.link a{display:grid;gap:8px;padding:16px;border:1px solid var(--line);border-radius:6px;text-decoration:none;background:var(--hall-2)}
+.ref.link a:hover{border-color:var(--sogo)}
+.ref.link .dom{font-family:var(--f-mono);font-size:11px;color:var(--muted)}
+.ref.link .ttl{font-size:14px;font-weight:500;line-height:1.4}
+.ref.link .why{font-size:12px;color:var(--muted)}
+.ref.link .play{font-family:var(--f-mono);font-size:11px;color:var(--sogo)}
+
+/* ---------- next ---------- */
+.next-list{display:grid;gap:0;padding:0;margin:0;max-width:820px}
+.next-list li{list-style:none;display:grid;grid-template-columns:28px minmax(0,1fr) auto;gap:14px;align-items:baseline;padding:14px 0;border-bottom:1px solid var(--line)}
+.next-list input{accent-color:var(--sogo);width:18px;height:18px;margin:0;transform:translateY(3px)}
+.next-list label{cursor:pointer}
+.next-list .due{font-family:var(--f-mono);font-size:12px;color:var(--muted)}
+.next-list input:checked + label{color:var(--muted);text-decoration:line-through}
+footer{padding-block:40px 56px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+footer .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-between}
+
+@media (max-width:900px){
+  .hero-grid,.history,.xmas,.site-grid,.rules,.dir-body{grid-template-columns:minmax(0,1fr)}
+  .keys,.numbers{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .season{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:28px}
+  .season::before{display:none}
+  .tiers,.verdicts{grid-template-columns:minmax(0,1fr)}
+  .dir-tabs{grid-template-columns:minmax(0,1fr)}
+  .slot-detail,.slot-detail.has-img{grid-template-columns:minmax(0,1fr)}
+  .countdown{text-align:left}
+  .bar nav{display:none}
+}
+@media (max-width:520px){
+  .keys,.numbers{grid-template-columns:minmax(0,1fr)}
+  .swatches{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .constraints li{grid-template-columns:minmax(0,1fr);gap:2px}
+  .idea p{padding-left:0}
+  section{padding-block:56px}
+}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<div class="bar">
+  <div class="wrap">
+    <span class="mark">SAS × SOGO YOKOHAMA · B2</span>
+    <nav aria-label="Sections">
+      <a href="#frames">Frames</a><a href="#brief">Brief</a><a href="#site">Site</a><a href="#directions">Directions</a><a href="#shadow-seasons">Seasons</a><a href="#day">Day</a><a href="#characters">Characters</a><a href="#refs">References</a><a href="#next">Next</a>
+    </nav>
+    <span class="jst" id="jst" aria-live="off">JST --:--</span>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="stack">
+        <span class="eyebrow">Projection mapping · spring pitch · internal draft</span>
+        <h1>思い出は、<br>未来になる</h1>
+        <p class="en">Memories become the future</p>
+        <p class="lede">The karakuri clock at Sogo Yokohama's B2 main entrance ran from 1985 to 2008. Since 1 December it has been running again as light. Christmas is live; we are pitching what plays on this wall from spring.</p>
+        <dl class="facts">
+          <dt>Where</dt><dd>B2 main entrance, clock wall + SOGO band</dd>
+          <dt>Shows</dt><dd>Hourly, ~3 min each, 10:00 to 20:00</dd>
+          <dt>Canvas</dt><dd class="mono">3 × 1920×1080 · 16,000 mm wide</dd>
+          <dt>Sound</dt><dd>None on site; picture does all the work</dd>
+        </dl>
+      </div>
+      <figure class="hero-photo">
+        <img src="img/gen-hero.jpg" alt="Concept frame: the B2 lobby after closing, the clock wall and the SOGO band traced in white and pale-blue projected light while a few people watch">
+        <figcaption>Concept frame on the client's lobby photo · Magnific draft</figcaption>
+      </figure>
+    </div>
+
+    <div class="sim" id="sim">
+      <div class="controls">
+        <div class="seg" role="group" aria-label="What plays on the wall">
+          <button type="button" data-mode="xmas" aria-pressed="false">Now: Christmas</button>
+          <button type="button" data-mode="tactile" aria-pressed="true">A · Tactile</button>
+          <button type="button" data-mode="oddball" aria-pressed="false">B · Oddball</button>
+          <button type="button" data-mode="shadow" aria-pressed="false">C · Shadow play</button>
+        </div>
+        <label class="ctl" for="ambient">Lobby lights <input id="ambient" type="range" min="0" max="100" value="35"></label>
+        <label class="ctl" for="grid"><input id="grid" type="checkbox" checked> 800×500 mm grid</label>
+      </div>
+      <div class="sim-scroll"><canvas id="wall" width="1600" height="300" aria-label="Simulated lobby wall with the clock on the left and the SOGO band on the right, showing the selected concept"></canvas></div>
+      <p class="sim-caption" id="simcap">Sketch of the wall, not to finish. The clock hands show the real time in Yokohama.</p>
+    </div>
+  </div>
+</header>
+
+<!-- ================= CONCEPT FRAMES ================= -->
+<section id="frames">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Concept frames · generated on the client's lobby photo</span>
+      <h2><span class="jp">実際の壁で見る</span>Same wall, new hour</h2>
+      <p class="lede">Drag the slider to compare the lobby today with each idea projected onto it. These are 1k drafts for internal review, made in Magnific from the photo in the client deck. They show mood and scale, not final art.</p>
+    </div>
+    <div class="frames-grid">
+      <div>
+        <div class="compare" id="compare">
+          <img src="img/lobby.jpg" alt="The lobby today, lights on, no projection">
+          <img class="after" id="cmpAfter" src="img/gen-hero.jpg" alt="">
+          <span class="handle"></span>
+          <span class="lbl l">Today</span><span class="lbl r" id="cmpLbl">Concept</span>
+          <input type="range" id="cmpRange" min="0" max="100" value="38" aria-label="Compare today with the concept">
+        </div>
+        <p class="frame-note" id="frameNote"></p>
+      </div>
+      <div class="frame-list" id="frameList" role="group" aria-label="Concept frames"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= BRIEF ================= -->
+<section id="brief">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">What Sogo asked for</span>
+      <h2><span class="jp">クライアントの言葉</span>A clock people come back to see</h2>
+      <p class="lede">The client deck frames the wall around four words and a target: turn the big clock into the area's landmark and keep it fresh with seasonal content so people visit more often.</p>
+    </div>
+    <div class="keys">
+      <div class="key"><span class="w">MEMORY</span><span class="j">思い出・懐かしさ</span><p>Memories and nostalgia. Many visitors watched the clock as children.</p></div>
+      <div class="key"><span class="w">MAGIC</span><span class="j">驚き・ファンタジー</span><p>Wonder and fantasy. Something you did not expect a wall to do.</p></div>
+      <div class="key"><span class="w">MAGNET</span><span class="j">集客・街のシンボル</span><p>A gathering place and a symbol for Yokohama that pulls people across generations.</p></div>
+      <div class="key"><span class="w">SEASON</span><span class="j">季節・来店動機</span><p>Seasonal moments that give people a reason to come back.</p></div>
+    </div>
+    <div class="voices" aria-label="Customer voices from the client deck">
+      <span class="voice">「からくり時計を復活させて」</span>
+      <span class="voice">「子どもの頃よく見ていた」</span>
+      <span class="voice">「初めての百貨店の思い出がからくり時計」</span>
+      <span class="voice">「イッツ・ア・スモールワールドが好きだった」</span>
+    </div>
+    <div class="numbers">
+      <div class="num"><span class="v">+100,000</span><span class="l">annual visitors, client target</span></div>
+      <div class="num"><span class="v">¥130m</span><span class="l">annual sales impact (income +¥25m)</span></div>
+      <div class="num"><span class="v">~40m</span><span class="l">entrance passers-by a year</span></div>
+      <div class="num"><span class="v">5 yrs</span><span class="l">projector service life, permanent install</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SEASONS ================= -->
+<section id="season">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Where the wall is now</span>
+      <h2><span class="jp">季節のロードマップ</span>Christmas is live. Spring is ours.</h2>
+    </div>
+    <div class="season">
+      <div class="s-item live"><span class="s-dot">12</span><span class="when">1–25 Dec 2026</span><span class="pill live">Live</span><p>からくり時計の中のクリスマス工房, a Christmas workshop inside the clock.</p></div>
+      <div class="s-item"><span class="s-dot">1</span><span class="when">Jan–Feb 2027</span><span class="pill plan">Client plan</span><p>Chocolate Paradise, a Valentine's theme.</p></div>
+      <div class="s-item"><span class="s-dot">3</span><span class="when">From Mar 2027</span><span class="pill plan">Client plan</span><p>Floral, tying in with GREEN×EXPO 2027.</p></div>
+      <div class="s-item us"><span class="s-dot">↗</span><span class="when">Spring 2027 →</span><span class="pill us">Our pitch</span><p>A repeatable, low-cost format that can carry any season after. <a href="#shadow-seasons">See it through the year</a>.</p></div>
+    </div>
+    <div class="xmas">
+      <img src="img/xmas-workshop.jpg" alt="Key visual for the Christmas show: the Seiko clock surrounded by gears, elves, Santa's sleigh and a fairy in a snowy night scene" loading="lazy">
+      <div class="chapters">
+        <div><b>からくり時計の目覚め</b><span>The clock wakes up after a long sleep, gears turn, the elves arrive.</span></div>
+        <div><b>クリスマス工房のにぎわい</b><span>A workshop opens inside the clock; presents are built and carried off.</span></div>
+        <div><b>サンタクロースの旅立ち</b><span>Snow falls and Santa leaves for the night sky. Free to watch.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SITE ================= -->
+<section id="site">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">The wall we are painting with light</span>
+      <h2><span class="jp">会場と制約</span>Dark marble, no speakers, a timer</h2>
+      <p class="lede">Tap the markers. The clock is the main stage: the marble around it is dark and orange and soaks up light, so contrast drops the further we move from the clock.</p>
+    </div>
+    <div class="site-grid">
+      <div>
+        <div class="photo" id="photo">
+          <img src="img/lobby.jpg" alt="Sogo Yokohama B2 lobby: the square Seiko clock on a brown marble wall at left, a column, and the long marble band with the SOGO logo above the entrance at right" loading="lazy">
+          <button class="hot" type="button" style="left:17.5%;top:33%" data-k="clock" aria-pressed="true" aria-label="The clock">1</button>
+          <button class="hot" type="button" style="left:34.7%;top:58%" data-k="column" aria-pressed="false" aria-label="The column">2</button>
+          <button class="hot" type="button" style="left:60%;top:39%" data-k="band" aria-pressed="false" aria-label="The SOGO band">3</button>
+          <button class="hot" type="button" style="left:74%;top:40%" data-k="logo" aria-pressed="false" aria-label="The SOGO logo">4</button>
+          <button class="hot" type="button" style="left:52.5%;top:56%" data-k="screen" aria-pressed="false" aria-label="Directory screen">5</button>
+        </div>
+        <div class="hot-note" id="hotnote" aria-live="polite"></div>
+      </div>
+      <div class="stack">
+        <h3>Delivery spec</h3>
+        <table class="specs">
+          <tr><th>File</th><td class="mono">MP4</td></tr>
+          <tr><th>Resolution</th><td class="mono">1920×1080 per projector</td></tr>
+          <tr><th>Projectors</th><td><span class="mono">3 ×</span> Panasonic PT-REZ15JLB, 1-chip DLP laser, <span class="mono">15,000 lm</span></td></tr>
+          <tr><th>Total canvas</th><td class="mono">5760 px · 16,000 mm</td></tr>
+          <tr><th>Grid cell</th><td class="mono">800 × 500 mm</td></tr>
+          <tr><th>Show length</th><td>About 3 minutes, hourly on a timer</td></tr>
+          <tr><th>Audio</th><td>None on site. Hourly chime is the only cue.</td></tr>
+          <tr><th>Rig</th><td>Ceiling mounted. Maintained by Success Co.</td></tr>
+        </table>
+        <img src="img/projector-plan.jpg" alt="Plan view: three projectors on the ceiling grid aiming at the curved clock wall and the straight SOGO wall" loading="lazy" style="border-radius:6px;background:#fff">
+      </div>
+    </div>
+
+    <div class="rules">
+      <div class="stack">
+        <h3>Palette rule: white and blue read, green and orange vanish</h3>
+        <p class="lede" style="font-size:15px">Each swatch is light projected onto a strip of the orange-brown marble. The team's rule from the session is to lead with high-contrast whites and blues. Confirm with a night test on site.</p>
+        <div class="swatches" id="swatches"></div>
+      </div>
+      <ul class="constraints">
+        <li><span>Surface</span><span>Clock is the primary stage. White cloth or paper over the walls could lift contrast, but the SOGO mark must stay uncovered.</span></li>
+        <li><span>Sound</span><span>No output on site. Story, pacing and jokes have to work silently.</span></li>
+        <li><span>Playback</span><span>Automated timer run by Sogo's rigging and projection contractor. We need their composition template.</span></li>
+        <li><span>Testing</span><span>Night test on site to check real contrast against the lobby lights.</span></li>
+        <li><span>Budget</span><span>No cap given. We show three tiers per direction.</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DIRECTIONS ================= -->
+<section id="directions">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Three directions, each in three tiers</span>
+      <h2><span class="jp">提案の方向性</span>Made by hand, played by the hour</h2>
+      <p class="lede">All three are built from real materials shot in camera, not CGI characters. That keeps cost per film low enough to make many short films instead of one expensive loop, and it reads as handmade to people tired of AI and CG.</p>
+    </div>
+    <div class="dir-tabs" role="tablist" aria-label="Pitch directions">
+      <button class="dir-tab" role="tab" id="tab-tactile" data-dir="tactile" aria-selected="true" aria-controls="dirpanel"><span class="k">Direction A</span><span class="t">Tactile Clock</span><span class="s">Paper, sand, fabric and blocks</span></button>
+      <button class="dir-tab" role="tab" id="tab-oddball" data-dir="oddball" aria-selected="false" aria-controls="dirpanel"><span class="k">Direction B</span><span class="t">Oddball Hours</span><span class="s">A different surprise every hour</span></button>
+      <button class="dir-tab" role="tab" id="tab-shadow" data-dir="shadow" aria-selected="false" aria-controls="dirpanel"><span class="k">Direction C</span><span class="t">Shadow Play</span><span class="s">Hand shadows that turn real</span></button>
+    </div>
+    <div id="dirpanel" role="tabpanel" aria-labelledby="tab-tactile"></div>
+  </div>
+</section>
+
+<!-- ================= SHADOW SEASONS ================= -->
+<section id="shadow-seasons">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Direction C, carried through the year</span>
+      <h2><span class="jp">影絵の四季</span>A shadow on the wall, the season in the clock</h2>
+      <p class="lede">One format for every season. A shadow made by real hands, or a cut-paper puppet on a rod, travels along the lit band toward the clock. Inside the clock face it turns into the real thing in full colour. Only the shadow and the reveal change, so each new season is a short shoot, not a new production. Pick a month.</p>
+    </div>
+    <div class="months" role="tablist" aria-label="Seasons" id="months"></div>
+    <div class="season-stage">
+      <img id="seasonImg" src="img/gen-s-spring.jpg" alt="">
+      <div class="season-card stack" id="seasonCard" aria-live="polite"></div>
+    </div>
+    <div class="season-strip" id="seasonStrip" aria-label="All seasons"></div>
+  </div>
+</section>
+
+<!-- ================= DAY ================= -->
+<section id="day">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Many films, one wall</span>
+      <h2><span class="jp">一日の上映</span>A different three minutes every hour</h2>
+      <p class="lede">We chose a multi-film day over a single repeating loop. If 14:00 is not the same as 11:00, people time their visit, come back, and post what they saw. Pick an hour; the lineup follows the direction selected above. Hours with a blue dot have a concept frame. Titles are a first draft.</p>
+    </div>
+    <div class="day-scroll"><div class="day" id="dayrow" role="group" aria-label="Hourly shows"></div></div>
+    <div class="slot-detail" id="slotdetail" aria-live="polite"></div>
+  </div>
+</section>
+
+<!-- ================= CHARACTERS ================= -->
+<section id="characters">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">What we are advising against</span>
+      <h2><span class="jp">キャラクター案について</span>Why we are not leading with characters</h2>
+      <p class="lede">We looked hard at character animation. Twelve distinct three-minute character films would need specialist freelance animators and cost far more per minute than the directions above.</p>
+    </div>
+    <div class="verdicts">
+      <div class="verdict"><span class="tag no">Advise against</span><h3>A family's day</h3><p>A household moving through morning, afternoon and evening. Relatable, but complex, expensive and less magnetic.</p></div>
+      <div class="verdict"><span class="tag no">Advise against</span><h3>One mascot</h3><p>Fatigue sets in across seasons, and a client may adopt the mascot permanently, which limits every season after.</p></div>
+      <div class="verdict"><span class="tag maybe">If mandated</span><h3>A cast of 5–10 creatures</h3><p>Unrelated personas rotating by hour, in the spirit of an ensemble kids' show. Simple sketch style, sub-minute bits, interacting with products.</p></div>
+      <div class="verdict"><span class="tag no">Advise against</span><h3>Rebuilding the old karakuri</h3><p>Copying the original or "It's a Small World" mechanics carries copyright risk and invites comparison with the original.</p></div>
+      <div class="verdict"><span class="tag no">Advise against</span><h3>Physical puppets</h3><p>¥100–120k per puppet, set building, and puppets lose contrast on dark marble. Flat 2D or cut paper does better.</p></div>
+      <div class="verdict"><span class="tag later">Later phase</span><h3>Live interaction</h3><p>QR-code Tanabata wishes or a live camera feed need an engineering partner we do not have for spring.</p></div>
+    </div>
+    <p class="callout">If characters are required, we recommend one repeating hourly loop rather than a different film each hour.</p>
+  </div>
+</section>
+
+<!-- ================= REFERENCES ================= -->
+<section id="refs">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">From the team Miro board and the session</span>
+      <h2><span class="jp">リファレンス</span>Reference wall</h2>
+      <p class="lede">Images from <a href="https://miro.com/app/board/uXjVEOGjxHc=/" target="_blank" rel="noopener">the Miro board</a>, plus the films and sites pinned there. Videos open in a new tab.</p>
+    </div>
+    <div class="filters" role="group" aria-label="Filter references">
+      <button class="chip" type="button" data-f="all" aria-pressed="true">All</button>
+      <button class="chip" type="button" data-f="tactile" aria-pressed="false">A · Tactile</button>
+      <button class="chip" type="button" data-f="oddball" aria-pressed="false">B · Oddball</button>
+      <button class="chip" type="button" data-f="shadow" aria-pressed="false">C · Shadow</button>
+      <button class="chip" type="button" data-f="space" aria-pressed="false">Clocks &amp; light</button>
+    </div>
+    <div class="refs" id="refwall"></div>
+  </div>
+</section>
+
+<!-- ================= NEXT ================= -->
+<section id="next">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">From the 18 Nov session</span>
+      <h2><span class="jp">次のステップ</span>Next steps</h2>
+    </div>
+    <ul class="next-list">
+      <li><input type="checkbox" id="n1"><label for="n1">Add Sukurat Sukurat papercrafts and the Amsterdam airport clock to the Miro board</label><span class="due">this week</span></li>
+      <li><input type="checkbox" id="n2"><label for="n2">Write one paragraph per direction and the case against character animation</label><span class="due">drafted here</span></li>
+      <li><input type="checkbox" id="n3"><label for="n3">Internal review with Momoko and Satoko</label><span class="due">Thu 19 Nov, a.m.</span></li>
+      <li><input type="checkbox" id="n4"><label for="n4">Mood boards and style frames for the directions we keep</label><span class="due">after review</span></li>
+      <li><input type="checkbox" id="n5"><label for="n5">Ask the projection contractor for the composition template and timer spec</label><span class="due">to schedule</span></li>
+      <li><input type="checkbox" id="n6"><label for="n6">Night test on site: white, blue and grey ramps on the marble</label><span class="due">to schedule</span></li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>Wild Tame · SAS Creative Phase 1 · internal draft, not for client distribution</span>
+    <span>Sources: client deck (1002), spec sheet (1104), press release draft (1107), brainstorm summary (18 Nov), Miro board. Concept frames: Magnific drafts, Space "Sogo Yokohama Clock Wall — Spring Pitch".</span>
+  </div>
+</footer>
+
+<script>
+(() => {
+const $ = (s, r=document) => r.querySelector(s);
+const $$ = (s, r=document) => [...r.querySelectorAll(s)];
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const store = { get(k){ try{return localStorage.getItem(k)}catch(e){return null} }, set(k,v){ try{localStorage.setItem(k,v)}catch(e){} } };
+
+/* ================= JST clock ================= */
+function jstNow(){
+  const p = new Intl.DateTimeFormat('en-GB',{timeZone:'Asia/Tokyo',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false}).formatToParts(new Date());
+  const g = t => +p.find(x=>x.type===t).value;
+  return {h:g('hour')%24, m:g('minute'), s:g('second')};
+}
+
+/* ================= DATA ================= */
+const DIRS = {
+  tactile:{
+    name:'Tactile Clock', jp:'手ざわりの時計',
+    para:'The wall becomes a craft table. Sogo wrapping paper peels back and folds into the store pattern, a paper bento assembles cell by cell at lunchtime, origami folds in time with the clock hands, and a dry garden is raked in the morning and erased at sunset. Everything is a real material filmed in camera: paper strips, furoshiki, wooden blocks, marbles. The grid of 800 × 500 mm cells is the layout, so each film is a set of small tableaux that can be shot on a tabletop and mapped straight onto the wall.',
+    mediums:['paper & cut-outs','origami','furoshiki','sand','wooden blocks','marbles','stop motion'],
+    ideas:[
+      ['00:15:17','Wrapping paper','Sogo wrapping paper is peeled, cut with scissors, and folded into the brand pattern across the wall.'],
+      ['00:21:36','Paper bento & origami','The grid assembles a paper bento box, or origami folds in step with the angle of the clock hands.'],
+      ['00:43:19','Post-it wind','A wall of sticky notes blows away to reveal the day\'s message or lucky colour.'],
+      ['01:10:27','Kare-sansui','A dry garden raked, erased and redrawn; temple-quiet in the morning, sunset at the end of the day.'],
+      ['00:38:59','Folded depth','Panels fold to fake depth across the grid, or turn like catalogue pages.'],
+      ['01:40:06','Toy materials','Rotating wooden blocks, Jenga, Rubik\'s cubes, mazes and rolling marbles.']
+    ],
+    mood:[['gen-a1','Concept frame: paper folds across the grid'],['gen-a2','Concept frame: raked sand at dawn'],['zen-sand','Reference: raked sand garden']],
+    tiers:[
+      ['Lite','1 film','One three-minute film shown every hour, with a seasonal colour pass.'],
+      ['Core','4 films','Morning, lunch, afternoon and evening films rotating through the day.',true],
+      ['Full','11 films','A different film every hour from 10:00 to 20:00, plus social cut-downs.']
+    ],
+    day:['Morning rake','Wrapping paper','Bento assembles','Origami hands','Post-it wind','Furoshiki','Marble run','Catalogue pages','Block tower','Sunset garden','Rake & reset'],
+    frames:{0:'gen-a2',1:'gen-a1'},
+    hue:['#eef3fb','#3d7be0']
+  },
+  oddball:{
+    name:'Oddball Hours', jp:'へんてこな時間',
+    para:'A deliberately mixed collection: a different short surprise at every hour so no two visits feel alike. Cave painters chase a mammoth-shaped clock across the marble, a chain reaction tumbles from cell to cell, Tetris blocks stack and clear the SOGO band, and at 16:00 two long arms stretch in from either end of the wall to play janken and tie. Each piece is cheap to make on its own, and the variety is the hook: people learn the schedule and come back for the one they missed.',
+    mediums:['live action','cut-out animation','chain reactions','puzzles','motion graphics'],
+    ideas:[
+      ['00:22:43','Chain reaction','A Rube Goldberg run moving through the grid, in the spirit of Pythagora Switch and the Honda one-take.'],
+      ['00:30:35','Puzzle hour','Sliding number tiles, jigsaws and a concentration card game played across the cells.'],
+      ['00:10:33','Peering giants','Huge eyes or hands that seem to follow the people walking past.'],
+      ['01:32:04','Cave painting','Monochrome hunters chase a mammoth-shaped clock over the marble texture.'],
+      ['01:35:00','Crowd formations','Overhead commuters lying down to spell SOGO, or umbrellas opening like the umbrella streets of Istanbul and Saitama.'],
+      ['03:35:20','Janken at four','Two long arms reach from opposite ends of the wall, play rock-paper-scissors, and tie to mark the hour.']
+    ],
+    mood:[['gen-b1','Concept frame: cave hunters chase the mammoth'],['gen-b2','Concept frame: janken tie at 16:00'],['cave-art','Reference: cave painting silhouettes']],
+    tiers:[
+      ['Lite','3 films','Three vignettes rotating through the day.'],
+      ['Core','6 films','Six vignettes, one signature piece fixed to a set hour.',true],
+      ['Full','11 films','Every hour different, plus seasonal swaps and social cut-downs.']
+    ],
+    day:['Cave hunt','Chain reaction','Sliding tiles','Peering eyes','Umbrella street','Tetris band','Janken tie','Card match','Sunset sea','Falling petals','SOGO formation'],
+    frames:{0:'gen-b1',6:'gen-b2'},
+    hue:['#f6e27a','#3d7be0']
+  },
+  shadow:{
+    name:'Shadow Play', jp:'影絵',
+    para:'Hand shadows travel along the bright wall and, the moment they slide into the clock face, turn into full-colour real things. A shadow that looks like a rabbit becomes a pair of slippers; a guessing game asks "what\'s for lunch?" and an onigiri appears. Everything is performed by real hands on the store\'s sixth floor, with visible rods and paper cut-outs in the way of Bunraku and Vietnamese water puppetry. It scales from one pair of hands to a group routine, and the cool white field plays to the marble rule.',
+    mediums:['hand shadows','paper cut-outs','rod puppets','live action','colour grade'],
+    ideas:[
+      ['01:42:39','Shadow to real','Silhouettes cross the wall and become magnified, full-colour objects inside the clock window.'],
+      ['02:48:12','Misdirection','The shadow suggests one thing and the clock reveals another, with a dad-joke payoff.'],
+      ['02:45:06','Guess the shadow','Mystery silhouettes as hourly bumpers, like guessing the lunch item before it is revealed.'],
+      ['02:58:02','In-camera craft','Real hands and papercraft shot on the sixth floor, rods left visible on purpose.'],
+      ['03:49:41','Colour in the clock','Silhouettes graded in deep blue, with colour arriving only in the clock squares at the climax.'],
+      ['02:51:21','Scales up','From one pair of hands to multi-person kaleidoscope routines and layered Thai shadow-theatre depth.']
+    ],
+    mood:[['gen-c1','Concept frame: rabbit shadow, slippers in the clock'],['gen-c2b','Concept frame: shadow grid finale, logo kept clear'],['hiroshige-shadows','Reference: Edo shadow-picture print']],
+    tiers:[
+      ['Lite','1 film','One shadow routine with three reveals, shown hourly.'],
+      ['Core','4 films','Four routines with different reveals across the day.',true],
+      ['Full','11 films','Hourly routines, an ensemble finale at 20:00, social cut-downs.']
+    ],
+    day:['Rooster wakes','Rabbit → slippers','Lunch guess','Bird flight','Snail → macaron','Fox → lipstick','Janken shadows','Crab → sandals','Sunset ensemble','Kaleidoscope','Goodnight owl'],
+    frames:{1:'gen-c1',8:'gen-c2b'},
+    hue:['#eef3fb','#1f3c7a']
+  }
+};
+const XMAS = {name:'Christmas workshop (live)', hue:['#f7d27a','#eef3fb']};
+
+const REFS = [
+  {img:'realtime-clock',t:'Real Time, airport clock',c:'A man appears to paint and erase the clock hands every minute. Referenced from the Amsterdam airport.',f:'space'},
+  {img:'weather-project',t:'Olafur Eliasson, The Weather Project',c:'Tate Modern, 2003. An indoor sun as public gathering place.',f:'space'},
+  {img:'mist',t:'Mist and light',c:'Colour emerging from mist, for the abstract track.',f:'space tactile'},
+  {img:'zen-sand',t:'Raked sand',c:'Kare-sansui patterns, drawn and redrawn.',f:'tactile'},
+  {img:'cwynar-clock',t:'Sara Cwynar, Rose Gold',c:'Hands, objects and a clock on flat colour.',f:'tactile'},
+  {img:'cwynar-phone',t:'Sara Cwynar, Rose Gold',c:'Collage, hands and props in camera.',f:'tactile'},
+  {img:'cwynar-room',t:'Sara Cwynar, installation',c:'A pegboard of objects as moving image.',f:'tactile'},
+  {img:'cave-art',t:'Cave painting',c:'Hunters, animals and a mammoth to become the clock.',f:'oddball'},
+  {img:'umbrellas',t:'Umbrella street',c:'Colour overhead, for the crowd-formation idea.',f:'oddball'},
+  {img:'commuters-1',t:'Tokyo commuters',c:'Faces against train glass; crowd as material.',f:'oddball'},
+  {img:'commuters-2',t:'Tokyo commuters',c:'Rush-hour compression.',f:'oddball'},
+  {img:'neon-set',t:'Neon line set',c:'Graphic lines drawing architecture in the dark.',f:'oddball space'},
+  {img:'hiroshige-shadows',t:'Edo shadow-picture print',c:'Hands and their shadows set in a grid of shoji windows, much like the clock grid.',f:'shadow'},
+  {img:'hand-shadows',t:'Hand shadow chart',c:'The basic vocabulary of animals.',f:'shadow'},
+  {img:'silhouette-stage',t:'Cut-paper silhouettes on stage',c:'Flat black shapes, performers in front.',f:'shadow'},
+  {img:'silhouette-stage-2',t:'Silhouette stage, colour washes',c:'Coloured light behind cut-outs.',f:'shadow'},
+  {url:'https://www.youtube.com/watch?v=_ZAU9NXUzGo',t:"Pythagora Switch: The Marble Brothers' Great Adventure",d:'youtube.com',c:'Chain reaction pacing.',f:'oddball tactile'},
+  {url:'https://www.youtube.com/watch?v=n4KtPqPaBhE',t:'Honda: domino of car parts',d:'youtube.com',c:'One-take mechanical chain.',f:'oddball'},
+  {url:'https://www.youtube.com/watch?v=lSX9fOSJ0KI',t:"Human Car Wash, Joseph's Machines",d:'youtube.com',c:'Homemade contraption humour.',f:'oddball'},
+  {url:'https://www.youtube.com/watch?v=u1ZB_rGFyeU',t:"OK Go, I Won't Let You Down",d:'youtube.com',c:'Overhead umbrella formations, one take.',f:'oddball'},
+  {url:'https://www.youtube.com/watch?v=BAdOJvBpJnw',t:'Rotating sand art hourglass',d:'youtube.com',c:'Sand landscapes forming and reforming.',f:'tactile'},
+  {url:'https://www.youtube.com/watch?v=nvVK_vwVWlU',t:'Kawaii Pop',d:'youtube.com',c:'Bright handmade pop.',f:'tactile oddball'},
+  {url:'https://www.youtube.com/watch?v=r64P4YlhVcc',t:'Canal City Hakata projection fountain show',d:'youtube.com',c:'Mall projection that draws a crowd on schedule.',f:'space'},
+  {url:'https://www.hellosandwich.jp/hellosandwichblog/2011/03/hello-sandwich-in-vogue-japan.html',t:'Hello Sandwich in VOGUE Japan',d:'hellosandwich.jp',c:'The paper bento commission.',f:'tactile'},
+  {url:'https://tupera-tupera.com',t:'tupera tupera',d:'tupera-tupera.com',c:'Cut-paper picture book style.',f:'tactile shadow'},
+  {url:'https://saracwynar.com',t:'Sara Cwynar',d:'saracwynar.com',c:'Objects, colour and hands.',f:'tactile'},
+  {url:'https://www.papemo6v6.com/',t:'PAPEMO puppet work for NHK E-tele',d:'papemo6v6.com',c:'Puppet build and performance, costed in the session.',f:'shadow'},
+  {url:'https://pin.it/4VzEISqKG',t:'Loop Parade walk cycle',d:'pinterest',c:'Simple looping character walk.',f:'oddball'}
+];
+
+const HOT = {
+  clock:['The clock','The main stage. Square Seiko face on a grid, bell wings either side. Brightest, most legible surface on the wall; every film should land its payoff here.'],
+  column:['The column','Splits the clock wall from the SOGO band and blocks some sight lines. Treat the two surfaces as separate stages that hand off to each other.'],
+  band:['The SOGO band','Long marble band over the entrance, covered by projectors 2 and 3. Darker and further from the clock, so use it for travel, rhythm and silhouettes, not detail.'],
+  logo:['The SOGO mark','Must stay visible. Any wall treatment, cloth or paper, has to leave the logo uncovered; content should frame it rather than paint over it.'],
+  screen:['Directory screen','The floor directory sits under the band. An "inventory magnet" idea had products rolling into it, but it risks feeling too commercial.']
+};
+
+/* ================= STATE ================= */
+let dir = store.get('sogo-dir') || 'tactile';
+if(!DIRS[dir]) dir='tactile';
+let mode = dir;
+let selectedSlot = null;
+
+/* ================= WALL SIMULATOR ================= */
+const cv = $('#wall'), ctx = cv.getContext('2d');
+const W=1600, H=300, CW=80, CH=50;            // 20 × 6 cells of 800×500 mm
+const CLOCK={x:280,y:150,s:150};
+const BAND_TOP=100;                               // SOGO band = rows 2–5 right of the column
+const COL_X=[548,580];                            // column
+let DPR=1;
+function resize(){
+  DPR=Math.min(2,window.devicePixelRatio||1);
+  cv.width=W*DPR; cv.height=H*DPR; ctx.setTransform(DPR,0,0,DPR,0,0);
+}
+resize();
+// marble texture
+const marble=document.createElement('canvas'); marble.width=W; marble.height=H;
+(function(){
+  const m=marble.getContext('2d');
+  m.fillStyle='#05080d'; m.fillRect(0,0,W,H);
+  let seed=7; const rnd=()=>((seed=seed*16807%2147483647)/2147483647);
+  function slab(x0,y0,x1,y1){
+    for(let y=y0;y<y1;y+=2){
+      const v=0.55+0.45*Math.sin(y*0.09+rnd()*0.6)*Math.sin(y*0.017+1.3);
+      const r=92+v*38, g=55+v*24, b=38+v*16;
+      m.fillStyle=`rgb(${r|0},${g|0},${b|0})`; m.fillRect(x0,y,x1-x0,2);
+    }
+    for(let i=0;i<60;i++){m.fillStyle=`rgba(30,15,8,${0.08+rnd()*0.12})`; m.fillRect(x0+rnd()*(x1-x0),y0+rnd()*(y1-y0),40+rnd()*160,1);}
+    for(let x=x0;x<x1;x+=CW*1.5){m.fillStyle='rgba(20,10,6,.35)'; m.fillRect(x,y0,1,y1-y0);}
+  }
+  slab(0,0,COL_X[0],H);
+  slab(COL_X[1],BAND_TOP,W,H);
+  // column
+  const gr=m.createLinearGradient(COL_X[0],0,COL_X[1],0); gr.addColorStop(0,'#2a2c30'); gr.addColorStop(.5,'#4a4c50'); gr.addColorStop(1,'#26282c');
+  m.fillStyle=gr; m.fillRect(COL_X[0],0,COL_X[1]-COL_X[0],H);
+  // ceiling void over band
+  m.fillStyle='#0a0e15'; m.fillRect(COL_X[1],0,W-COL_X[1],BAND_TOP);
+  m.fillStyle='#1b2230'; m.fillRect(COL_X[1],BAND_TOP-6,W-COL_X[1],6);
+})();
+const inWall=(x,y)=> (x<COL_X[0]) || (x>COL_X[1] && y>BAND_TOP);
+
+function drawClock(lit){
+  const {x,y,s}=CLOCK, h=s/2;
+  // wings
+  ctx.save();
+  for(const sgn of [-1,1]){
+    ctx.beginPath();
+    const wx=x+sgn*h, ww=48*sgn;
+    ctx.moveTo(wx,y-40); ctx.lineTo(wx+ww*0.7,y-40); ctx.lineTo(wx+ww,y); ctx.lineTo(wx+ww*0.7,y+40); ctx.lineTo(wx,y+40); ctx.closePath();
+    ctx.fillStyle='#7a5a2e'; ctx.fill(); ctx.strokeStyle='#c9a45c'; ctx.lineWidth=2; ctx.stroke();
+    ctx.fillStyle='#d9b468'; ctx.beginPath(); ctx.arc(wx+ww*0.45,y+4,9,Math.PI,0); ctx.lineTo(wx+ww*0.45+11,y+10); ctx.lineTo(wx+ww*0.45-11,y+10); ctx.fill();
+  }
+  // frame + face
+  ctx.fillStyle='#b38d4a'; ctx.fillRect(x-h-8,y-h-8,s+16,s+16);
+  ctx.fillStyle='#d8cfbd'; ctx.fillRect(x-h,y-h,s,s);
+  ctx.strokeStyle='rgba(60,50,40,.35)'; ctx.lineWidth=1;
+  for(let i=1;i<4;i++){ctx.beginPath();ctx.moveTo(x-h+i*s/4,y-h);ctx.lineTo(x-h+i*s/4,y+h);ctx.stroke();ctx.beginPath();ctx.moveTo(x-h,y-h+i*s/4);ctx.lineTo(x+h,y-h+i*s/4);ctx.stroke();}
+  ctx.fillStyle='#2a241c'; ctx.font='600 17px "Bodoni Moda", Didot, serif'; ctx.textAlign='center'; ctx.textBaseline='middle';
+  for(let n=1;n<=12;n++){const a=n/12*Math.PI*2-Math.PI/2; ctx.fillText(n, x+Math.cos(a)*h*0.8, y+Math.sin(a)*h*0.8);}
+  if(lit){ctx.globalCompositeOperation='lighter'; ctx.fillStyle=lit; ctx.fillRect(x-h,y-h,s,s); ctx.globalCompositeOperation='source-over';}
+  ctx.restore();
+}
+function drawHands(){
+  const {h,m,s}=jstNow(); const {x,y}=CLOCK;
+  const ha=((h%12)+m/60)/12*Math.PI*2-Math.PI/2, ma=(m+s/60)/60*Math.PI*2-Math.PI/2;
+  ctx.save(); ctx.strokeStyle='#1d1812'; ctx.lineCap='round';
+  ctx.lineWidth=5; ctx.beginPath(); ctx.moveTo(x,y); ctx.lineTo(x+Math.cos(ha)*38,y+Math.sin(ha)*38); ctx.stroke();
+  ctx.lineWidth=3; ctx.beginPath(); ctx.moveTo(x,y); ctx.lineTo(x+Math.cos(ma)*58,y+Math.sin(ma)*58); ctx.stroke();
+  ctx.fillStyle='#1d1812'; ctx.beginPath(); ctx.arc(x,y,4,0,7); ctx.fill(); ctx.restore();
+}
+function clipWall(c){ c.beginPath(); c.rect(0,0,COL_X[0],H); c.rect(COL_X[1],BAND_TOP,W-COL_X[1],H-BAND_TOP); c.clip(); }
+
+// ---- tactile: paper cells flipping in a wave from the clock, then sand ripples
+function fxTactile(t){
+  const cyc=(t%14);
+  ctx.save(); clipWall(ctx); ctx.globalCompositeOperation='lighter';
+  if(cyc<9){
+    for(let r=0;r<6;r++) for(let c=0;c<20;c++){
+      const cx=c*CW+CW/2, cy=r*CH+CH/2; if(!inWall(cx,cy)) continue;
+      const d=Math.hypot(cx-CLOCK.x,(cy-CLOCK.y)*1.4);
+      const p=Math.max(0,Math.min(1,(cyc*260-d)/260));
+      if(p<=0) continue;
+      const flip=Math.abs(Math.cos(p*Math.PI)); const face=p<0.5;
+      const hh=(CH-8)*flip;
+      ctx.fillStyle= face ? 'rgba(238,243,251,.55)' : ((r+c)%3===0 ? 'rgba(61,123,224,.85)' : 'rgba(238,243,251,.8)');
+      ctx.fillRect(c*CW+4, cy-hh/2, CW-8, hh);
+      if(!face && (r+c)%3!==0){ ctx.strokeStyle='rgba(61,123,224,.5)'; ctx.lineWidth=1; ctx.beginPath(); ctx.moveTo(c*CW+4,cy-hh/2); ctx.lineTo(c*CW+CW-4,cy+hh/2); ctx.stroke(); }
+    }
+  } else {
+    const k=(cyc-9)/5;
+    for(let i=0;i<26;i++){
+      const rad=(i*22+k*120)%600;
+      ctx.strokeStyle=`rgba(238,243,251,${0.55*(1-rad/600)})`; ctx.lineWidth=5;
+      ctx.beginPath(); ctx.ellipse(CLOCK.x, CLOCK.y, rad*1.6, rad*0.55, 0, 0, 7); ctx.stroke();
+    }
+  }
+  ctx.restore();
+  return cyc<9 ? 'Paper cells fold open from the clock outward, then the wall is raked like sand.' : 'Kare-sansui: ripples raked out from the clock, erased and drawn again.';
+}
+// ---- oddball: tetris on the band
+const BC=13, BR=4, bx0=COL_X[1]+12; let board, falling, lastSpawn=0, flash=[];
+function resetBoard(){ board=Array.from({length:BR},()=>Array(BC).fill(null)); falling=[]; }
+resetBoard();
+const TCOL=['#eef3fb','#3d7be0','#f6e27a','#f2a6c8','#9cc3ff'];
+function fxOddball(t,dt){
+  if(t-lastSpawn>0.35){ lastSpawn=t; const c=Math.floor(Math.random()*BC); const len=Math.random()<.4?2:1; falling.push({c,y:-len*CH,len,col:TCOL[Math.floor(Math.random()*TCOL.length)]}); }
+  for(const f of falling){
+    let top=BR; for(let r=0;r<BR;r++){ if(board[r][f.c]){ top=r; break; } }
+    const restY=BAND_TOP+(top-f.len)*CH; f.y+=dt*420;
+    if(f.y>=restY){ if(top-f.len<0){ resetBoard(); return 'Board full; it clears and starts again.'; } for(let k=0;k<f.len;k++) board[top-1-k][f.c]=f.col; f.done=true; }
+  }
+  falling=falling.filter(f=>!f.done);
+  for(let r=0;r<BR;r++){ if(board[r].every(Boolean)){ flash.push({r,t}); board.splice(r,1); board.unshift(Array(BC).fill(null)); } }
+  ctx.save(); clipWall(ctx); ctx.globalCompositeOperation='lighter';
+  const cw=(W-bx0-12)/BC;
+  for(let r=0;r<BR;r++) for(let c=0;c<BC;c++){ const v=board[r][c]; if(v){ ctx.fillStyle=v; ctx.globalAlpha=.85; ctx.fillRect(bx0+c*cw+3,BAND_TOP+r*CH+3,cw-6,CH-6);} }
+  for(const f of falling){ ctx.fillStyle=f.col; ctx.globalAlpha=.85; ctx.fillRect(bx0+f.c*cw+3,f.y+3,cw-6,f.len*CH-6); }
+  flash=flash.filter(fl=>t-fl.t<.4); for(const fl of flash){ ctx.globalAlpha=1-(t-fl.t)/.4; ctx.fillStyle='#fff'; ctx.fillRect(COL_X[1],BAND_TOP+fl.r*CH,W,CH); }
+  // cave mammoth trotting across the clock wall
+  ctx.globalAlpha=.9; const mx=((t*60)%700)-120; drawMammoth(mx,232);
+  ctx.restore();
+  return 'Tetris blocks stack and clear across the SOGO band while a cave-painted mammoth trots past the clock.';
+}
+function drawMammoth(x,y){
+  ctx.fillStyle='rgba(238,243,251,.9)';
+  ctx.beginPath(); ctx.ellipse(x,y,34,20,0,0,7); ctx.fill();
+  ctx.beginPath(); ctx.ellipse(x+30,y-8,14,14,0,0,7); ctx.fill();
+  ctx.fillRect(x-26,y+10,8,24); ctx.fillRect(x-8,y+10,8,24); ctx.fillRect(x+8,y+10,8,24); ctx.fillRect(x+22,y+8,8,26);
+  ctx.strokeStyle='rgba(238,243,251,.9)'; ctx.lineWidth=5; ctx.beginPath(); ctx.moveTo(x+40,y-4); ctx.quadraticCurveTo(x+56,y+18,x+46,y+30); ctx.stroke();
+  ctx.lineWidth=3; ctx.beginPath(); ctx.moveTo(x+36,y+4); ctx.quadraticCurveTo(x+60,y+6,x+62,y-10); ctx.stroke();
+}
+// ---- shadow: bright field with a moving hand-rabbit shadow; colour reveal in the clock
+const lightC=document.createElement('canvas'); lightC.width=W; lightC.height=H; const lx=lightC.getContext('2d');
+function rabbit(c,x,y,sc,tw){
+  c.save(); c.translate(x,y); c.scale(sc,sc);
+  c.beginPath(); c.ellipse(0,0,46,30,0,0,7); c.fill();                     // head/hand
+  c.beginPath(); c.ellipse(-6,-52,9,34,-0.25+tw,0,7); c.fill();            // ears
+  c.beginPath(); c.ellipse(16,-50,9,32,0.25-tw,0,7); c.fill();
+  c.beginPath(); c.moveTo(30,6); c.lineTo(120,26); c.lineTo(120,70); c.lineTo(10,30); c.fill(); // wrist
+  c.restore();
+}
+function fxShadow(t){
+  const cyc=t%11;
+  lx.globalCompositeOperation='source-over'; lx.clearRect(0,0,W,H);
+  const g=lx.createLinearGradient(0,0,W,0); g.addColorStop(0,'rgba(238,243,251,.75)'); g.addColorStop(1,'rgba(200,220,255,.6)');
+  lx.fillStyle=g; lx.fillRect(0,0,W,H);
+  const x=W+120-cyc/8*(W-CLOCK.x+120); const sx=Math.max(CLOCK.x,x);
+  lx.globalCompositeOperation='destination-out'; lx.fillStyle='#000';
+  const tw=Math.sin(t*6)*0.08;
+  if(cyc<8 || cyc>=10.5) rabbit(lx,sx,cyc<8?205:205,0.9,tw);
+  ctx.save(); clipWall(ctx); ctx.globalCompositeOperation='lighter'; ctx.globalAlpha=.85; ctx.drawImage(lightC,0,0,W,H); ctx.restore();
+  let cap='A hand shadow hops along the lit wall toward the clock.';
+  if(cyc>=8 && cyc<10.5){
+    const k=Math.min(1,(cyc-8)/0.5);
+    ctx.save(); ctx.globalAlpha=k; const {x:cx,y:cy}=CLOCK;
+    // slippers reveal, full colour inside the clock window
+    ctx.fillStyle='#e0566b'; ctx.beginPath(); ctx.ellipse(cx-22,cy+12,22,40,0.15,0,7); ctx.fill(); ctx.beginPath(); ctx.ellipse(cx+24,cy+8,22,40,-0.15,0,7); ctx.fill();
+    ctx.fillStyle='#fff'; ctx.beginPath(); ctx.ellipse(cx-24,cy-10,16,14,0.15,0,7); ctx.fill(); ctx.beginPath(); ctx.ellipse(cx+22,cy-14,16,14,-0.15,0,7); ctx.fill();
+    ctx.fillStyle='#f2a6c8'; for(const [ex,ey] of [[-34,-38],[-18,-40],[12,-42],[30,-40]]){ ctx.beginPath(); ctx.ellipse(cx+ex,cy+ey,5,12,0,0,7); ctx.fill(); }
+    ctx.restore(); cap='Inside the clock the rabbit turns out to be a pair of slippers. Shadow in, real thing out.';
+  }
+  return cap;
+}
+// ---- christmas (current show, simplified)
+const flakes=Array.from({length:140},(_,i)=>({x:Math.random()*W,y:Math.random()*H,r:1+Math.random()*2.4,v:14+Math.random()*30}));
+function fxXmas(t,dt){
+  ctx.save(); clipWall(ctx); ctx.globalCompositeOperation='lighter';
+  const g=ctx.createLinearGradient(0,0,0,H); g.addColorStop(0,'rgba(30,60,140,.55)'); g.addColorStop(1,'rgba(10,20,60,.35)'); ctx.fillStyle=g; ctx.fillRect(0,0,W,H);
+  for(const f of flakes){ f.y+=f.v*dt; f.x+=Math.sin(t+f.r)*.3; if(f.y>H) {f.y=-4; f.x=Math.random()*W;} ctx.fillStyle='rgba(255,255,255,.9)'; ctx.beginPath(); ctx.arc(f.x,f.y,f.r,0,7); ctx.fill(); }
+  for(let i=0;i<16;i++){ const a=t*0.8+i/16*Math.PI*2; const px=CLOCK.x+Math.cos(a)*130, py=CLOCK.y+Math.sin(a)*120; ctx.fillStyle=`rgba(247,210,122,${.5+.5*Math.sin(t*3+i)})`; ctx.beginPath(); ctx.arc(px,py,3,0,7); ctx.fill(); }
+  // garland swags on the band
+  ctx.strokeStyle='rgba(247,210,122,.7)'; ctx.lineWidth=2;
+  for(let x=COL_X[1];x<W;x+=150){ ctx.beginPath(); ctx.moveTo(x,BAND_TOP+6); ctx.quadraticCurveTo(x+75,BAND_TOP+50,x+150,BAND_TOP+6); ctx.stroke(); }
+  ctx.restore();
+  return 'The live show, sketched: a snowy night and gold sparkle around the clock. In the real show the elves and Santa play out in three chapters.';
+}
+
+function drawGrid(){
+  ctx.save(); ctx.strokeStyle='rgba(238,243,251,.14)'; ctx.lineWidth=1;
+  for(let c=1;c<20;c++){ ctx.beginPath(); ctx.moveTo(c*CW+.5,0); ctx.lineTo(c*CW+.5,H); ctx.stroke(); }
+  for(let r=1;r<6;r++){ ctx.beginPath(); ctx.moveTo(0,r*CH+.5); ctx.lineTo(W,r*CH+.5); ctx.stroke(); }
+  ctx.strokeStyle='rgba(224,122,109,.7)'; ctx.setLineDash([6,6]);
+  for(const x of [W/3,W*2/3]){ ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,H); ctx.stroke(); }
+  ctx.setLineDash([]); ctx.fillStyle='rgba(238,243,251,.75)'; ctx.font='500 11px "IBM Plex Mono", monospace'; ctx.textAlign='left';
+  ['PJ1 · 1920×1080','PJ2 · 1920×1080','PJ3 · 1920×1080'].forEach((s,i)=>ctx.fillText(s, i*W/3+8, 16));
+  ctx.textAlign='right'; ctx.fillText('16,000 mm', W-8, 16);
+  ctx.restore();
+}
+function drawLogo(){
+  ctx.save(); const x=1100,y=150;
+  ctx.fillStyle='rgba(61,123,224,.95)'; ctx.beginPath(); ctx.arc(x-56,y,15,0,7); ctx.fill();
+  ctx.fillStyle='#0b1019'; ctx.font='700 13px "Bodoni Moda", serif'; ctx.textAlign='center'; ctx.textBaseline='middle'; ctx.fillText('✕',x-56,y+1);
+  ctx.fillStyle='rgba(61,123,224,.95)'; ctx.font='700 30px "Bodoni Moda", serif'; ctx.fillText('SOGO',x+8,y+2);
+  ctx.restore();
+}
+
+let last=performance.now(), T=0, capText='';
+const amb=$('#ambient'), gridBox=$('#grid'), cap=$('#simcap');
+function frame(now){
+  const dt=Math.min(.05,(now-last)/1000); last=now; if(!reduce) T+=dt; else T=6.5;
+  ctx.globalAlpha=1; ctx.globalCompositeOperation='source-over';
+  ctx.drawImage(marble,0,0,W,H);
+  drawClock(null);
+  drawLogo();
+  const a=amb.value/100;
+  ctx.save(); ctx.globalAlpha=1-a*0.7;
+  let c;
+  if(mode==='tactile') c=fxTactile(T);
+  else if(mode==='oddball') c=fxOddball(T,reduce?0.016:dt);
+  else if(mode==='shadow') c=fxShadow(T);
+  else c=fxXmas(T,dt);
+  ctx.restore();
+  drawHands();
+  // ambient lobby light washes everything toward warm grey
+  if(a>0){ ctx.save(); ctx.globalCompositeOperation='source-over'; ctx.fillStyle=`rgba(190,170,150,${a*0.32})`; ctx.fillRect(0,0,W,H); ctx.restore(); }
+  if(gridBox.checked) drawGrid();
+  if(c!==capText){ capText=c; cap.innerHTML='<b>'+(mode==='xmas'?XMAS.name:DIRS[mode].name)+'.</b> '+c+' The clock hands show the real time in Yokohama.'; }
+  if(!reduce) requestAnimationFrame(frame); else setTimeout(()=>requestAnimationFrame(frame),1000);
+}
+requestAnimationFrame(frame);
+window.addEventListener('resize',()=>{ const d=Math.min(2,window.devicePixelRatio||1); if(d!==DPR) resize(); });
+
+function setMode(m){
+  mode=m; $$('.seg button').forEach(b=>b.setAttribute('aria-pressed', String(b.dataset.mode===m)));
+  if(m==='oddball') resetBoard();
+}
+$$('.seg button').forEach(b=>b.addEventListener('click',()=>{ const m=b.dataset.mode; if(m!=='xmas') setDir(m,false); else setMode('xmas'); }));
+
+/* ================= CONCEPT FRAMES ================= */
+const FRAMES=[
+  {f:'gen-hero',k:'Hero',t:'The wall wakes up',n:'After closing, white and pale-blue light traces the clock grid and runs along the SOGO band. The opening image for the pitch.'},
+  {f:'gen-a1',k:'A · Tactile',t:'Paper folds across the grid',n:'Wrapping paper peels, giant scissors cut, origami cranes fold out cell by cell from the clock. Reads clearly in white and blue on the marble.'},
+  {f:'gen-a2',k:'A · Tactile',t:'Raked sand at dawn',n:'The whole wall becomes a kare-sansui garden before opening. Calm first show of the day; the clock and SOGO mark sit like stones in the sand.'},
+  {f:'gen-b1',k:'B · Oddball',t:'Cave hunters chase the mammoth',n:'Glowing stick hunters run along the band toward a mammoth wrapped round the clock. Families pointing is exactly the reaction we want.'},
+  {f:'gen-b2',k:'B · Oddball',t:'Janken tie at 16:00',n:'Two arms stretch in from both ends and tie with scissors at four o\'clock. Shown with house lights on: a white-and-blue cartoon line still reads in daytime.'},
+  {f:'gen-c1',k:'C · Shadow',t:'Rabbit shadow, slippers in the clock',n:'A hand-shadow rabbit crosses the lit wall; inside the clock it turns into real red slippers. The clearest single picture of direction C.'},
+  {f:'gen-c2b',k:'C · Shadow',t:'Shadow grid finale',n:'Blue panels of hand-shadow animals, hands visible, on the clock wall and the band only. The SOGO mark sits clear in its own gap and nothing touches the shopfronts. The colour reveal in the clock face is still to come in the style frame.'}
+];
+const cmp=$('#compare'), cmpR=$('#cmpRange');
+cmpR.addEventListener('input',()=>cmp.style.setProperty('--cut',cmpR.value+'%'));
+cmp.style.setProperty('--cut',cmpR.value+'%');
+function showFrame(i){
+  const fr=FRAMES[i];
+  $('#cmpAfter').src='img/'+fr.f+'.jpg'; $('#cmpAfter').alt='Concept: '+fr.t; $('#cmpLbl').textContent=fr.k;
+  $('#frameNote').innerHTML='<b>'+fr.t+'.</b> '+fr.n+(fr.flag?' <span class="flag">'+fr.flag+'</span>':'');
+  $$('.frame-btn').forEach((b,j)=>b.setAttribute('aria-pressed',String(j===i)));
+}
+$('#frameList').innerHTML=FRAMES.map((fr,i)=>`<button type="button" class="frame-btn" aria-pressed="false" data-i="${i}"><img src="img/${fr.f}.jpg" alt="" loading="lazy"><span><small>${fr.k}</small>${fr.t}</span></button>`).join('');
+$$('.frame-btn').forEach(b=>b.addEventListener('click',()=>showFrame(+b.dataset.i)));
+showFrame(0);
+
+/* ================= SHADOW SEASONS ================= */
+const SEASONS=[
+  {f:'gen-s-valentine',m:'Feb',jp:'バレンタイン',en:'Valentine',when:'February',shadow:'Two hands pressed into a heart drift along the band.',reveal:'A glossy box of chocolates with a ribbon.',tie:'Sits inside the client\'s planned Chocolate Paradise theme for January and February.'},
+  {f:'gen-s-spring',m:'Apr',jp:'桜',en:'Cherry blossom',when:'March – April',shadow:'A hand-shadow bird, thumbs linked, flies toward the clock.',reveal:'A real branch of cherry blossom; petals drift out over the white wall.',tie:'Opens our spring launch and sits alongside the floral GREEN×EXPO 2027 theme from March.'},
+  {f:'gen-s-rainy',m:'Jun',jp:'梅雨',en:'Rainy season',when:'June',shadow:'A cut-paper snail on a visible rod crawls through falling rain lines. The puppeteer is part of the show.',reveal:'Blue and violet hydrangea with raindrops.',tie:'The hand-puppet version. Pairs with umbrellas and rainwear; the rain lines keep to the white-and-blue palette.'},
+  {f:'gen-s-summer-b',m:'Aug',jp:'夏祭り',en:'Summer festival',when:'July – August',shadow:'A fish shadow swims across a deep-blue "night water" band.',reveal:'Red-and-white goldfish in a festival bowl.',tie:'Yukata season and summer festivals; a family slot for school holidays.',flag:'In the final film the fish should be clearly made by hands; this draft reads as a plain silhouette.'},
+  {f:'gen-s-autumn',m:'Sep',jp:'お月見',en:'Moon viewing',when:'September',shadow:'A hand-shadow rabbit hops past pampas grass, the rabbit in the moon.',reveal:'A glowing full moon with a stack of tsukimi dango.',tie:'Moon-viewing sweets on the food floor; a story every Japanese visitor already knows, and easy to explain to inbound guests.'}
+];
+let seasonI=1;
+function showSeason(i){
+  seasonI=i; const s=SEASONS[i];
+  $('#seasonImg').src='img/'+s.f+'.jpg';
+  $('#seasonImg').alt=s.en+' concept frame: '+s.shadow+' Inside the clock: '+s.reveal;
+  $('#seasonCard').innerHTML=`<div><h3>${s.jp}</h3><span class="when">${s.en} · ${s.when}</span></div>
+    <div class="beat"><span class="step">On the band</span><span class="what">${s.shadow}</span><span class="arrow">↓</span><span class="step">In the clock</span><span class="what">${s.reveal}</span></div>
+    <p class="tie"><b>Possible tie-in</b>${s.tie}</p>${s.flag?`<p class="flag">${s.flag}</p>`:''}`;
+  $$('.month').forEach((b,j)=>{ b.setAttribute('aria-selected',String(j===i)); b.tabIndex=j===i?0:-1; });
+  $$('#seasonStrip button').forEach((b,j)=>b.setAttribute('aria-current',String(j===i)));
+}
+$('#months').innerHTML=SEASONS.map((s,i)=>`<button type="button" class="month" role="tab" aria-selected="false" data-i="${i}"><b>${s.m}</b><span>${s.jp}</span></button>`).join('');
+$('#seasonStrip').innerHTML=SEASONS.map((s,i)=>`<button type="button" data-i="${i}" aria-label="${s.en}"><img src="img/${s.f}.jpg" alt="" loading="lazy"></button>`).join('');
+$$('.month, #seasonStrip button').forEach(b=>b.addEventListener('click',()=>showSeason(+b.dataset.i)));
+$('#months').addEventListener('keydown',e=>{ if(e.key!=='ArrowRight'&&e.key!=='ArrowLeft') return; e.preventDefault(); const n=(seasonI+(e.key==='ArrowRight'?1:SEASONS.length-1))%SEASONS.length; showSeason(n); $$('.month')[n].focus(); });
+showSeason(1);
+
+/* ================= HOTSPOTS ================= */
+function showHot(k){
+  $$('.hot').forEach(h=>h.setAttribute('aria-pressed', String(h.dataset.k===k)));
+  const [t,d]=HOT[k]; $('#hotnote').innerHTML='<b>'+t+'</b>'+d;
+}
+$$('.hot').forEach(h=>h.addEventListener('click',()=>showHot(h.dataset.k)));
+showHot('clock');
+
+/* ================= SWATCHES ================= */
+const SW=[['White','#ffffff',1],['Pale blue','#bcd4ff',1],['SOGO blue','#3d7be0',1],['Grey','#9aa3b0',0.5],['Green','#3f9b4f',0],['Orange','#e08a3a',0]];
+$('#swatches').innerHTML=SW.map(([n,c,ok])=>`<div class="sw"><div class="on"><i style="background:${c}"></i></div><span>${n}</span><b class="${ok===1?'ok':ok===0?'no':''}">${ok===1?'Reads':ok===0?'Blends':'Check'}</b></div>`).join('');
+
+/* ================= DIRECTIONS ================= */
+function renderDir(){
+  const d=DIRS[dir];
+  $$('.dir-tab').forEach(t=>{ const on=t.dataset.dir===dir; t.setAttribute('aria-selected',String(on)); t.tabIndex=on?0:-1; });
+  $('#dirpanel').setAttribute('aria-labelledby','tab-'+dir);
+  $('#dirpanel').innerHTML=`
+    <div class="dir-body">
+      <div class="stack">
+        <span class="eyebrow">${d.jp}</span>
+        <p class="para">${d.para}</p>
+        <div class="mediums">${d.mediums.map(m=>`<span>${m}</span>`).join('')}</div>
+        <div class="ideas">${d.ideas.map((it,i)=>`
+          <div class="idea"><button type="button" aria-expanded="${i===0}" aria-controls="idea-${i}"><span class="ts">${it[0]}</span>${it[1]}</button><p id="idea-${i}" ${i===0?'':'hidden'}>${it[2]}</p></div>`).join('')}
+        </div>
+        <p style="font-size:12px;color:var(--muted)">Timestamps point to the 18 Nov session recording.</p>
+      </div>
+      <div class="mood">${d.mood.map(([f,c])=>`<figure><img src="img/${f}.jpg" alt="${c}" loading="lazy"><figcaption>${c}</figcaption></figure>`).join('')}</div>
+    </div>
+    <div class="tiers">${d.tiers.map(([n,f,p,rec])=>`<div class="tier${rec?' rec':''}">${rec?'<span class="rec-tag">Suggested start</span>':''}<span class="n">${n}</span><span class="films">${f}</span><p>${p}</p></div>`).join('')}</div>
+    <p style="font-size:13px;color:var(--muted);margin-top:12px">Tiers set scope only. Pricing to be worked out with the producer before the client meeting.</p>`;
+  $$('.idea button',$('#dirpanel')).forEach(b=>b.addEventListener('click',()=>{ const p=document.getElementById(b.getAttribute('aria-controls')); const open=b.getAttribute('aria-expanded')==='true'; b.setAttribute('aria-expanded',String(!open)); p.hidden=open; }));
+}
+function setDir(d,scroll){
+  dir=d; store.set('sogo-dir',d); setMode(d); renderDir(); renderDay();
+}
+$$('.dir-tab').forEach(t=>{
+  t.addEventListener('click',()=>setDir(t.dataset.dir));
+  t.addEventListener('keydown',e=>{ const order=['tactile','oddball','shadow']; let i=order.indexOf(dir);
+    if(e.key==='ArrowRight'){i=(i+1)%3;} else if(e.key==='ArrowLeft'){i=(i+2)%3;} else return;
+    e.preventDefault(); setDir(order[i]); $('#tab-'+order[i]).focus(); });
+});
+
+/* ================= DAY ================= */
+const HOURS=[10,11,12,13,14,15,16,17,18,19,20];
+function nextShowIndex(){ const {h,m}=jstNow(); for(let i=0;i<HOURS.length;i++){ if(HOURS[i]>h || (HOURS[i]===h && m<3)) return i; } return -1; }
+function renderDay(){
+  const d=DIRS[dir], ni=nextShowIndex(), {h}=jstNow();
+  if(selectedSlot===null) selectedSlot = ni>=0?ni:0;
+  $('#dayrow').innerHTML=HOURS.map((hr,i)=>{
+    const c=d.hue[i%2], past = ni===-1 ? true : i<ni;
+    return `<button type="button" class="slot${i===ni?' next':''}${past?' past':''}" data-i="${i}" aria-pressed="${i===selectedSlot}">${d.frames[i]?'<span class="cam" title="Concept frame available"></span>':''}<span class="h">${hr}:00</span><span class="g"><i style="background:${c};mix-blend-mode:screen"></i></span><span style="font-size:11px;line-height:1.3">${d.day[i]}</span></button>`;
+  }).join('');
+  $$('.slot').forEach(s=>s.addEventListener('click',()=>{ selectedSlot=+s.dataset.i; renderDay(); }));
+  const i=selectedSlot, hr=HOURS[i];
+  const special = (dir==='oddball' && hr===16) ? ' Signature slot: the janken tie.' : (hr===12 ? ' Lunchtime crowd; strongest slot for food-floor tie-ins.' : (hr===20 ? ' Last show; a finale that closes the day.' : ''));
+  const fimg=d.frames[i];
+  $('#slotdetail').classList.toggle('has-img',!!fimg);
+  $('#slotdetail').innerHTML=(fimg?`<img class="slot-img" src="img/${fimg}.jpg" alt="Concept frame for ${d.day[i]}">`:'')+`<span class="big">${hr}:00</span><div><h3>${d.day[i]}</h3><p>${d.name} · about 3 minutes, silent.${special}</p></div><span class="countdown" id="cd"></span>`;
+  updateCountdown();
+}
+function updateCountdown(){
+  const {h,m,s}=jstNow(); const el=$('#cd'); if(!el) return;
+  const now=h*3600+m*60+s, target=HOURS[selectedSlot]*3600;
+  let diff=target-now;
+  if(diff<=0 && diff>-180) el.textContent='Playing now';
+  else { if(diff<=0) diff+=86400; const hh=Math.floor(diff/3600), mm=Math.floor(diff%3600/60); el.textContent='Starts in '+(hh?hh+' h ':'')+mm+' min'; }
+}
+function tick(){
+  const {h,m}=jstNow(); $('#jst').textContent='Yokohama '+String(h).padStart(2,'0')+':'+String(m).padStart(2,'0');
+  updateCountdown();
+}
+setInterval(tick,15000); tick();
+
+/* ================= REFERENCES ================= */
+function renderRefs(f){
+  $$('.filters .chip').forEach(c=>c.setAttribute('aria-pressed',String(c.dataset.f===f)));
+  const items=REFS.filter(r=>f==='all'||r.f.split(' ').includes(f));
+  $('#refwall').innerHTML=items.map(r=> r.img
+    ? `<figure class="ref"><img src="img/${r.img}.jpg" alt="${r.t}" loading="lazy"><figcaption><b>${r.t}</b>${r.c}</figcaption></figure>`
+    : `<div class="ref link"><a href="${r.url}" target="_blank" rel="noopener"><span class="dom">${r.d}</span><span class="ttl">${r.t}</span><span class="why">${r.c}</span><span class="play">${r.d==='youtube.com'?'▶ Watch':'↗ Open'}</span></a></div>`).join('');
+}
+$$('.filters .chip').forEach(c=>c.addEventListener('click',()=>renderRefs(c.dataset.f)));
+renderRefs('all');
+
+/* ================= NEXT (per-viewer ticks) ================= */
+$$('.next-list input').forEach(cb=>{ cb.checked = store.get('sogo-'+cb.id)==='1'; cb.addEventListener('change',()=>store.set('sogo-'+cb.id, cb.checked?'1':'0')); });
+
+setDir(dir);
+})();
+</script>
+
+</body>
+</html>
