@@ -1,0 +1,1101 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Sogo Clock Wall（日本語）</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,600;1,6..96,400&family=IBM+Plex+Mono:wght@400;500&family=Shippori+Mincho+B1:wght@500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
+<style>
+/* Layout: a bright gallery page — projector-white ground, SOGO blue as the one accent, brass for the clock.
+   The night shots and the wall simulator are the only dark things, so they read as "the wall at showtime".
+   Single light theme by choice. */
+:root{
+  --hall:#f6f8fb;        /* page ground: cool projector white */
+  --hall-2:#ffffff;      /* raised panels */
+  --marble:#9a6048;      /* the orange-brown wall */
+  --light:#111a2b;       /* ink */
+  --fg-2:#3a4659;        /* secondary text */
+  --sogo:#2563d6;        /* SOGO blue, the one accent */
+  --sogo-tint:#e8effc;   /* blue wash for bands */
+  --brass:#8c6a22;       /* clock frame, used sparingly */
+  --muted:#67748a;
+  --line:#dce3ed;
+  --ok:#23825a; --warn:#a46c12; --no:#bf4536;
+  --f-jp:"Shippori Mincho B1","Hiragino Mincho ProN","Yu Mincho",serif;
+  --f-display:"Bodoni Moda","Didot","Times New Roman",serif;
+  --f-body:"Zen Kaku Gothic New","Hiragino Sans","Noto Sans JP",system-ui,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  color-scheme:light;
+}
+#frames,#day{background:var(--sogo-tint)}
+#frames .frame-btn[aria-pressed="true"],#day .slot-detail,#day .slot{background:var(--hall-2)}
+.hero-photo{margin:0;display:grid;gap:8px}
+.hero-photo img{width:100%;border-radius:8px;display:block;box-shadow:0 18px 40px -18px rgba(17,26,43,.45)}
+.hero-photo figcaption{font-size:12px;color:var(--muted)}
+*{box-sizing:border-box}
+body{background:var(--hall);color:var(--light);font-family:var(--f-body);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--hall)}
+a{color:var(--light);text-decoration-color:var(--sogo);text-underline-offset:3px}
+a:hover{color:var(--sogo)}
+:focus-visible{outline:2px solid var(--sogo);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+section{padding-block:72px;border-top:1px solid var(--line)}
+h1,h2,h3{text-wrap:balance;margin:0;font-weight:500}
+h2{font-family:var(--f-display);font-size:clamp(30px,4.4vw,46px);line-height:1.08;letter-spacing:-.01em}
+h2 .jp{display:block;font-family:var(--f-jp);font-size:.42em;color:var(--muted);letter-spacing:.12em;margin-bottom:10px}
+h3{font-size:19px;font-weight:700;line-height:1.35}
+p{margin:0}
+.lede{max-width:64ch;color:var(--fg-2);font-size:17px}
+.eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.stack{display:grid;gap:16px}
+.sec-head{display:grid;gap:14px;margin-bottom:36px}
+
+/* ---------- top bar ---------- */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:rgba(247,249,252,.9);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.bar .wrap{display:flex;align-items:center;gap:20px;min-height:52px;flex-wrap:wrap}
+.bar .mark{font-family:var(--f-mono);font-size:12px;letter-spacing:.12em;color:var(--muted)}
+.bar nav{display:flex;gap:16px;flex-wrap:wrap;margin-left:auto}
+.bar nav a{font-size:13px;color:var(--muted);text-decoration:none}
+.bar nav a:hover{color:var(--light)}
+.jst{font-family:var(--f-mono);font-size:12px;color:var(--brass)}
+.lang{font-size:12px;font-weight:500;text-decoration:none;padding:5px 10px;border:1px solid var(--line);border-radius:999px;background:var(--hall-2)}
+.lang:hover{border-color:var(--sogo)}
+
+/* ---------- hero ---------- */
+.hero{padding-block:56px 40px;border-top:0}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:44px;align-items:center}
+.slot-detail.has-img{grid-template-columns:220px auto minmax(0,1fr) auto}
+.slot-img{width:100%;aspect-ratio:1344/768;object-fit:cover;border-radius:4px;display:block}
+.slot .cam{position:absolute;top:6px;right:6px;width:7px;height:7px;border-radius:50%;background:var(--sogo)}
+.hero h1{font-family:var(--f-jp);font-weight:700;font-size:clamp(40px,7vw,84px);line-height:1.05;letter-spacing:.02em}
+.hero .en{font-family:var(--f-display);font-style:italic;font-size:clamp(20px,2.4vw,28px);color:var(--brass);margin-top:10px}
+.hero .facts{display:grid;grid-template-columns:auto 1fr;gap:6px 18px;font-size:14px;color:var(--fg-2)}
+.hero .facts dt{font-family:var(--f-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding-top:3px}
+.hero .facts dd{margin:0}
+
+/* ---------- simulator ---------- */
+.sim{margin-top:40px;display:grid;gap:14px}
+.sim-scroll{overflow-x:auto;border-radius:6px;border:1px solid var(--line);background:#05080d}
+.sim canvas{display:block;width:100%;min-width:760px;aspect-ratio:16/3}
+.controls{display:flex;flex-wrap:wrap;gap:10px 22px;align-items:center}
+.seg{display:inline-flex;flex-wrap:wrap;gap:6px}
+.seg button,.chip{font:500 13px/1 var(--f-body);color:var(--light);background:var(--hall-2);border:1px solid var(--line);padding:9px 14px;border-radius:999px;cursor:pointer}
+.seg button[aria-pressed="true"],.chip[aria-pressed="true"]{background:var(--light);color:var(--hall);border-color:var(--light)}
+.seg button:hover,.chip:hover{border-color:var(--sogo)}
+.ctl{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted)}
+.ctl input[type=range]{accent-color:var(--sogo);width:130px}
+.ctl input[type=checkbox]{accent-color:var(--sogo);width:16px;height:16px}
+.sim-caption{font-size:13px;color:var(--muted);max-width:90ch}
+.sim-caption b{color:var(--light);font-weight:500}
+
+/* ---------- concept frames: before / after ---------- */
+.frames-grid{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:28px;align-items:start}
+.compare{position:relative;border-radius:6px;overflow:hidden;aspect-ratio:1344/768;max-width:100%;background:#05080d;user-select:none}
+.compare img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.compare .after{clip-path:inset(0 0 0 var(--cut,50%))}
+.compare .handle{position:absolute;top:0;bottom:0;left:var(--cut,50%);width:2px;background:var(--light);transform:translateX(-1px);pointer-events:none}
+.compare .handle::after{content:"↔";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:38px;height:38px;border-radius:50%;background:var(--light);color:var(--hall);display:grid;place-items:center;font:600 16px/1 var(--f-mono)}
+.compare input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;margin:0}
+.compare .lbl{position:absolute;top:12px;font:500 11px/1 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;padding:6px 8px;border-radius:4px;background:rgba(11,16,25,.75);color:#fff;pointer-events:none}
+.compare .lbl.l{left:12px} .compare .lbl.r{right:12px}
+.frame-list{display:grid;gap:6px}
+.frame-btn{all:unset;cursor:pointer;display:grid;grid-template-columns:84px minmax(0,1fr);gap:12px;align-items:center;padding:6px;border-radius:6px;border:1px solid transparent}
+.frame-btn img{width:84px;aspect-ratio:1344/768;object-fit:cover;border-radius:3px;display:block}
+.frame-btn span{font-size:13px;line-height:1.35}
+.frame-btn small{display:block;font-family:var(--f-mono);font-size:10px;letter-spacing:.1em;color:var(--muted);text-transform:uppercase;margin-bottom:2px}
+.frame-btn[aria-pressed="true"]{border-color:var(--light);background:var(--hall-2)}
+.frame-btn:focus-visible{outline:2px solid var(--sogo);outline-offset:2px}
+.frame-note{margin-top:14px;font-size:14px;color:var(--fg-2);max-width:80ch}
+.frame-note .flag{color:var(--warn)}
+@media (max-width:900px){.frames-grid{grid-template-columns:minmax(0,1fr)} .frame-list{grid-template-columns:repeat(auto-fill,minmax(220px,1fr))}}
+
+/* ---------- shadow seasons ---------- */
+.months{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+.month{all:unset;cursor:pointer;display:grid;gap:2px;padding:10px 16px;border:1px solid var(--line);border-radius:6px;background:var(--hall-2);min-width:96px}
+.month b{font-family:var(--f-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.month span{font-family:var(--f-jp);font-size:17px;font-weight:700}
+.month[aria-selected="true"]{background:var(--light);border-color:var(--light);color:var(--hall)}
+.month[aria-selected="true"] b{color:rgba(255,255,255,.7)}
+.month:focus-visible{outline:2px solid var(--sogo);outline-offset:2px}
+.season-stage{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:32px;align-items:start}
+.season-stage img{width:100%;aspect-ratio:1344/768;object-fit:cover;border-radius:8px;display:block;box-shadow:0 18px 40px -18px rgba(17,26,43,.45)}
+.beat{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 14px;align-items:baseline}
+.beat .step{font-family:var(--f-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.beat .what{font-size:16px}
+.beat .arrow{grid-column:1/-1;font-family:var(--f-display);font-size:26px;line-height:1;color:var(--sogo);padding-left:2px}
+.season-card h3{font-family:var(--f-jp);font-size:28px;font-weight:700;margin-bottom:2px}
+.season-card .when{font-family:var(--f-mono);font-size:12px;color:var(--brass)}
+.season-card .tie{font-size:14px;color:var(--fg-2);border-top:1px solid var(--line);padding-top:14px}
+.season-card .tie b{display:block;font-family:var(--f-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:500;margin-bottom:4px}
+.season-card .flag{font-size:13px;color:var(--warn)}
+.season-strip{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin-top:18px}
+.season-strip button{all:unset;cursor:pointer;border-radius:4px;overflow:hidden;opacity:.55;outline-offset:2px}
+.season-strip button[aria-current="true"]{opacity:1;box-shadow:0 0 0 2px var(--sogo)}
+.season-strip button:focus-visible{outline:2px solid var(--sogo)}
+.season-strip img{width:100%;aspect-ratio:1344/768;object-fit:cover;display:block}
+@media (max-width:900px){.season-stage{grid-template-columns:minmax(0,1fr)}}
+
+/* ---------- brief ---------- */
+.keys{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
+.key{background:var(--hall);padding:22px 20px 24px;display:grid;gap:6px;align-content:start}
+.key .w{font-family:var(--f-display);font-size:30px;letter-spacing:.04em}
+.key .j{font-family:var(--f-jp);color:var(--brass);font-size:14px}
+.key p{color:var(--fg-2);font-size:14px}
+.voices{margin-top:28px;display:flex;flex-wrap:wrap;gap:10px}
+.voice{font-family:var(--f-jp);font-size:15px;padding:10px 16px;border:1px solid var(--line);border-radius:999px;color:var(--fg-2)}
+.numbers{margin-top:28px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.num{display:grid;gap:2px}
+.num .v{font-family:var(--f-display);font-size:34px;line-height:1.1;font-variant-numeric:lining-nums tabular-nums}
+.num .l{font-size:13px;color:var(--muted)}
+.history{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px;margin-top:44px;align-items:start}
+
+/* ---------- season ---------- */
+.season{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;position:relative;margin-top:8px}
+.season::before{content:"";position:absolute;left:0;right:0;top:15px;height:1px;background:var(--line)}
+.s-item{position:relative;padding:0 18px 0 0;display:grid;gap:6px}
+.s-dot{width:31px;height:31px;border-radius:50%;border:1px solid var(--line);background:var(--hall);display:grid;place-items:center;font-family:var(--f-mono);font-size:11px;color:var(--muted);position:relative}
+.s-item.live .s-dot{border-color:var(--brass);color:var(--brass)}
+.s-item.us .s-dot{border-color:var(--sogo);background:var(--sogo);color:#fff}
+.s-item .when{font-family:var(--f-mono);font-size:12px;color:var(--muted);margin-top:8px}
+.s-item p{font-size:14px;color:var(--fg-2)}
+.pill{display:inline-block;font:500 11px/1 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;padding:5px 8px;border-radius:4px;border:1px solid currentColor;width:max-content}
+.pill.live{color:var(--brass)} .pill.plan{color:var(--muted)} .pill.us{color:var(--sogo)}
+.xmas{margin-top:44px;display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:28px;align-items:center}
+.xmas img{border-radius:6px;display:block}
+.chapters{display:grid;gap:14px;counter-reset:ch}
+.chapters div{display:grid;gap:2px;padding-left:44px;position:relative}
+.chapters div::before{counter-increment:ch;content:counter(ch);position:absolute;left:0;top:0;font-family:var(--f-display);font-size:30px;line-height:1;color:var(--brass)}
+.chapters b{font-family:var(--f-jp);font-weight:700}
+.chapters span{font-size:14px;color:var(--fg-2)}
+
+/* ---------- site ---------- */
+.site-grid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:32px;align-items:start}
+.photo{position:relative;border-radius:6px;overflow:hidden}
+.photo img{display:block;width:100%}
+.hot{position:absolute;width:30px;height:30px;margin:-15px 0 0 -15px;border-radius:50%;background:var(--sogo);color:#fff;border:2px solid #fff;font:700 13px/26px var(--f-mono);text-align:center;cursor:pointer;padding:0;box-shadow:0 0 0 6px rgba(61,123,224,.25)}
+.hot[aria-pressed="true"]{background:#fff;color:var(--sogo)}
+.hot-note{margin-top:14px;min-height:5.2em;padding:16px 18px;background:var(--hall-2);border-radius:6px;font-size:14px;color:var(--fg-2)}
+.hot-note b{display:block;font-size:15px;margin-bottom:4px;color:var(--light)}
+.specs{width:100%;border-collapse:collapse;font-size:14px}
+.specs th{text-align:left;font-weight:400;color:var(--muted);padding:9px 12px 9px 0;vertical-align:top;width:42%;font-size:13px}
+.specs td{padding:9px 0;border-bottom:1px solid var(--line)}
+.specs tr:first-child td{border-top:1px solid var(--line)}
+.specs th{border-bottom:1px solid var(--line)}
+.specs tr:first-child th{border-top:1px solid var(--line)}
+.rules{margin-top:44px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:32px;align-items:start}
+.swatches{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px}
+.sw{display:grid;gap:6px;text-align:center;font-size:12px;color:var(--muted)}
+.sw .on{aspect-ratio:1;border-radius:4px;position:relative;overflow:hidden;background:repeating-linear-gradient(176deg,#5b3424 0 7px,#734331 7px 12px,#64392a 12px 21px,#7b4a36 21px 25px)}
+.sw .on i{position:absolute;inset:18%;border-radius:2px;mix-blend-mode:screen}
+.sw b{font-weight:500;font-size:12px}
+.sw b.ok{color:var(--ok)} .sw b.no{color:var(--no)}
+.constraints{display:grid;gap:12px}
+.constraints li{list-style:none;display:grid;grid-template-columns:110px 1fr;gap:12px;font-size:14px;color:var(--fg-2);padding-bottom:12px;border-bottom:1px solid var(--line)}
+.constraints li span:first-child{font-family:var(--f-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding-top:3px}
+.constraints{padding:0;margin:0}
+
+/* ---------- directions ---------- */
+.dir-tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-bottom:32px}
+.dir-tab{all:unset;cursor:pointer;display:grid;gap:6px;padding:18px 20px 20px;border:1px solid var(--line);border-radius:6px;background:var(--hall-2)}
+.dir-tab .k{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;color:var(--muted);text-transform:uppercase}
+.dir-tab .t{font-family:var(--f-display);font-size:26px;line-height:1.1}
+.dir-tab .s{font-size:13px;color:var(--muted)}
+.dir-tab[aria-selected="true"]{border-color:var(--light);background:var(--light);color:var(--hall)}
+.dir-tab[aria-selected="true"] .k,.dir-tab[aria-selected="true"] .s{color:rgba(255,255,255,.72)}
+.dir-tab:focus-visible{outline:2px solid var(--sogo);outline-offset:3px}
+.dir-body{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px;align-items:start}
+.dir-body .para{font-size:17px;color:var(--fg-2);max-width:60ch}
+.mediums{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+.mediums span{font-size:12px;font-family:var(--f-mono);padding:5px 9px;border:1px solid var(--line);border-radius:4px;color:var(--fg-2)}
+.ideas{display:grid;gap:0;margin-top:6px}
+.idea{border-top:1px solid var(--line)}
+.idea:last-child{border-bottom:1px solid var(--line)}
+.idea button{all:unset;cursor:pointer;display:flex;gap:14px;align-items:baseline;width:100%;padding:13px 0;font-weight:500}
+.idea button:focus-visible{outline:2px solid var(--sogo);outline-offset:2px}
+.idea button::after{content:"+";margin-left:auto;font-family:var(--f-mono);color:var(--muted)}
+.idea button[aria-expanded="true"]::after{content:"–"}
+.idea .ts{font-family:var(--f-mono);font-size:11px;color:var(--muted);min-width:56px}
+.idea p{padding:0 0 16px 70px;font-size:14px;color:var(--fg-2)}
+.mood{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.mood figure{margin:0;display:grid;gap:6px}
+.mood figure:first-child{grid-column:1/-1}
+.mood img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:4px;display:block}
+.mood figure:first-child img{aspect-ratio:16/9}
+.mood figcaption{font-size:12px;color:var(--muted)}
+.tiers{margin-top:36px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.tier{border:1px solid var(--line);border-radius:6px;padding:18px 18px 20px;display:grid;gap:8px;align-content:start}
+.tier .n{font-family:var(--f-display);font-size:22px}
+.tier .films{font-family:var(--f-mono);font-size:12px;color:var(--brass)}
+.tier p{font-size:14px;color:var(--fg-2)}
+.tier.rec{border-color:var(--sogo)}
+.tier .rec-tag{font:500 11px/1 var(--f-mono);color:var(--sogo);letter-spacing:.1em;text-transform:uppercase}
+
+/* ---------- day schedule ---------- */
+.day{display:grid;grid-template-columns:repeat(11,minmax(0,1fr));gap:6px}
+.slot{all:unset;cursor:pointer;display:grid;gap:8px;padding:12px 8px;border-radius:6px;border:1px solid var(--line);text-align:center;background:var(--hall-2);position:relative}
+.slot .h{font-family:var(--f-mono);font-size:13px}
+.slot .g{height:46px;border-radius:3px;background:var(--marble);position:relative;overflow:hidden}
+.slot .g i{position:absolute;inset:8px;border-radius:2px;opacity:.9}
+.slot[aria-pressed="true"]{border-color:var(--light)}
+.slot.next::before{content:"次";position:absolute;top:-9px;left:50%;transform:translateX(-50%);font:500 10px/1 var(--f-mono);background:var(--sogo);color:#fff;padding:3px 6px;border-radius:3px;letter-spacing:.08em;text-transform:uppercase}
+.slot.past{opacity:.5}
+.slot:focus-visible{outline:2px solid var(--sogo);outline-offset:2px}
+.slot-detail{margin-top:20px;display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:24px;align-items:center;padding:22px 24px;background:var(--hall-2);border-radius:6px}
+.slot-detail .big{font-family:var(--f-display);font-size:48px;line-height:1;font-variant-numeric:lining-nums tabular-nums}
+.slot-detail h3{margin-bottom:4px}
+.slot-detail p{font-size:14px;color:var(--fg-2)}
+.countdown{font-family:var(--f-mono);font-size:13px;color:var(--brass);text-align:right}
+.day-scroll{overflow-x:auto;padding-top:12px}
+.day-scroll .day{min-width:720px}
+
+/* ---------- characters ---------- */
+.verdicts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.verdict{border:1px solid var(--line);border-radius:6px;padding:18px 18px 20px;display:grid;gap:8px;align-content:start}
+.verdict .tag{font:500 11px/1 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;width:max-content;padding:5px 8px;border-radius:4px}
+.tag.no{background:rgba(224,122,109,.15);color:var(--no)}
+.tag.maybe{background:rgba(230,184,92,.15);color:var(--warn)}
+.tag.later{background:rgba(139,151,171,.15);color:var(--muted)}
+.verdict p{font-size:14px;color:var(--fg-2)}
+.callout{margin-top:24px;padding:20px 24px;border-left:3px solid var(--sogo);background:var(--hall-2);font-size:16px;max-width:80ch}
+
+/* ---------- reference wall ---------- */
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
+.refs{columns:4 230px;column-gap:14px}
+.ref{break-inside:avoid;margin:0 0 14px;display:grid;gap:6px}
+.ref img{width:100%;display:block;border-radius:4px}
+.ref figcaption{font-size:12px;color:var(--muted)}
+.ref figcaption b{color:var(--light);font-weight:500;display:block;font-size:13px}
+.ref.link a{display:grid;gap:8px;padding:16px;border:1px solid var(--line);border-radius:6px;text-decoration:none;background:var(--hall-2)}
+.ref.link a:hover{border-color:var(--sogo)}
+.ref.link .dom{font-family:var(--f-mono);font-size:11px;color:var(--muted)}
+.ref.link .ttl{font-size:14px;font-weight:500;line-height:1.4}
+.ref.link .why{font-size:12px;color:var(--muted)}
+.ref.link .play{font-family:var(--f-mono);font-size:11px;color:var(--sogo)}
+
+/* ---------- next ---------- */
+.next-list{display:grid;gap:0;padding:0;margin:0;max-width:820px}
+.next-list li{list-style:none;display:grid;grid-template-columns:28px minmax(0,1fr) auto;gap:14px;align-items:baseline;padding:14px 0;border-bottom:1px solid var(--line)}
+.next-list input{accent-color:var(--sogo);width:18px;height:18px;margin:0;transform:translateY(3px)}
+.next-list label{cursor:pointer}
+.next-list .due{font-family:var(--f-mono);font-size:12px;color:var(--muted)}
+.next-list input:checked + label{color:var(--muted);text-decoration:line-through}
+footer{padding-block:40px 56px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+footer .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-between}
+
+@media (max-width:900px){
+  .hero-grid,.history,.xmas,.site-grid,.rules,.dir-body{grid-template-columns:minmax(0,1fr)}
+  .keys,.numbers{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .season{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:28px}
+  .season::before{display:none}
+  .tiers,.verdicts{grid-template-columns:minmax(0,1fr)}
+  .dir-tabs{grid-template-columns:minmax(0,1fr)}
+  .slot-detail,.slot-detail.has-img{grid-template-columns:minmax(0,1fr)}
+  .countdown{text-align:left}
+  .bar nav{display:none}
+}
+@media (max-width:520px){
+  .keys,.numbers{grid-template-columns:minmax(0,1fr)}
+  .swatches{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .constraints li{grid-template-columns:minmax(0,1fr);gap:2px}
+  .idea p{padding-left:0}
+  section{padding-block:56px}
+}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<div class="bar">
+  <div class="wrap">
+    <span class="mark">SAS × SOGO YOKOHAMA · B2</span>
+    <nav aria-label="Sections">
+      <a href="#frames">フレーム</a><a href="#brief">ブリーフ</a><a href="#site">会場</a><a href="#directions">方向性</a><a href="#shadow-seasons">四季</a><a href="#day">一日</a><a href="#characters">キャラクター</a><a href="#refs">参考</a><a href="#next">次へ</a>
+    </nav>
+    <span class="jst" id="jst" aria-live="off">JST --:--</span>
+    <a class="lang" href="index.html" lang="en" hreflang="en">English</a>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="stack">
+        <span class="eyebrow">プロジェクションマッピング · 春の提案 · 社内ドラフト</span>
+        <h1>思い出は、<br>未来になる</h1>
+        <p class="en">Memories become the future</p>
+        <p class="lede">そごう横浜店 地下2階正面入口のからくり時計は、1985年から2008年まで親しまれてきました。12月1日、光の時計として再始動。クリスマス版が上映中の今、春以降この壁で何を映すかを提案します。</p>
+        <dl class="facts">
+          <dt>場所</dt><dd>地下2階正面入口、時計の壁＋SOGOの帯</dd>
+          <dt>上映</dt><dd>毎正時、約3分、10:00〜20:00</dd>
+          <dt>画面</dt><dd class="mono">3 × 1920×1080 · 16,000 mm wide</dd>
+          <dt>音声</dt><dd>現場音声なし。映像だけで伝える</dd>
+        </dl>
+      </div>
+      <figure class="hero-photo">
+        <img src="img/gen-hero.jpg" alt="Concept frame: the B2 lobby after closing, the clock wall and the SOGO band traced in white and pale-blue projected light while a few people watch">
+        <figcaption>クライアント提供のロビー写真をもとにしたコンセプトフレーム · Magnificドラフト</figcaption>
+      </figure>
+    </div>
+
+    <div class="sim" id="sim">
+      <div class="controls">
+        <div class="seg" role="group" aria-label="What plays on the wall">
+          <button type="button" data-mode="xmas" aria-pressed="false">現在：クリスマス</button>
+          <button type="button" data-mode="tactile" aria-pressed="true">A · 手ざわり</button>
+          <button type="button" data-mode="oddball" aria-pressed="false">B · へんてこ</button>
+          <button type="button" data-mode="shadow" aria-pressed="false">C · 影絵</button>
+        </div>
+        <label class="ctl" for="ambient">ロビー照明 <input id="ambient" type="range" min="0" max="100" value="35"></label>
+        <label class="ctl" for="grid"><input id="grid" type="checkbox" checked> 800×500 mm グリッド</label>
+      </div>
+      <div class="sim-scroll"><canvas id="wall" width="1600" height="300" aria-label="Simulated lobby wall with the clock on the left and the SOGO band on the right, showing the selected concept"></canvas></div>
+      <p class="sim-caption" id="simcap">壁のスケッチです（完成イメージではありません）。時計の針は横浜の現在時刻を示します。</p>
+    </div>
+  </div>
+</header>
+
+<!-- ================= CONCEPT FRAMES ================= -->
+<section id="frames">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">コンセプトフレーム · クライアントのロビー写真から生成</span>
+      <h2><span class="jp">Same wall, new hour</span>同じ壁に、新しい時間を</h2>
+      <p class="lede">スライダーを動かして、現在のロビーと各アイデアを投影した壁を見比べてください。クライアント資料の写真をもとにMagnificで作成した、社内確認用の1kドラフトです。雰囲気とスケール感を示すもので、最終ビジュアルではありません。</p>
+    </div>
+    <div class="frames-grid">
+      <div>
+        <div class="compare" id="compare">
+          <img src="img/lobby.jpg" alt="The lobby today, lights on, no projection">
+          <img class="after" id="cmpAfter" src="img/gen-hero.jpg" alt="">
+          <span class="handle"></span>
+          <span class="lbl l">現在</span><span class="lbl r" id="cmpLbl">コンセプト</span>
+          <input type="range" id="cmpRange" min="0" max="100" value="38" aria-label="Compare today with the concept">
+        </div>
+        <p class="frame-note" id="frameNote"></p>
+      </div>
+      <div class="frame-list" id="frameList" role="group" aria-label="Concept frames"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= BRIEF ================= -->
+<section id="brief">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">そごうからの依頼</span>
+      <h2><span class="jp">A clock people come back to see</span>また見に来たくなる時計</h2>
+      <p class="lede">クライアント資料は、4つのキーワードと1つの目標で構成されています。大時計をエリアのランドマークにし、季節ごとのコンテンツで鮮度を保って来店頻度を高めること。</p>
+    </div>
+    <div class="keys">
+      <div class="key"><span class="w">MEMORY</span><span class="j">思い出・懐かしさ</span><p>思い出と懐かしさ。子どもの頃にこの時計を見ていた来館者は多い。</p></div>
+      <div class="key"><span class="w">MAGIC</span><span class="j">驚き・ファンタジー</span><p>驚きとファンタジー。壁がこんなことをするなんて、という意外性。</p></div>
+      <div class="key"><span class="w">MAGNET</span><span class="j">集客・街のシンボル</span><p>世代を超えて人を引き寄せる、横浜の集いの場とシンボル。</p></div>
+      <div class="key"><span class="w">SEASON</span><span class="j">季節・来店動機</span><p>また来る理由になる、季節の瞬間。</p></div>
+    </div>
+    <div class="voices" aria-label="Customer voices from the client deck">
+      <span class="voice">「からくり時計を復活させて」</span>
+      <span class="voice">「子どもの頃よく見ていた」</span>
+      <span class="voice">「初めての百貨店の思い出がからくり時計」</span>
+      <span class="voice">「イッツ・ア・スモールワールドが好きだった」</span>
+    </div>
+    <div class="numbers">
+      <div class="num"><span class="v">+10万人</span><span class="l">年間来館者数（クライアント目標）</span></div>
+      <div class="num"><span class="v">1.3億円</span><span class="l">年間売上効果（利益 +2,500万円）</span></div>
+      <div class="num"><span class="v">約4,000万人</span><span class="l">正面入口の年間通行者数</span></div>
+      <div class="num"><span class="v">5年</span><span class="l">プロジェクター耐用年数（常設）</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SEASONS ================= -->
+<section id="season">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">この壁の現在地</span>
+      <h2><span class="jp">Christmas is live. Spring is ours.</span>クリスマスは上映中。春からは私たちの番。</h2>
+    </div>
+    <div class="season">
+      <div class="s-item live"><span class="s-dot">12</span><span class="when">2026年12月1日〜25日</span><span class="pill live">上映中</span><p>からくり時計の中のクリスマス工房。</p></div>
+      <div class="s-item"><span class="s-dot">1</span><span class="when">2027年1〜2月</span><span class="pill plan">クライアント計画</span><p>チョコレートパラダイス（バレンタイン）。</p></div>
+      <div class="s-item"><span class="s-dot">3</span><span class="when">2027年3月〜</span><span class="pill plan">クライアント計画</span><p>フラワーテーマ（GREEN×EXPO 2027と連動）。</p></div>
+      <div class="s-item us"><span class="s-dot">↗</span><span class="when">2027年春〜</span><span class="pill us">私たちの提案</span><p>どの季節にも展開できる、繰り返し使える低コストのフォーマット。<a href="#shadow-seasons">一年の展開を見る</a>。</p></div>
+    </div>
+    <div class="xmas">
+      <img src="img/xmas-workshop.jpg" alt="Key visual for the Christmas show: the Seiko clock surrounded by gears, elves, Santa's sleigh and a fairy in a snowy night scene" loading="lazy">
+      <div class="chapters">
+        <div><b>からくり時計の目覚め</b><span>長い眠りから時計が目覚め、歯車が回り、小人たちが登場。</span></div>
+        <div><b>クリスマス工房のにぎわい</b><span>時計の中に工房が広がり、プレゼントが作られ運ばれていきます。</span></div>
+        <div><b>サンタクロースの旅立ち</b><span>雪が舞い、サンタが夜空へ旅立ちます。観覧無料。</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SITE ================= -->
+<section id="site">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">光で描く壁</span>
+      <h2><span class="jp">Dark marble, no speakers, a timer</span>暗い大理石、スピーカーなし、タイマー再生</h2>
+      <p class="lede">マーカーをタップしてください。主役は時計です。周囲の大理石は暗いオレンジ系で光を吸収するため、時計から離れるほどコントラストが落ちます。</p>
+    </div>
+    <div class="site-grid">
+      <div>
+        <div class="photo" id="photo">
+          <img src="img/lobby.jpg" alt="Sogo Yokohama B2 lobby: the square Seiko clock on a brown marble wall at left, a column, and the long marble band with the SOGO logo above the entrance at right" loading="lazy">
+          <button class="hot" type="button" style="left:17.5%;top:33%" data-k="clock" aria-pressed="true" aria-label="The clock">1</button>
+          <button class="hot" type="button" style="left:34.7%;top:58%" data-k="column" aria-pressed="false" aria-label="The column">2</button>
+          <button class="hot" type="button" style="left:60%;top:39%" data-k="band" aria-pressed="false" aria-label="The SOGO band">3</button>
+          <button class="hot" type="button" style="left:74%;top:40%" data-k="logo" aria-pressed="false" aria-label="The SOGO logo">4</button>
+          <button class="hot" type="button" style="left:52.5%;top:56%" data-k="screen" aria-pressed="false" aria-label="Directory screen">5</button>
+        </div>
+        <div class="hot-note" id="hotnote" aria-live="polite"></div>
+      </div>
+      <div class="stack">
+        <h3>納品仕様</h3>
+        <table class="specs">
+          <tr><th>ファイル</th><td class="mono">MP4</td></tr>
+          <tr><th>解像度</th><td class="mono">1台あたり 1920×1080</td></tr>
+          <tr><th>プロジェクター</th><td><span class="mono">3 ×</span> Panasonic PT-REZ15JLB、1チップDLPレーザー、<span class="mono">15,000 lm</span></td></tr>
+          <tr><th>画面全体</th><td class="mono">5760 px · 16,000 mm</td></tr>
+          <tr><th>グリッド1マス</th><td class="mono">800 × 500 mm</td></tr>
+          <tr><th>上映時間</th><td>約3分、タイマーで毎正時</td></tr>
+          <tr><th>音声</th><td>現場音声なし。時報のチャイムのみ。</td></tr>
+          <tr><th>設置</th><td>天井設置。保守：Success Co.</td></tr>
+        </table>
+        <img src="img/projector-plan.jpg" alt="Plan view: three projectors on the ceiling grid aiming at the curved clock wall and the straight SOGO wall" loading="lazy" style="border-radius:6px;background:#fff">
+      </div>
+    </div>
+
+    <div class="rules">
+      <div class="stack">
+        <h3>配色ルール：白と青は映え、緑とオレンジは沈む</h3>
+        <p class="lede" style="font-size:15px">各色見本は、オレンジブラウンの大理石に光を投影したイメージです。ミーティングで決めたルールは、高コントラストの白と青を主体にすること。現地の夜間テストで確認します。</p>
+        <div class="swatches" id="swatches"></div>
+      </div>
+      <ul class="constraints">
+        <li><span>面</span><span>時計がメインステージ。壁を白い布や紙で覆えばコントラストは上がりますが、SOGOマークは隠さないこと。</span></li>
+        <li><span>音</span><span>現場に音声出力なし。物語もテンポも笑いも、無音で成立させます。</span></li>
+        <li><span>再生</span><span>そごうの施工・映像業者によるタイマー自動再生。構成テンプレートの共有が必要です。</span></li>
+        <li><span>テスト</span><span>ロビー照明下での実際のコントラストを、現地の夜間テストで確認します。</span></li>
+        <li><span>予算</span><span>上限の提示なし。方向性ごとに3段階で提示します。</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DIRECTIONS ================= -->
+<section id="directions">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">3つの方向性 × 3段階</span>
+      <h2><span class="jp">Made by hand, played by the hour</span>手でつくり、毎時上映する</h2>
+      <p class="lede">3案とも、CGキャラクターではなく実際の素材をカメラで撮影してつくります。1本あたりのコストを抑えられるので、高価なループ1本ではなく短編を何本もつくれます。AIやCGに見慣れた人にも、手づくりの良さが伝わります。</p>
+    </div>
+    <div class="dir-tabs" role="tablist" aria-label="Pitch directions">
+      <button class="dir-tab" role="tab" id="tab-tactile" data-dir="tactile" aria-selected="true" aria-controls="dirpanel"><span class="k">方向性 A</span><span class="t">手ざわりの時計</span><span class="s">紙、砂、布、積み木</span></button>
+      <button class="dir-tab" role="tab" id="tab-oddball" data-dir="oddball" aria-selected="false" aria-controls="dirpanel"><span class="k">方向性 B</span><span class="t">へんてこな時間</span><span class="s">毎時ちがうサプライズ</span></button>
+      <button class="dir-tab" role="tab" id="tab-shadow" data-dir="shadow" aria-selected="false" aria-controls="dirpanel"><span class="k">方向性 C</span><span class="t">影絵</span><span class="s">手影絵が本物に変わる</span></button>
+    </div>
+    <div id="dirpanel" role="tabpanel" aria-labelledby="tab-tactile"></div>
+  </div>
+</section>
+
+<!-- ================= SHADOW SEASONS ================= -->
+<section id="shadow-seasons">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">方向性Cを一年を通して</span>
+      <h2><span class="jp">A shadow on the wall, the season in the clock</span>壁には影、時計には季節</h2>
+      <p class="lede">どの季節も同じフォーマット。本物の手でつくる影、または棒につけた切り絵の人形が、光る帯を進んで時計へ向かいます。文字盤に入ると、フルカラーの本物に変わります。変わるのは影と種明かしだけなので、新しい季節も短い撮影で済み、新規制作は不要です。月を選んでください。</p>
+    </div>
+    <div class="months" role="tablist" aria-label="Seasons" id="months"></div>
+    <div class="season-stage">
+      <img id="seasonImg" src="img/gen-s-spring.jpg" alt="">
+      <div class="season-card stack" id="seasonCard" aria-live="polite"></div>
+    </div>
+    <div class="season-strip" id="seasonStrip" aria-label="All seasons"></div>
+  </div>
+</section>
+
+<!-- ================= DAY ================= -->
+<section id="day">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">1つの壁に、たくさんの映像</span>
+      <h2><span class="jp">A different three minutes every hour</span>毎時ちがう3分間</h2>
+      <p class="lede">1本のループを繰り返すのではなく、一日に複数の映像を流すことにしました。14時と11時で内容が違えば、人は時間を合わせて訪れ、また戻ってきて、見たものを投稿します。時間を選んでください。ラインナップは上で選んだ方向性に連動します。青い点のある時間にはコンセプトフレームがあります。タイトルは仮案です。</p>
+    </div>
+    <div class="day-scroll"><div class="day" id="dayrow" role="group" aria-label="Hourly shows"></div></div>
+    <div class="slot-detail" id="slotdetail" aria-live="polite"></div>
+  </div>
+</section>
+
+<!-- ================= CHARACTERS ================= -->
+<section id="characters">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">おすすめしないもの</span>
+      <h2><span class="jp">Why we are not leading with characters</span>キャラクターを主軸にしない理由</h2>
+      <p class="lede">キャラクターアニメーションも真剣に検討しました。3分のキャラクター映像を12本つくるには専門のフリーランスアニメーターが必要で、1分あたりのコストは上の3案よりはるかに高くなります。</p>
+    </div>
+    <div class="verdicts">
+      <div class="verdict"><span class="tag no">非推奨</span><h3>家族の一日</h3><p>朝・昼・夜を過ごす家族。共感は得やすいものの、複雑で高価、集客力も弱い。</p></div>
+      <div class="verdict"><span class="tag no">非推奨</span><h3>マスコット1体</h3><p>季節を重ねると飽きが来るうえ、クライアントがマスコットを恒久採用すると、その後の季節の自由度が狭まります。</p></div>
+      <div class="verdict"><span class="tag maybe">必須の場合</span><h3>5〜10体のキャラクター群</h3><p>子ども向け番組のアンサンブルのように、互いに無関係なキャラクターが毎時入れ替わる。シンプルな線画で1分未満のネタ、商品ともからみます。</p></div>
+      <div class="verdict"><span class="tag no">非推奨</span><h3>旧からくりの再現</h3><p>オリジナルや「イッツ・ア・スモールワールド」の仕掛けを模倣すると、著作権リスクがあり、本物と比べられてしまいます。</p></div>
+      <div class="verdict"><span class="tag no">非推奨</span><h3>実物の人形</h3><p>人形1体あたり10〜12万円、セット制作も必要で、暗い大理石の上ではコントラストが出にくい。平面の2Dや切り絵の方が有効です。</p></div>
+      <div class="verdict"><span class="tag later">次のフェーズで</span><h3>リアルタイム参加型</h3><p>QRコードで七夕の願いを送る、ライブカメラ映像を使うなどの案は、春までに確保できない技術パートナーが必要です。</p></div>
+    </div>
+    <p class="callout">キャラクターが必須の場合は、毎時ちがう映像ではなく、1本のループを毎時繰り返すことをおすすめします。</p>
+  </div>
+</section>
+
+<!-- ================= REFERENCES ================= -->
+<section id="refs">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">チームのMiroボードとミーティングから</span>
+      <h2><span class="jp">Reference wall</span>リファレンス</h2>
+      <p class="lede"><a href="https://miro.com/app/board/uXjVEOGjxHc=/" target="_blank" rel="noopener">Miroボード</a>の画像と、そこに貼られた映像・サイトです。動画は新しいタブで開きます。</p>
+    </div>
+    <div class="filters" role="group" aria-label="Filter references">
+      <button class="chip" type="button" data-f="all" aria-pressed="true">すべて</button>
+      <button class="chip" type="button" data-f="tactile" aria-pressed="false">A · 手ざわり</button>
+      <button class="chip" type="button" data-f="oddball" aria-pressed="false">B · へんてこ</button>
+      <button class="chip" type="button" data-f="shadow" aria-pressed="false">C · 影絵</button>
+      <button class="chip" type="button" data-f="space" aria-pressed="false">時計と光</button>
+    </div>
+    <div class="refs" id="refwall"></div>
+  </div>
+</section>
+
+<!-- ================= NEXT ================= -->
+<section id="next">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">11月18日のミーティングより</span>
+      <h2><span class="jp">Next steps</span>次のステップ</h2>
+    </div>
+    <ul class="next-list">
+      <li><input type="checkbox" id="n1"><label for="n1">Sukurat Sukuratのペーパークラフトとアムステルダム空港の時計をMiroボードに追加</label><span class="due">今週</span></li>
+      <li><input type="checkbox" id="n2"><label for="n2">方向性ごとの説明文と、キャラクターアニメーションを推奨しない理由を書く</label><span class="due">本ページで下書き済み</span></li>
+      <li><input type="checkbox" id="n3"><label for="n3">Momokoさん・Satokoさんと社内レビュー</label><span class="due">11月19日（木）午前</span></li>
+      <li><input type="checkbox" id="n4"><label for="n4">残す方向性のムードボードとスタイルフレーム</label><span class="due">レビュー後</span></li>
+      <li><input type="checkbox" id="n5"><label for="n5">映像業者に構成テンプレートとタイマー仕様を確認</label><span class="due">日程調整中</span></li>
+      <li><input type="checkbox" id="n6"><label for="n6">現地夜間テスト：大理石上での白・青・グレーの階調</label><span class="due">日程調整中</span></li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>Wild Tame · SAS Creative Phase 1 · 社内ドラフト（クライアント配布不可）</span>
+    <span>出典：クライアント資料（1002）、仕様表（1104）、プレスリリース案（1107）、ブレスト要約（11/18）、Miroボード。コンセプトフレーム：Magnificドラフト（Space「Sogo Yokohama Clock Wall — Spring Pitch」）。</span>
+  </div>
+</footer>
+
+<script>
+(() => {
+const $ = (s, r=document) => r.querySelector(s);
+const $$ = (s, r=document) => [...r.querySelectorAll(s)];
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const store = { get(k){ try{return localStorage.getItem(k)}catch(e){return null} }, set(k,v){ try{localStorage.setItem(k,v)}catch(e){} } };
+
+/* ================= JST clock ================= */
+function jstNow(){
+  const p = new Intl.DateTimeFormat('en-GB',{timeZone:'Asia/Tokyo',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false}).formatToParts(new Date());
+  const g = t => +p.find(x=>x.type===t).value;
+  return {h:g('hour')%24, m:g('minute'), s:g('second')};
+}
+
+/* ================= DATA ================= */
+const DIRS = {
+  tactile:{
+    name:'手ざわりの時計', jp:'手ざわりの時計',
+    para:'壁が工作台になります。そごうの包装紙がはがれて店のパターンに折りたたまれ、お昼には紙のお弁当がマスごとに組み上がり、時計の針に合わせて折り紙が折られ、枯山水の庭が朝に描かれて夕方に消えていきます。紙テープ、風呂敷、積み木、ビー玉など、すべて実際の素材をカメラで撮影。800 × 500 mmのグリッドがそのままレイアウトになるので、各映像は机の上で撮れる小さな場面の集まりとして、そのまま壁にマッピングできます。',
+    mediums:['紙・切り絵','折り紙','風呂敷','砂','積み木','ビー玉','ストップモーション'],
+    ideas:[
+      ['00:15:17','包装紙','そごうの包装紙がはがされ、ハサミで切られ、壁一面にブランドの柄として折りたたまれます。'],
+      ['00:21:36','紙のお弁当と折り紙','グリッドに紙のお弁当が組み上がる、または時計の針の角度に合わせて折り紙が折られます。'],
+      ['00:43:19','付箋の風','壁一面の付箋が風で飛び、今日のメッセージやラッキーカラーが現れます。'],
+      ['01:10:27','枯山水','砂紋が描かれ、消され、また描かれる庭。朝は寺のような静けさ、夕方は夕焼けに。'],
+      ['00:38:59','折りの奥行き','パネルが折れてグリッドに奥行きを錯覚させ、カタログのページのようにめくれます。'],
+      ['01:40:06','おもちゃの素材','回転する積み木、ジェンガ、ルービックキューブ、迷路、転がるビー玉。']
+    ],
+    mood:[['gen-a1','コンセプト：紙がグリッドを折りひらく'],['gen-a2','コンセプト：夜明けの砂紋'],['zen-sand','参考：枯山水の砂紋']],
+    tiers:[
+      ['Lite','1本','3分の映像1本を毎時上映。季節ごとに色だけ調整。'],
+      ['Core','4本','朝・昼・午後・夜の4本を一日の中でローテーション。',true],
+      ['Full','11本','10:00〜20:00まで毎時ちがう映像。SNS用の短尺版つき。']
+    ],
+    day:['朝の砂紋','包装紙','お弁当ができるまで','折り紙の手','付箋の風','風呂敷','ビー玉転がし','カタログのページ','積み木の塔','夕暮れの庭','砂紋のリセット'],
+    frames:{0:'gen-a2',1:'gen-a1'},
+    hue:['#eef3fb','#3d7be0']
+  },
+  oddball:{
+    name:'へんてこな時間', jp:'へんてこな時間',
+    para:'あえてバラバラにしたコレクション。毎時ちがう短いサプライズで、来るたびに違う体験に。壁画の狩人がマンモス型の時計を大理石の上で追いかけ、ピタゴラ装置がマスからマスへ転がり、ブロックがSOGOの帯に積み上がっては消え、16時には壁の両端から長い腕が伸びてじゃんけんをし、あいこに。1本ずつは安くつくれ、この多様さこそがフックになります。スケジュールを覚えて、見逃した回を見に戻ってくるのです。',
+    mediums:['実写','切り絵アニメ','ピタゴラ装置','パズル','モーショングラフィックス'],
+    ideas:[
+      ['00:22:43','ピタゴラ装置','ピタゴラスイッチやHondaのワンカットCMのように、グリッドを伝って進む連鎖装置。'],
+      ['00:30:35','パズルの時間','スライドパズル、ジグソー、神経衰弱をマスの上で。'],
+      ['00:10:33','のぞく巨人','通り過ぎる人を目で追うような、大きな目や手。'],
+      ['01:32:04','洞窟壁画','モノクロの狩人が、大理石の上でマンモス型の時計を追いかけます。'],
+      ['01:35:00','人文字','真上から見た人々が寝転んでSOGOの文字に、またはイスタンブールや埼玉のアンブレラストリートのように傘が開きます。'],
+      ['03:35:20','4時のじゃんけん','壁の両端から長い腕が伸びてじゃんけんをし、あいこで時を告げます。']
+    ],
+    mood:[['gen-b1','コンセプト：壁画の狩人がマンモスを追う'],['gen-b2','コンセプト：16時のじゃんけん、あいこ'],['cave-art','参考：洞窟壁画のシルエット']],
+    tiers:[
+      ['Lite','3本','3本の小品を一日の中でローテーション。'],
+      ['Core','6本','6本の小品。看板作品1本は決まった時刻に固定。',true],
+      ['Full','11本','毎時ちがう映像。季節の入れ替えとSNS用短尺版つき。']
+    ],
+    day:['壁画の狩り','ピタゴラ装置','スライドパズル','のぞく目','傘の通り','ブロック積み','じゃんけん あいこ','神経衰弱','夕暮れの海','舞い散る花びら','SOGOの人文字'],
+    frames:{0:'gen-b1',6:'gen-b2'},
+    hue:['#f6e27a','#3d7be0']
+  },
+  shadow:{
+    name:'影絵', jp:'影絵',
+    para:'手影絵が明るい壁を進み、時計の文字盤に入った瞬間、フルカラーの本物に変わります。うさぎに見えた影はスリッパに。「今日のお昼は何？」と問いかけて、おにぎりが登場。すべて店舗6階で本物の手が演じ、文楽やベトナムの水上人形劇のように操作棒や切り絵もあえて見せます。一組の手から大人数の演目まで規模を変えられ、白い光の面は大理石の配色ルールにも合っています。',
+    mediums:['手影絵','切り絵','棒人形','実写','カラーグレーディング'],
+    ideas:[
+      ['01:42:39','影から本物へ','シルエットが壁を横切り、時計の窓の中で拡大されたフルカラーの物に変わります。'],
+      ['02:48:12','ミスディレクション','影は何かに見えるのに、時計に現れるのは別の物。オヤジギャグでオチをつけます。'],
+      ['02:45:06','影あてクイズ','毎時のつなぎに謎のシルエット。正体が明かされる前に、お昼のメニューを当てる遊び。'],
+      ['02:58:02','カメラで撮る手仕事','本物の手とペーパークラフトを6階で撮影。操作棒はあえて見せます。'],
+      ['03:49:41','時計の中だけカラー','シルエットは深い青で、クライマックスに時計のマスにだけ色が入ります。'],
+      ['02:51:21','規模を広げる','一組の手から、大人数の万華鏡のような演目、タイの影絵芝居のような重層的な奥行きまで。']
+    ],
+    mood:[['gen-c1','コンセプト：うさぎの影、時計の中にはスリッパ'],['gen-c2b','コンセプト：影絵グリッドのフィナーレ（ロゴは見せる）'],['hiroshige-shadows','参考：江戸の影絵の浮世絵']],
+    tiers:[
+      ['Lite','1本','3つの種明かしがある影絵1本を毎時上映。'],
+      ['Core','4本','種明かしの異なる4本を一日の中で。',true],
+      ['Full','11本','毎時の演目と、20時の大人数フィナーレ、SNS用短尺版。']
+    ],
+    day:['ニワトリの目覚め','うさぎ → スリッパ','お昼は何？','鳥が飛ぶ','カタツムリ → マカロン','キツネ → 口紅','影のじゃんけん','カニ → サンダル','夕暮れの群像','万華鏡','おやすみフクロウ'],
+    frames:{1:'gen-c1',8:'gen-c2b'},
+    hue:['#eef3fb','#1f3c7a']
+  }
+};
+const XMAS = {name:'クリスマス工房（上映中）', hue:['#f7d27a','#eef3fb']};
+
+const REFS = [
+  {img:'realtime-clock',t:'Real Time（空港の時計）',c:'男性が毎分、時計の針を描いては消しているように見える作品。アムステルダムの空港より。',f:'space'},
+  {img:'weather-project',t:'Olafur Eliasson, The Weather Project',c:'テート・モダン、2003年。人が集まる屋内の太陽。',f:'space'},
+  {img:'mist',t:'霧と光',c:'霧の中から現れる色。抽象案の参考。',f:'space tactile'},
+  {img:'zen-sand',t:'砂紋',c:'描いては描き直す枯山水の模様。',f:'tactile'},
+  {img:'cwynar-clock',t:'Sara Cwynar, Rose Gold',c:'平坦な色面の上の手、物、時計。',f:'tactile'},
+  {img:'cwynar-phone',t:'Sara Cwynar, Rose Gold',c:'カメラで撮るコラージュ、手、小道具。',f:'tactile'},
+  {img:'cwynar-room',t:'Sara Cwynar, installation',c:'物を並べたペグボードを映像に。',f:'tactile'},
+  {img:'cave-art',t:'洞窟壁画',c:'狩人、動物、そして時計になるマンモス。',f:'oddball'},
+  {img:'umbrellas',t:'アンブレラストリート',c:'頭上の色彩。人文字案の参考。',f:'oddball'},
+  {img:'commuters-1',t:'東京の通勤者',c:'電車の窓に押し付けられた顔。群衆を素材に。',f:'oddball'},
+  {img:'commuters-2',t:'東京の通勤者',c:'ラッシュアワーの圧縮。',f:'oddball'},
+  {img:'neon-set',t:'ネオンのセット',c:'暗闇に建築を描くグラフィックな線。',f:'oddball space'},
+  {img:'hiroshige-shadows',t:'江戸の影絵の浮世絵',c:'障子の格子に並ぶ手と影。時計のグリッドとよく似た構成。',f:'shadow'},
+  {img:'hand-shadows',t:'手影絵の図',c:'動物の基本形。',f:'shadow'},
+  {img:'silhouette-stage',t:'舞台の切り絵シルエット',c:'平面の黒いシルエットと、その前に立つ演者。',f:'shadow'},
+  {img:'silhouette-stage-2',t:'シルエットの舞台と色光',c:'切り絵の後ろの色光。',f:'shadow'},
+  {url:'https://www.youtube.com/watch?v=_ZAU9NXUzGo',t:"Pythagora Switch: The Marble Brothers' Great Adventure",d:'youtube.com',c:'連鎖のテンポ。',f:'oddball tactile'},
+  {url:'https://www.youtube.com/watch?v=n4KtPqPaBhE',t:'Honda：部品のドミノ',d:'youtube.com',c:'ワンカットの機械仕掛けの連鎖。',f:'oddball'},
+  {url:'https://www.youtube.com/watch?v=lSX9fOSJ0KI',t:"Human Car Wash, Joseph's Machines",d:'youtube.com',c:'手づくり装置のユーモア。',f:'oddball'},
+  {url:'https://www.youtube.com/watch?v=u1ZB_rGFyeU',t:"OK Go, I Won't Let You Down",d:'youtube.com',c:'真上から見た傘のフォーメーション、ワンカット。',f:'oddball'},
+  {url:'https://www.youtube.com/watch?v=BAdOJvBpJnw',t:'回転する砂時計アート',d:'youtube.com',c:'形を変え続ける砂の風景。',f:'tactile'},
+  {url:'https://www.youtube.com/watch?v=nvVK_vwVWlU',t:'Kawaii Pop',d:'youtube.com',c:'明るい手づくりポップ。',f:'tactile oddball'},
+  {url:'https://www.youtube.com/watch?v=r64P4YlhVcc',t:'キャナルシティ博多 プロジェクション噴水ショー',d:'youtube.com',c:'決まった時間に人を集めるモールのプロジェクション。',f:'space'},
+  {url:'https://www.hellosandwich.jp/hellosandwichblog/2011/03/hello-sandwich-in-vogue-japan.html',t:'Hello Sandwich in VOGUE Japan',d:'hellosandwich.jp',c:'紙のお弁当の作品。',f:'tactile'},
+  {url:'https://tupera-tupera.com',t:'tupera tupera',d:'tupera-tupera.com',c:'切り絵の絵本スタイル。',f:'tactile shadow'},
+  {url:'https://saracwynar.com',t:'Sara Cwynar',d:'saracwynar.com',c:'物、色、手。',f:'tactile'},
+  {url:'https://www.papemo6v6.com/',t:'PAPEMO（NHK Eテレの人形制作）',d:'papemo6v6.com',c:'人形の制作と操演。ミーティングで費用を検討。',f:'shadow'},
+  {url:'https://pin.it/4VzEISqKG',t:'Loop Parade walk cycle',d:'pinterest',c:'シンプルなループの歩きキャラクター。',f:'oddball'}
+];
+
+const HOT = {
+  clock:['時計','メインステージ。グリッドの入った四角いセイコーの文字盤と、両脇のベル。壁の中で最も明るく見やすい面なので、どの映像もここで見せ場を迎えるべきです。'],
+  column:['柱','時計の壁とSOGOの帯を分け、一部の視線をさえぎります。2つの面は、互いにバトンを渡し合う別々のステージとして扱います。'],
+  band:['SOGOの帯','入口上部の長い大理石の帯。プロジェクター2・3が担当。暗く時計から遠いので、細部ではなく移動・リズム・シルエットに使います。'],
+  logo:['SOGOマーク','常に見えている必要があります。布や紙で壁を覆う場合もロゴは隠さず、映像はロゴを塗りつぶさずに縁取るようにします。'],
+  screen:['フロアガイド画面','帯の下にあるフロアガイド。商品が転がり込む「インベントリー・マグネット」案もありましたが、商業的すぎる懸念があります。']
+};
+
+/* ================= STATE ================= */
+let dir = store.get('sogo-dir') || 'tactile';
+if(!DIRS[dir]) dir='tactile';
+let mode = dir;
+let selectedSlot = null;
+
+/* ================= WALL SIMULATOR ================= */
+const cv = $('#wall'), ctx = cv.getContext('2d');
+const W=1600, H=300, CW=80, CH=50;            // 20 × 6 cells of 800×500 mm
+const CLOCK={x:280,y:150,s:150};
+const BAND_TOP=100;                               // SOGO band = rows 2–5 right of the column
+const COL_X=[548,580];                            // column
+let DPR=1;
+function resize(){
+  DPR=Math.min(2,window.devicePixelRatio||1);
+  cv.width=W*DPR; cv.height=H*DPR; ctx.setTransform(DPR,0,0,DPR,0,0);
+}
+resize();
+// marble texture
+const marble=document.createElement('canvas'); marble.width=W; marble.height=H;
+(function(){
+  const m=marble.getContext('2d');
+  m.fillStyle='#05080d'; m.fillRect(0,0,W,H);
+  let seed=7; const rnd=()=>((seed=seed*16807%2147483647)/2147483647);
+  function slab(x0,y0,x1,y1){
+    for(let y=y0;y<y1;y+=2){
+      const v=0.55+0.45*Math.sin(y*0.09+rnd()*0.6)*Math.sin(y*0.017+1.3);
+      const r=92+v*38, g=55+v*24, b=38+v*16;
+      m.fillStyle=`rgb(${r|0},${g|0},${b|0})`; m.fillRect(x0,y,x1-x0,2);
+    }
+    for(let i=0;i<60;i++){m.fillStyle=`rgba(30,15,8,${0.08+rnd()*0.12})`; m.fillRect(x0+rnd()*(x1-x0),y0+rnd()*(y1-y0),40+rnd()*160,1);}
+    for(let x=x0;x<x1;x+=CW*1.5){m.fillStyle='rgba(20,10,6,.35)'; m.fillRect(x,y0,1,y1-y0);}
+  }
+  slab(0,0,COL_X[0],H);
+  slab(COL_X[1],BAND_TOP,W,H);
+  // column
+  const gr=m.createLinearGradient(COL_X[0],0,COL_X[1],0); gr.addColorStop(0,'#2a2c30'); gr.addColorStop(.5,'#4a4c50'); gr.addColorStop(1,'#26282c');
+  m.fillStyle=gr; m.fillRect(COL_X[0],0,COL_X[1]-COL_X[0],H);
+  // ceiling void over band
+  m.fillStyle='#0a0e15'; m.fillRect(COL_X[1],0,W-COL_X[1],BAND_TOP);
+  m.fillStyle='#1b2230'; m.fillRect(COL_X[1],BAND_TOP-6,W-COL_X[1],6);
+})();
+const inWall=(x,y)=> (x<COL_X[0]) || (x>COL_X[1] && y>BAND_TOP);
+
+function drawClock(lit){
+  const {x,y,s}=CLOCK, h=s/2;
+  // wings
+  ctx.save();
+  for(const sgn of [-1,1]){
+    ctx.beginPath();
+    const wx=x+sgn*h, ww=48*sgn;
+    ctx.moveTo(wx,y-40); ctx.lineTo(wx+ww*0.7,y-40); ctx.lineTo(wx+ww,y); ctx.lineTo(wx+ww*0.7,y+40); ctx.lineTo(wx,y+40); ctx.closePath();
+    ctx.fillStyle='#7a5a2e'; ctx.fill(); ctx.strokeStyle='#c9a45c'; ctx.lineWidth=2; ctx.stroke();
+    ctx.fillStyle='#d9b468'; ctx.beginPath(); ctx.arc(wx+ww*0.45,y+4,9,Math.PI,0); ctx.lineTo(wx+ww*0.45+11,y+10); ctx.lineTo(wx+ww*0.45-11,y+10); ctx.fill();
+  }
+  // frame + face
+  ctx.fillStyle='#b38d4a'; ctx.fillRect(x-h-8,y-h-8,s+16,s+16);
+  ctx.fillStyle='#d8cfbd'; ctx.fillRect(x-h,y-h,s,s);
+  ctx.strokeStyle='rgba(60,50,40,.35)'; ctx.lineWidth=1;
+  for(let i=1;i<4;i++){ctx.beginPath();ctx.moveTo(x-h+i*s/4,y-h);ctx.lineTo(x-h+i*s/4,y+h);ctx.stroke();ctx.beginPath();ctx.moveTo(x-h,y-h+i*s/4);ctx.lineTo(x+h,y-h+i*s/4);ctx.stroke();}
+  ctx.fillStyle='#2a241c'; ctx.font='600 17px "Bodoni Moda", Didot, serif'; ctx.textAlign='center'; ctx.textBaseline='middle';
+  for(let n=1;n<=12;n++){const a=n/12*Math.PI*2-Math.PI/2; ctx.fillText(n, x+Math.cos(a)*h*0.8, y+Math.sin(a)*h*0.8);}
+  if(lit){ctx.globalCompositeOperation='lighter'; ctx.fillStyle=lit; ctx.fillRect(x-h,y-h,s,s); ctx.globalCompositeOperation='source-over';}
+  ctx.restore();
+}
+function drawHands(){
+  const {h,m,s}=jstNow(); const {x,y}=CLOCK;
+  const ha=((h%12)+m/60)/12*Math.PI*2-Math.PI/2, ma=(m+s/60)/60*Math.PI*2-Math.PI/2;
+  ctx.save(); ctx.strokeStyle='#1d1812'; ctx.lineCap='round';
+  ctx.lineWidth=5; ctx.beginPath(); ctx.moveTo(x,y); ctx.lineTo(x+Math.cos(ha)*38,y+Math.sin(ha)*38); ctx.stroke();
+  ctx.lineWidth=3; ctx.beginPath(); ctx.moveTo(x,y); ctx.lineTo(x+Math.cos(ma)*58,y+Math.sin(ma)*58); ctx.stroke();
+  ctx.fillStyle='#1d1812'; ctx.beginPath(); ctx.arc(x,y,4,0,7); ctx.fill(); ctx.restore();
+}
+function clipWall(c){ c.beginPath(); c.rect(0,0,COL_X[0],H); c.rect(COL_X[1],BAND_TOP,W-COL_X[1],H-BAND_TOP); c.clip(); }
+
+// ---- tactile: paper cells flipping in a wave from the clock, then sand ripples
+function fxTactile(t){
+  const cyc=(t%14);
+  ctx.save(); clipWall(ctx); ctx.globalCompositeOperation='lighter';
+  if(cyc<9){
+    for(let r=0;r<6;r++) for(let c=0;c<20;c++){
+      const cx=c*CW+CW/2, cy=r*CH+CH/2; if(!inWall(cx,cy)) continue;
+      const d=Math.hypot(cx-CLOCK.x,(cy-CLOCK.y)*1.4);
+      const p=Math.max(0,Math.min(1,(cyc*260-d)/260));
+      if(p<=0) continue;
+      const flip=Math.abs(Math.cos(p*Math.PI)); const face=p<0.5;
+      const hh=(CH-8)*flip;
+      ctx.fillStyle= face ? 'rgba(238,243,251,.55)' : ((r+c)%3===0 ? 'rgba(61,123,224,.85)' : 'rgba(238,243,251,.8)');
+      ctx.fillRect(c*CW+4, cy-hh/2, CW-8, hh);
+      if(!face && (r+c)%3!==0){ ctx.strokeStyle='rgba(61,123,224,.5)'; ctx.lineWidth=1; ctx.beginPath(); ctx.moveTo(c*CW+4,cy-hh/2); ctx.lineTo(c*CW+CW-4,cy+hh/2); ctx.stroke(); }
+    }
+  } else {
+    const k=(cyc-9)/5;
+    for(let i=0;i<26;i++){
+      const rad=(i*22+k*120)%600;
+      ctx.strokeStyle=`rgba(238,243,251,${0.55*(1-rad/600)})`; ctx.lineWidth=5;
+      ctx.beginPath(); ctx.ellipse(CLOCK.x, CLOCK.y, rad*1.6, rad*0.55, 0, 0, 7); ctx.stroke();
+    }
+  }
+  ctx.restore();
+  return cyc<9 ? '紙のマスが時計から外へ折り開き、そのあと壁一面に砂紋が描かれます。' : '枯山水：時計から広がる砂紋が、消えてはまた描かれます。';
+}
+// ---- oddball: tetris on the band
+const BC=13, BR=4, bx0=COL_X[1]+12; let board, falling, lastSpawn=0, flash=[];
+function resetBoard(){ board=Array.from({length:BR},()=>Array(BC).fill(null)); falling=[]; }
+resetBoard();
+const TCOL=['#eef3fb','#3d7be0','#f6e27a','#f2a6c8','#9cc3ff'];
+function fxOddball(t,dt){
+  if(t-lastSpawn>0.35){ lastSpawn=t; const c=Math.floor(Math.random()*BC); const len=Math.random()<.4?2:1; falling.push({c,y:-len*CH,len,col:TCOL[Math.floor(Math.random()*TCOL.length)]}); }
+  for(const f of falling){
+    let top=BR; for(let r=0;r<BR;r++){ if(board[r][f.c]){ top=r; break; } }
+    const restY=BAND_TOP+(top-f.len)*CH; f.y+=dt*420;
+    if(f.y>=restY){ if(top-f.len<0){ resetBoard(); return '盤面がいっぱいになるとリセットして再開します。'; } for(let k=0;k<f.len;k++) board[top-1-k][f.c]=f.col; f.done=true; }
+  }
+  falling=falling.filter(f=>!f.done);
+  for(let r=0;r<BR;r++){ if(board[r].every(Boolean)){ flash.push({r,t}); board.splice(r,1); board.unshift(Array(BC).fill(null)); } }
+  ctx.save(); clipWall(ctx); ctx.globalCompositeOperation='lighter';
+  const cw=(W-bx0-12)/BC;
+  for(let r=0;r<BR;r++) for(let c=0;c<BC;c++){ const v=board[r][c]; if(v){ ctx.fillStyle=v; ctx.globalAlpha=.85; ctx.fillRect(bx0+c*cw+3,BAND_TOP+r*CH+3,cw-6,CH-6);} }
+  for(const f of falling){ ctx.fillStyle=f.col; ctx.globalAlpha=.85; ctx.fillRect(bx0+f.c*cw+3,f.y+3,cw-6,f.len*CH-6); }
+  flash=flash.filter(fl=>t-fl.t<.4); for(const fl of flash){ ctx.globalAlpha=1-(t-fl.t)/.4; ctx.fillStyle='#fff'; ctx.fillRect(COL_X[1],BAND_TOP+fl.r*CH,W,CH); }
+  // cave mammoth trotting across the clock wall
+  ctx.globalAlpha=.9; const mx=((t*60)%700)-120; drawMammoth(mx,232);
+  ctx.restore();
+  return 'SOGOの帯でブロックが積み上がっては消え、時計の前を壁画のマンモスが駆け抜けます。';
+}
+function drawMammoth(x,y){
+  ctx.fillStyle='rgba(238,243,251,.9)';
+  ctx.beginPath(); ctx.ellipse(x,y,34,20,0,0,7); ctx.fill();
+  ctx.beginPath(); ctx.ellipse(x+30,y-8,14,14,0,0,7); ctx.fill();
+  ctx.fillRect(x-26,y+10,8,24); ctx.fillRect(x-8,y+10,8,24); ctx.fillRect(x+8,y+10,8,24); ctx.fillRect(x+22,y+8,8,26);
+  ctx.strokeStyle='rgba(238,243,251,.9)'; ctx.lineWidth=5; ctx.beginPath(); ctx.moveTo(x+40,y-4); ctx.quadraticCurveTo(x+56,y+18,x+46,y+30); ctx.stroke();
+  ctx.lineWidth=3; ctx.beginPath(); ctx.moveTo(x+36,y+4); ctx.quadraticCurveTo(x+60,y+6,x+62,y-10); ctx.stroke();
+}
+// ---- shadow: bright field with a moving hand-rabbit shadow; colour reveal in the clock
+const lightC=document.createElement('canvas'); lightC.width=W; lightC.height=H; const lx=lightC.getContext('2d');
+function rabbit(c,x,y,sc,tw){
+  c.save(); c.translate(x,y); c.scale(sc,sc);
+  c.beginPath(); c.ellipse(0,0,46,30,0,0,7); c.fill();                     // head/hand
+  c.beginPath(); c.ellipse(-6,-52,9,34,-0.25+tw,0,7); c.fill();            // ears
+  c.beginPath(); c.ellipse(16,-50,9,32,0.25-tw,0,7); c.fill();
+  c.beginPath(); c.moveTo(30,6); c.lineTo(120,26); c.lineTo(120,70); c.lineTo(10,30); c.fill(); // wrist
+  c.restore();
+}
+function fxShadow(t){
+  const cyc=t%11;
+  lx.globalCompositeOperation='source-over'; lx.clearRect(0,0,W,H);
+  const g=lx.createLinearGradient(0,0,W,0); g.addColorStop(0,'rgba(238,243,251,.75)'); g.addColorStop(1,'rgba(200,220,255,.6)');
+  lx.fillStyle=g; lx.fillRect(0,0,W,H);
+  const x=W+120-cyc/8*(W-CLOCK.x+120); const sx=Math.max(CLOCK.x,x);
+  lx.globalCompositeOperation='destination-out'; lx.fillStyle='#000';
+  const tw=Math.sin(t*6)*0.08;
+  if(cyc<8 || cyc>=10.5) rabbit(lx,sx,cyc<8?205:205,0.9,tw);
+  ctx.save(); clipWall(ctx); ctx.globalCompositeOperation='lighter'; ctx.globalAlpha=.85; ctx.drawImage(lightC,0,0,W,H); ctx.restore();
+  let cap='手影絵のうさぎが光る壁を跳ねて時計へ向かいます。';
+  if(cyc>=8 && cyc<10.5){
+    const k=Math.min(1,(cyc-8)/0.5);
+    ctx.save(); ctx.globalAlpha=k; const {x:cx,y:cy}=CLOCK;
+    // slippers reveal, full colour inside the clock window
+    ctx.fillStyle='#e0566b'; ctx.beginPath(); ctx.ellipse(cx-22,cy+12,22,40,0.15,0,7); ctx.fill(); ctx.beginPath(); ctx.ellipse(cx+24,cy+8,22,40,-0.15,0,7); ctx.fill();
+    ctx.fillStyle='#fff'; ctx.beginPath(); ctx.ellipse(cx-24,cy-10,16,14,0.15,0,7); ctx.fill(); ctx.beginPath(); ctx.ellipse(cx+22,cy-14,16,14,-0.15,0,7); ctx.fill();
+    ctx.fillStyle='#f2a6c8'; for(const [ex,ey] of [[-34,-38],[-18,-40],[12,-42],[30,-40]]){ ctx.beginPath(); ctx.ellipse(cx+ex,cy+ey,5,12,0,0,7); ctx.fill(); }
+    ctx.restore(); cap='時計の中で、うさぎの正体はスリッパに。影が入ると本物が出てきます。';
+  }
+  return cap;
+}
+// ---- christmas (current show, simplified)
+const flakes=Array.from({length:140},(_,i)=>({x:Math.random()*W,y:Math.random()*H,r:1+Math.random()*2.4,v:14+Math.random()*30}));
+function fxXmas(t,dt){
+  ctx.save(); clipWall(ctx); ctx.globalCompositeOperation='lighter';
+  const g=ctx.createLinearGradient(0,0,0,H); g.addColorStop(0,'rgba(30,60,140,.55)'); g.addColorStop(1,'rgba(10,20,60,.35)'); ctx.fillStyle=g; ctx.fillRect(0,0,W,H);
+  for(const f of flakes){ f.y+=f.v*dt; f.x+=Math.sin(t+f.r)*.3; if(f.y>H) {f.y=-4; f.x=Math.random()*W;} ctx.fillStyle='rgba(255,255,255,.9)'; ctx.beginPath(); ctx.arc(f.x,f.y,f.r,0,7); ctx.fill(); }
+  for(let i=0;i<16;i++){ const a=t*0.8+i/16*Math.PI*2; const px=CLOCK.x+Math.cos(a)*130, py=CLOCK.y+Math.sin(a)*120; ctx.fillStyle=`rgba(247,210,122,${.5+.5*Math.sin(t*3+i)})`; ctx.beginPath(); ctx.arc(px,py,3,0,7); ctx.fill(); }
+  // garland swags on the band
+  ctx.strokeStyle='rgba(247,210,122,.7)'; ctx.lineWidth=2;
+  for(let x=COL_X[1];x<W;x+=150){ ctx.beginPath(); ctx.moveTo(x,BAND_TOP+6); ctx.quadraticCurveTo(x+75,BAND_TOP+50,x+150,BAND_TOP+6); ctx.stroke(); }
+  ctx.restore();
+  return '上映中のショーのスケッチ：雪の夜と時計を囲む金のきらめき。実際のショーでは小人とサンタが3章の物語を演じます。';
+}
+
+function drawGrid(){
+  ctx.save(); ctx.strokeStyle='rgba(238,243,251,.14)'; ctx.lineWidth=1;
+  for(let c=1;c<20;c++){ ctx.beginPath(); ctx.moveTo(c*CW+.5,0); ctx.lineTo(c*CW+.5,H); ctx.stroke(); }
+  for(let r=1;r<6;r++){ ctx.beginPath(); ctx.moveTo(0,r*CH+.5); ctx.lineTo(W,r*CH+.5); ctx.stroke(); }
+  ctx.strokeStyle='rgba(224,122,109,.7)'; ctx.setLineDash([6,6]);
+  for(const x of [W/3,W*2/3]){ ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,H); ctx.stroke(); }
+  ctx.setLineDash([]); ctx.fillStyle='rgba(238,243,251,.75)'; ctx.font='500 11px "IBM Plex Mono", monospace'; ctx.textAlign='left';
+  ['PJ1 · 1920×1080','PJ2 · 1920×1080','PJ3 · 1920×1080'].forEach((s,i)=>ctx.fillText(s, i*W/3+8, 16));
+  ctx.textAlign='right'; ctx.fillText('16,000 mm', W-8, 16);
+  ctx.restore();
+}
+function drawLogo(){
+  ctx.save(); const x=1100,y=150;
+  ctx.fillStyle='rgba(61,123,224,.95)'; ctx.beginPath(); ctx.arc(x-56,y,15,0,7); ctx.fill();
+  ctx.fillStyle='#0b1019'; ctx.font='700 13px "Bodoni Moda", serif'; ctx.textAlign='center'; ctx.textBaseline='middle'; ctx.fillText('✕',x-56,y+1);
+  ctx.fillStyle='rgba(61,123,224,.95)'; ctx.font='700 30px "Bodoni Moda", serif'; ctx.fillText('SOGO',x+8,y+2);
+  ctx.restore();
+}
+
+let last=performance.now(), T=0, capText='';
+const amb=$('#ambient'), gridBox=$('#grid'), cap=$('#simcap');
+function frame(now){
+  const dt=Math.min(.05,(now-last)/1000); last=now; if(!reduce) T+=dt; else T=6.5;
+  ctx.globalAlpha=1; ctx.globalCompositeOperation='source-over';
+  ctx.drawImage(marble,0,0,W,H);
+  drawClock(null);
+  drawLogo();
+  const a=amb.value/100;
+  ctx.save(); ctx.globalAlpha=1-a*0.7;
+  let c;
+  if(mode==='tactile') c=fxTactile(T);
+  else if(mode==='oddball') c=fxOddball(T,reduce?0.016:dt);
+  else if(mode==='shadow') c=fxShadow(T);
+  else c=fxXmas(T,dt);
+  ctx.restore();
+  drawHands();
+  // ambient lobby light washes everything toward warm grey
+  if(a>0){ ctx.save(); ctx.globalCompositeOperation='source-over'; ctx.fillStyle=`rgba(190,170,150,${a*0.32})`; ctx.fillRect(0,0,W,H); ctx.restore(); }
+  if(gridBox.checked) drawGrid();
+  if(c!==capText){ capText=c; cap.innerHTML='<b>'+(mode==='xmas'?XMAS.name:DIRS[mode].name)+'。</b>'+c+' 時計の針は横浜の現在時刻を示します。'; }
+  if(!reduce) requestAnimationFrame(frame); else setTimeout(()=>requestAnimationFrame(frame),1000);
+}
+requestAnimationFrame(frame);
+window.addEventListener('resize',()=>{ const d=Math.min(2,window.devicePixelRatio||1); if(d!==DPR) resize(); });
+
+function setMode(m){
+  mode=m; $$('.seg button').forEach(b=>b.setAttribute('aria-pressed', String(b.dataset.mode===m)));
+  if(m==='oddball') resetBoard();
+}
+$$('.seg button').forEach(b=>b.addEventListener('click',()=>{ const m=b.dataset.mode; if(m!=='xmas') setDir(m,false); else setMode('xmas'); }));
+
+/* ================= CONCEPT FRAMES ================= */
+const FRAMES=[
+  {f:'gen-hero',k:'ヒーロー',t:'壁が目を覚ます',n:'閉店後、白と淡い青の光が時計のグリッドをなぞり、SOGOの帯を流れていきます。提案の冒頭を飾るイメージ。'},
+  {f:'gen-a1',k:'A · 手ざわり',t:'紙がグリッドを折りひらく',n:'包装紙がはがれ、大きなハサミが切り、折り鶴が時計からマスごとに折り出されます。大理石の上でも白と青ならはっきり見えます。'},
+  {f:'gen-a2',k:'A · 手ざわり',t:'夜明けの砂紋',n:'開店前、壁全体が枯山水の庭に。一日の最初の静かな上映で、時計とSOGOマークが砂の中の石のように佇みます。'},
+  {f:'gen-b1',k:'B · へんてこ',t:'壁画の狩人がマンモスを追う',n:'光る棒人間の狩人たちが、時計に巻きつくマンモスへ向かって帯を走ります。家族が指をさす、まさに狙いどおりの反応です。'},
+  {f:'gen-b2',k:'B · へんてこ',t:'16時のじゃんけん、あいこ',n:'両端から腕が伸び、4時ちょうどにチョキであいこ。照明がついた状態でも、白と青の線画なら日中でも見えます。'},
+  {f:'gen-c1',k:'C · 影絵',t:'うさぎの影、時計の中にはスリッパ',n:'手影絵のうさぎが光る壁を横切り、時計の中で本物の赤いスリッパに変わります。方向性Cを最も端的に表す一枚。'},
+  {f:'gen-c2b',k:'C · 影絵',t:'影絵グリッドのフィナーレ',n:'手が見える影絵動物の青いパネルを、時計の壁と帯にだけ投影。SOGOマークは余白で独立させ、店頭には一切かかりません。時計の中のカラー演出はスタイルフレームで追加予定。'}
+];
+const cmp=$('#compare'), cmpR=$('#cmpRange');
+cmpR.addEventListener('input',()=>cmp.style.setProperty('--cut',cmpR.value+'%'));
+cmp.style.setProperty('--cut',cmpR.value+'%');
+function showFrame(i){
+  const fr=FRAMES[i];
+  $('#cmpAfter').src='img/'+fr.f+'.jpg'; $('#cmpAfter').alt='コンセプト：'+fr.t; $('#cmpLbl').textContent=fr.k;
+  $('#frameNote').innerHTML='<b>'+fr.t+'。</b>'+fr.n+(fr.flag?' <span class="flag">'+fr.flag+'</span>':'');
+  $$('.frame-btn').forEach((b,j)=>b.setAttribute('aria-pressed',String(j===i)));
+}
+$('#frameList').innerHTML=FRAMES.map((fr,i)=>`<button type="button" class="frame-btn" aria-pressed="false" data-i="${i}"><img src="img/${fr.f}.jpg" alt="" loading="lazy"><span><small>${fr.k}</small>${fr.t}</span></button>`).join('');
+$$('.frame-btn').forEach(b=>b.addEventListener('click',()=>showFrame(+b.dataset.i)));
+showFrame(0);
+
+/* ================= SHADOW SEASONS ================= */
+const SEASONS=[
+  {f:'gen-s-valentine',m:'Feb',jp:'バレンタイン',en:'Valentine',when:'2月',shadow:'両手でつくったハートが帯の上を漂います。',reveal:'リボンのついた艶やかなチョコレートの箱。',tie:'クライアントが1〜2月に予定しているチョコレートパラダイスのテーマに組み込めます。'},
+  {f:'gen-s-spring',m:'Apr',jp:'桜',en:'Cherry blossom',when:'3〜4月',shadow:'親指を組んだ手影絵の鳥が、時計へ飛んでいきます。',reveal:'本物の桜の枝。花びらが白い壁へ舞い出します。',tie:'春のローンチの幕開けに。3月からのGREEN×EXPO 2027フラワーテーマとも並走できます。'},
+  {f:'gen-s-rainy',m:'Jun',jp:'梅雨',en:'Rainy season',when:'6月',shadow:'操作棒の見える切り絵のカタツムリが、雨の線の中を這っていきます。人形遣いも演出の一部です。',reveal:'雨粒をまとった青と紫のあじさい。',tie:'人形を使うバージョン。傘やレインウェアと連動でき、雨の線も白と青の配色ルールに沿います。'},
+  {f:'gen-s-summer-b',m:'Aug',jp:'夏祭り',en:'Summer festival',when:'7〜8月',shadow:'魚の影が、深い青の「夜の水」の帯を泳ぎます。',reveal:'金魚鉢の中の紅白の金魚。',tie:'浴衣と夏祭りの季節。夏休みの家族向け枠に。',flag:'本番では手でつくった影だと分かるようにします。このドラフトでは単なるシルエットに見えます。'},
+  {f:'gen-s-autumn',m:'Sep',jp:'お月見',en:'Moon viewing',when:'9月',shadow:'月のうさぎ。手影絵のうさぎがススキの間を跳ねていきます。',reveal:'輝く満月と、積み上げた月見団子。',tie:'食品フロアのお月見スイーツと連動。日本人なら誰もが知る物語で、訪日客にも伝えやすい。'}
+];
+let seasonI=1;
+function showSeason(i){
+  seasonI=i; const s=SEASONS[i];
+  $('#seasonImg').src='img/'+s.f+'.jpg';
+  $('#seasonImg').alt=s.en+' コンセプト：'+s.shadow+' 時計の中：'+s.reveal;
+  $('#seasonCard').innerHTML=`<div><h3>${s.jp}</h3><span class="when">${s.en} · ${s.when}</span></div>
+    <div class="beat"><span class="step">帯の上</span><span class="what">${s.shadow}</span><span class="arrow">↓</span><span class="step">時計の中</span><span class="what">${s.reveal}</span></div>
+    <p class="tie"><b>連動の可能性</b>${s.tie}</p>${s.flag?`<p class="flag">${s.flag}</p>`:''}`;
+  $$('.month').forEach((b,j)=>{ b.setAttribute('aria-selected',String(j===i)); b.tabIndex=j===i?0:-1; });
+  $$('#seasonStrip button').forEach((b,j)=>b.setAttribute('aria-current',String(j===i)));
+}
+$('#months').innerHTML=SEASONS.map((s,i)=>`<button type="button" class="month" role="tab" aria-selected="false" data-i="${i}"><b>${s.m}</b><span>${s.jp}</span></button>`).join('');
+$('#seasonStrip').innerHTML=SEASONS.map((s,i)=>`<button type="button" data-i="${i}" aria-label="${s.en}"><img src="img/${s.f}.jpg" alt="" loading="lazy"></button>`).join('');
+$$('.month, #seasonStrip button').forEach(b=>b.addEventListener('click',()=>showSeason(+b.dataset.i)));
+$('#months').addEventListener('keydown',e=>{ if(e.key!=='ArrowRight'&&e.key!=='ArrowLeft') return; e.preventDefault(); const n=(seasonI+(e.key==='ArrowRight'?1:SEASONS.length-1))%SEASONS.length; showSeason(n); $$('.month')[n].focus(); });
+showSeason(1);
+
+/* ================= HOTSPOTS ================= */
+function showHot(k){
+  $$('.hot').forEach(h=>h.setAttribute('aria-pressed', String(h.dataset.k===k)));
+  const [t,d]=HOT[k]; $('#hotnote').innerHTML='<b>'+t+'</b>'+d;
+}
+$$('.hot').forEach(h=>h.addEventListener('click',()=>showHot(h.dataset.k)));
+showHot('clock');
+
+/* ================= SWATCHES ================= */
+const SW=[['白','#ffffff',1],['淡い青','#bcd4ff',1],['SOGOブルー','#3d7be0',1],['グレー','#9aa3b0',0.5],['緑','#3f9b4f',0],['オレンジ','#e08a3a',0]];
+$('#swatches').innerHTML=SW.map(([n,c,ok])=>`<div class="sw"><div class="on"><i style="background:${c}"></i></div><span>${n}</span><b class="${ok===1?'ok':ok===0?'no':''}">${ok===1?'映える':ok===0?'沈む':'要確認'}</b></div>`).join('');
+
+/* ================= DIRECTIONS ================= */
+function renderDir(){
+  const d=DIRS[dir];
+  $$('.dir-tab').forEach(t=>{ const on=t.dataset.dir===dir; t.setAttribute('aria-selected',String(on)); t.tabIndex=on?0:-1; });
+  $('#dirpanel').setAttribute('aria-labelledby','tab-'+dir);
+  $('#dirpanel').innerHTML=`
+    <div class="dir-body">
+      <div class="stack">
+        <span class="eyebrow">${d.jp}</span>
+        <p class="para">${d.para}</p>
+        <div class="mediums">${d.mediums.map(m=>`<span>${m}</span>`).join('')}</div>
+        <div class="ideas">${d.ideas.map((it,i)=>`
+          <div class="idea"><button type="button" aria-expanded="${i===0}" aria-controls="idea-${i}"><span class="ts">${it[0]}</span>${it[1]}</button><p id="idea-${i}" ${i===0?'':'hidden'}>${it[2]}</p></div>`).join('')}
+        </div>
+        <p style="font-size:12px;color:var(--muted)">タイムスタンプは11月18日のミーティング録音の位置です。</p>
+      </div>
+      <div class="mood">${d.mood.map(([f,c])=>`<figure><img src="img/${f}.jpg" alt="${c}" loading="lazy"><figcaption>${c}</figcaption></figure>`).join('')}</div>
+    </div>
+    <div class="tiers">${d.tiers.map(([n,f,p,rec])=>`<div class="tier${rec?' rec':''}">${rec?'<span class="rec-tag">おすすめの入り口</span>':''}<span class="n">${n}</span><span class="films">${f}</span><p>${p}</p></div>`).join('')}</div>
+    <p style="font-size:13px;color:var(--muted);margin-top:12px">段階は範囲のみを示します。価格はクライアント打ち合わせ前にプロデューサーと詰めます。</p>`;
+  $$('.idea button',$('#dirpanel')).forEach(b=>b.addEventListener('click',()=>{ const p=document.getElementById(b.getAttribute('aria-controls')); const open=b.getAttribute('aria-expanded')==='true'; b.setAttribute('aria-expanded',String(!open)); p.hidden=open; }));
+}
+function setDir(d,scroll){
+  dir=d; store.set('sogo-dir',d); setMode(d); renderDir(); renderDay();
+}
+$$('.dir-tab').forEach(t=>{
+  t.addEventListener('click',()=>setDir(t.dataset.dir));
+  t.addEventListener('keydown',e=>{ const order=['tactile','oddball','shadow']; let i=order.indexOf(dir);
+    if(e.key==='ArrowRight'){i=(i+1)%3;} else if(e.key==='ArrowLeft'){i=(i+2)%3;} else return;
+    e.preventDefault(); setDir(order[i]); $('#tab-'+order[i]).focus(); });
+});
+
+/* ================= DAY ================= */
+const HOURS=[10,11,12,13,14,15,16,17,18,19,20];
+function nextShowIndex(){ const {h,m}=jstNow(); for(let i=0;i<HOURS.length;i++){ if(HOURS[i]>h || (HOURS[i]===h && m<3)) return i; } return -1; }
+function renderDay(){
+  const d=DIRS[dir], ni=nextShowIndex(), {h}=jstNow();
+  if(selectedSlot===null) selectedSlot = ni>=0?ni:0;
+  $('#dayrow').innerHTML=HOURS.map((hr,i)=>{
+    const c=d.hue[i%2], past = ni===-1 ? true : i<ni;
+    return `<button type="button" class="slot${i===ni?' next':''}${past?' past':''}" data-i="${i}" aria-pressed="${i===selectedSlot}">${d.frames[i]?'<span class="cam" title="コンセプトフレームあり"></span>':''}<span class="h">${hr}:00</span><span class="g"><i style="background:${c};mix-blend-mode:screen"></i></span><span style="font-size:11px;line-height:1.3">${d.day[i]}</span></button>`;
+  }).join('');
+  $$('.slot').forEach(s=>s.addEventListener('click',()=>{ selectedSlot=+s.dataset.i; renderDay(); }));
+  const i=selectedSlot, hr=HOURS[i];
+  const special = (dir==='oddball' && hr===16) ? ' 看板の回：じゃんけんのあいこ。' : (hr===12 ? ' お昼の人出。食品フロアと連動しやすい最強の枠。' : (hr===20 ? ' 最終回。一日を締めくくるフィナーレ。' : ''));
+  const fimg=d.frames[i];
+  $('#slotdetail').classList.toggle('has-img',!!fimg);
+  $('#slotdetail').innerHTML=(fimg?`<img class="slot-img" src="img/${fimg}.jpg" alt="コンセプトフレーム：${d.day[i]}">`:'')+`<span class="big">${hr}:00</span><div><h3>${d.day[i]}</h3><p>${d.name} · 約3分、無音。${special}</p></div><span class="countdown" id="cd"></span>`;
+  updateCountdown();
+}
+function updateCountdown(){
+  const {h,m,s}=jstNow(); const el=$('#cd'); if(!el) return;
+  const now=h*3600+m*60+s, target=HOURS[selectedSlot]*3600;
+  let diff=target-now;
+  if(diff<=0 && diff>-180) el.textContent='上映中';
+  else { if(diff<=0) diff+=86400; const hh=Math.floor(diff/3600), mm=Math.floor(diff%3600/60); el.textContent='開始まで '+(hh?hh+'時間 ':'')+mm+'分'; }
+}
+function tick(){
+  const {h,m}=jstNow(); $('#jst').textContent='横浜 '+String(h).padStart(2,'0')+':'+String(m).padStart(2,'0');
+  updateCountdown();
+}
+setInterval(tick,15000); tick();
+
+/* ================= REFERENCES ================= */
+function renderRefs(f){
+  $$('.filters .chip').forEach(c=>c.setAttribute('aria-pressed',String(c.dataset.f===f)));
+  const items=REFS.filter(r=>f==='all'||r.f.split(' ').includes(f));
+  $('#refwall').innerHTML=items.map(r=> r.img
+    ? `<figure class="ref"><img src="img/${r.img}.jpg" alt="${r.t}" loading="lazy"><figcaption><b>${r.t}</b>${r.c}</figcaption></figure>`
+    : `<div class="ref link"><a href="${r.url}" target="_blank" rel="noopener"><span class="dom">${r.d}</span><span class="ttl">${r.t}</span><span class="why">${r.c}</span><span class="play">${r.d==='youtube.com'?'▶ 見る':'↗ 開く'}</span></a></div>`).join('');
+}
+$$('.filters .chip').forEach(c=>c.addEventListener('click',()=>renderRefs(c.dataset.f)));
+renderRefs('all');
+
+/* ================= NEXT (per-viewer ticks) ================= */
+$$('.next-list input').forEach(cb=>{ cb.checked = store.get('sogo-'+cb.id)==='1'; cb.addEventListener('change',()=>store.set('sogo-'+cb.id, cb.checked?'1':'0')); });
+
+setDir(dir);
+})();
+</script>
+
+</body>
+</html>
