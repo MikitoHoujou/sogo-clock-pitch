@@ -672,6 +672,9 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-bet
         </dl>
       </div>
       <div class="opt-media" id="opt01-media">
+        <figure><img src="img/gen-o1-door.jpg" alt="Concept frame: a door opens beside the clock and a black silhouette of a woman in a red beret and red scarf steps out, autumn leaves along the band" loading="lazy"><figcaption>コンセプト · 正時、時計の扉が開く</figcaption></figure>
+        <figure><img src="img/gen-o1-gust.jpg" alt="Concept frame: she sits on the clock's edge in her red scarf while, along the band, a man in a mustard scarf fights his inside-out umbrella in a gust of autumn leaves" loading="lazy"><figcaption>コンセプト · 突風。彼は天気と格闘し、彼女は時計の縁で待つ</figcaption></figure>
+        <figure><img src="img/gen-o1-together.jpg" alt="Concept frame: the couple embrace inside the clock face while red, gold and white paper leaves burst across the clock wall and the band, and a crowd below takes photos" loading="lazy"><figcaption>コンセプト · 二人で。壁いっぱいに秋の紙吹雪。このドラフトでは二人の顔が明るく描かれていますが、本編では全身黒のシルエットにします。</figcaption></figure>
         <figure><img src="img/realtime-clock.jpg" alt="Real Time: a person seen inside a large clock face, keeping time by hand" loading="lazy"><figcaption>参考：Real Time。時計の中で暮らす人</figcaption></figure>
         <figure><img src="img/silhouette-stage-2.jpg" alt="Flat cut-out silhouettes in front of coloured light washes on a stage" loading="lazy"><figcaption>参考：色光を背にしたシルエット。色を残すのは1点だけ</figcaption></figure>
       </div>
@@ -702,6 +705,8 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-bet
         </dl>
       </div>
       <div class="opt-media" id="opt02-media">
+        <figure><img src="img/gen-o2-spring.jpg" alt="Concept frame: a handwritten letter in the clock folds into a white paper plane, which flies along the band over painted spring fields and a blue river, trailing cherry petals" loading="lazy"><figcaption>コンセプト · 春。手紙が紙飛行機になり、野原と川を越えていく</figcaption></figure>
+        <figure><img src="img/gen-o2-summer.jpg" alt="Concept frame: pale blue watercolour with morning glories fills the clock wall, a wind-chime strip hangs on the clock, and 暑中お見舞い申し上げます is brushed along the band either side of the SOGO mark" loading="lazy"><figcaption>コンセプト · 夏。帯いっぱいに「暑中お見舞い申し上げます」。照明がついた状態です</figcaption></figure>
         <figure><img class="tall" src="img/ref-shochu-mimai.jpg" alt="A summer greeting card: a glass wind chime painted with morning glories, its paper strip reading 暑中お見舞い申し上げます, on a pale blue ground" loading="lazy"><figcaption>参考：暑中見舞いのはがき。風鈴と朝顔</figcaption></figure>
       </div>
     </article>
@@ -1170,7 +1175,9 @@ const FRAMES=[
   {f:'gen-d-cyanotype',k:'D · 記憶',t:'青写真の記憶',n:'ロビーと横浜の青写真が帯の上で浮かび上がり、時計の中には1985年の家族。もともと青と白なので、大理石の上でも見えます。'},
   {f:'gen-e-hands',k:'E · 手しごと',t:'包装する手',n:'そごうの包装担当の手が帯の上で折り、結ぶ。完成した贈り物がフルカラーで時計に現れます。照明がついた状態です。'},
   {f:'gen-f-bay',k:'F · 港',t:'港への窓',n:'壁の向こうに、クジラと橋のある紙のジオラマの港。光る床マーカーに人が並んで写真を撮ります。',flag:'ドラフトでは文字盤が丸窓に置き換わっていますが、実際は時計はそのままで、丸窓のリングを周囲に投影します。'},
-  {f:'gen-g-hello',k:'G · あいさつ',t:'壁が「いってらっしゃい」',n:'時計の壁が切り絵の顔になり、ベルはほっぺに。帯の紙の吹き出しが、出かける人を見送ります。照明がついた状態です。'}
+  {f:'gen-g-hello',k:'G · あいさつ',t:'壁が「いってらっしゃい」',n:'時計の壁が切り絵の顔になり、ベルはほっぺに。帯の紙の吹き出しが、出かける人を見送ります。照明がついた状態です。'},
+  {f:'gen-o1-gust',k:'01 · 待ち合わせ',t:'突風',n:'赤いスカーフの彼女は時計の縁で待ち、彼は帯の上で秋の落ち葉の中、裏返った傘と格闘します。シルエットで、色は一人1点だけ。'},
+  {f:'gen-o2-summer',k:'02 · 時候の挨拶',t:'暑中お見舞い申し上げます',n:'夏の手紙がSOGOロゴの両側に広がり、時計には朝顔と風鈴の短冊。照明がついた状態です。'}
 ];
 const cmp=$('#compare'), cmpR=$('#cmpRange');
 cmpR.addEventListener('input',()=>cmp.style.setProperty('--cut',cmpR.value+'%'));
