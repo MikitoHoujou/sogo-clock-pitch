@@ -494,14 +494,17 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-bet
 <section id="directions">
   <div class="wrap">
     <div class="sec-head">
-      <span class="eyebrow">3つの方向性 × 3段階</span>
+      <span class="eyebrow">6つの方向性 × 3段階</span>
       <h2><span class="jp">Made by hand, played by the hour</span>手でつくり、毎時上映する</h2>
-      <p class="lede">3案とも、CGキャラクターではなく実際の素材をカメラで撮影してつくります。1本あたりのコストを抑えられるので、高価なループ1本ではなく短編を何本もつくれます。AIやCGに見慣れた人にも、手づくりの良さが伝わります。</p>
+      <p class="lede">AからCは11月18日のミーティングから生まれた案。DからFはクリエイティブディレクションとして加えた3案で、それぞれブリーフの別のキーワードを狙っています。6案とも、CGキャラクターではなく実際の素材や実写をカメラで撮影してつくります。1本あたりのコストを抑えられるので、高価なループ1本ではなく短編を何本もつくれます。AIやCGに見慣れた人にも、手づくりの良さが伝わります。</p>
     </div>
     <div class="dir-tabs" role="tablist" aria-label="Pitch directions">
       <button class="dir-tab" role="tab" id="tab-tactile" data-dir="tactile" aria-selected="true" aria-controls="dirpanel"><span class="k">方向性 A</span><span class="t">手ざわりの時計</span><span class="s">紙、砂、布、積み木</span></button>
       <button class="dir-tab" role="tab" id="tab-oddball" data-dir="oddball" aria-selected="false" aria-controls="dirpanel"><span class="k">方向性 B</span><span class="t">へんてこな時間</span><span class="s">毎時ちがうサプライズ</span></button>
       <button class="dir-tab" role="tab" id="tab-shadow" data-dir="shadow" aria-selected="false" aria-controls="dirpanel"><span class="k">方向性 C</span><span class="t">影絵</span><span class="s">手影絵が本物に変わる</span></button>
+      <button class="dir-tab" role="tab" id="tab-memory" data-dir="memory" aria-selected="false" aria-controls="dirpanel"><span class="k">方向性 D · 新規</span><span class="t">青写真の記憶</span><span class="s">青写真のアーカイブ、1時間に1年</span></button>
+      <button class="dir-tab" role="tab" id="tab-hands" data-dir="hands" aria-selected="false" aria-controls="dirpanel"><span class="k">方向性 E · 新規</span><span class="t">毎時の手しごと</span><span class="s">店の職人の手を大きく</span></button>
+      <button class="dir-tab" role="tab" id="tab-bay" data-dir="bay" aria-selected="false" aria-controls="dirpanel"><span class="k">方向性 F · 新規</span><span class="t">港への窓</span><span class="s">壁の向こうに紙の港</span></button>
     </div>
     <div id="dirpanel" role="tabpanel" aria-labelledby="tab-tactile"></div>
   </div>
@@ -681,6 +684,72 @@ const DIRS = {
     ],
     day:['ニワトリの目覚め','うさぎ → スリッパ','お昼は何？','鳥が飛ぶ','カタツムリ → マカロン','キツネ → 口紅','影のじゃんけん','カニ → サンダル','夕暮れの群像','万華鏡','おやすみフクロウ'],
     frames:{1:'gen-c1',8:'gen-c2b'},
+    hue:['#eef3fb','#1f3c7a']
+  },
+  memory:{
+    name:'青写真の記憶', jp:'青写真の記憶', fresh:true,
+    para:'1985年からのこのロビーと横浜の古い写真を、紙を光にさらしてつくる青と白のプリント「青写真（サイアノタイプ）」にして、帯の上でゆっくりと現像されていくように映します。時計の文字盤には、この同じ時計の下に立つ一つの家族。青写真には「未来の計画」という意味もあり、壁の上で思い出が未来の設計図へと変わっていく、まさに「思い出は、未来になる」を目に見える形にしたものです。青写真はもともと青と白なので、大理石の配色ルールにも自然に合います。1時間ごとに別の年を映し、次のフェーズでは、旧時計の下で撮ったお客さまの写真を店頭で事前に集めて加えます。',
+    mediums:['青写真プリント','アーカイブ写真','紙','露光','ストップモーション'],
+    ideas:[
+      ['新規','浮かび上がるプリント','各映像は真っ白な紙から始まり、青写真のように端から像が浮かび、深い青に染まっていきます。'],
+      ['新規','1時間に1年','10時は1985年、20時は2027年。帯にはその年の街並み、時計には同じ年のロビーが映ります。'],
+      ['新規','この時計の下で','文字盤は人のための場所。40年間にこの時計の下で撮られた家族、恋人、スタッフの写真。'],
+      ['新規','あの頃と今','アーカイブ写真がずれると、同じ場所から撮った今日のロビーの写真が現れます。'],
+      ['新規','写真をお持ちください','フェーズ2：旧時計の下で撮った写真をお客さまがサービスカウンターに持ち込み、選んだ写真をプリント・撮影して次の季節に上映します。'],
+      ['リスク','アーカイブの権利','そごうと市の写真アーカイブの使用許諾と、写っている人の同意が必要です。']
+    ],
+    mood:[['gen-d-cyanotype','コンセプト：壁に映る青写真のアーカイブ'],['cwynar-phone','参考：Sara Cwynar、写真と手のコラージュ'],['realtime-clock','参考：Real Time、時計の中の人']],
+    tiers:[
+      ['Lite','1本','40年をたどる映像1本を毎時上映。'],
+      ['Core','4本','40年を10年ずつ4本に分け、一日の中でローテーション。',true],
+      ['Full','11本','1時間に1年。季節ごとにお客さまの写真版も。']
+    ],
+    day:['1985 · 開店の日','1989 · 横浜博覧会','1993 · ランドマークタワー','1997','2000','2004 · みなとみらい線','2008 · 時計が止まる','2009 · 開港150周年','2015','2026 · 時計がよみがえる','2027 · GREEN×EXPO'],
+    frames:{0:'gen-d-cyanotype'},
+    hue:['#eef3fb','#1f4fa0']
+  },
+  hands:{
+    name:'毎時の手しごと', jp:'毎時の手しごと', fresh:true,
+    para:'1時間ごとに、そごうの別の職人が主役になります。帯いっぱいに拡大された本物の手が、贈り物を包み、ケーキにクリームを絞り、着物を仕立て、靴を磨き、時計を開く。そして完成品がフルカラーで時計の中に現れます。店内で撮る実写なので撮影費は安く、キャラクターも不要。売場の裏にある技を見せられます。毎時がそれぞれの売場につながるので、クライアントが人を送りたい場所へ壁が案内し、スタッフも自分の仕事がランドマークに映る誇りを感じられます。',
+    mediums:['実写','マクロ撮影','店舗スタッフ','ワンカット'],
+    ideas:[
+      ['新規','ギフト包装','店の看板の技。巨大なスケールで紙を折りリボンを結び、包まれた箱が時計に届きます。'],
+      ['新規','正午の食品フロア','パティシエがクリームを絞り、フルーツをのせる。12時、お昼の人出の中でケーキが時計に現れます。'],
+      ['新規','仕立て','着物の袖を留め、スーツにチャコを引く手。午後のゆったりしたテンポで。'],
+      ['新規','靴磨き','クリーム、ブラシ、布をリズミカルなカットで。最後に輝く靴が時計に。'],
+      ['新規','時計修理','ルーペの下で時計職人がムーブメントを開く。この時計そのものへのさりげないオマージュ。'],
+      ['リスク','売場の協力','各売場の出演同意が必要です。広告ではなく、あくまで手仕事が主役であること。']
+    ],
+    mood:[['gen-e-hands','コンセプト：包装する手、時計の中に贈り物'],['cwynar-clock','参考：手と時計、Sara Cwynar'],['cwynar-room','参考：物を映像に']],
+    tiers:[
+      ['Lite','3本','3つの売場を一日の中でローテーション。'],
+      ['Core','6本','6つの売場を、それぞれ売場が混む時間に合わせて。',true],
+      ['Full','11本','毎時ちがう売場。季節ごとに新商品で更新。']
+    ],
+    day:['開店準備','ギフト包装','食品フロアのケーキ','フラワーアレンジ','着物の着付け','時計修理','靴磨き','和菓子','化粧品','仕立て','閉店：消灯'],
+    frames:{1:'gen-e-hands'},
+    hue:['#eef3fb','#2563d6']
+  },
+  bay:{
+    name:'港への窓', jp:'港への窓', fresh:true,
+    para:'壁が開いたように見えます。大理石の向こうには夜の横浜港。切り絵を何層も重ねたジオラマをカメラで撮影し、船、橋、港の灯り、ゆっくり泳ぐクジラを映します。時計は船の丸窓に。奥行きが揃うのは1か所だけなので、床のマーカー1つがフォトスポットになり、人はそこに立って写真を撮り、投稿します。毎時ちがう景色が開き、海と夜空の青と白の世界は大理石の配色ルールにも合います。',
+    mediums:['重ねた切り絵','ジオラマ','遠近法の錯視','ストップモーション','床マーカー'],
+    ideas:[
+      ['新規','フォトスポット','錯視がぴったり揃う、光る床マーカーが1つ。そこに立つための行列こそが集客装置です。'],
+      ['新規','丸窓の時計','投影した真鍮のリングで時計を船の丸窓に。針は実際の時刻を刻み続けます。'],
+      ['新規','1時間に1つの景色','夜明けの港、赤レンガ倉庫、海の中、港の星空。毎時ちがう景色。'],
+      ['新規','重ねた紙','6〜8層の紙を横から照らしてカメラで撮影。奥行きはCGではなく手づくりに見えます。'],
+      ['新規','季節の入れ替え','春は港の桜、夏は花火、冬は船に降る雪。'],
+      ['リスク','斜めからの見え方','横から見ると錯視は平らになります。どこから見ても絵として成立させる必要があります。']
+    ],
+    mood:[['gen-f-bay','コンセプト：重ねた紙の横浜港'],['silhouette-stage','参考：切り絵のシルエット'],['weather-project','参考：The Weather Project、人が集まる空間']],
+    tiers:[
+      ['Lite','1本','夜の港の景色1本を毎時上映。'],
+      ['Core','4本','夜明けから夜までの4つの景色を一日の中で。',true],
+      ['Full','11本','毎時新しい景色。季節の入れ替えとSNS用短尺版つき。']
+    ],
+    day:['夜明けの港','朝のフェリー','海の中','赤レンガ倉庫','カモメ','クジラが通る','港の夕日','港の灯り','花火','港の星空','夜の船'],
+    frames:{5:'gen-f-bay'},
     hue:['#eef3fb','#1f3c7a']
   }
 };
@@ -964,7 +1033,10 @@ const FRAMES=[
   {f:'gen-b1',k:'B · へんてこ',t:'壁画の狩人がマンモスを追う',n:'光る棒人間の狩人たちが、時計に巻きつくマンモスへ向かって帯を走ります。家族が指をさす、まさに狙いどおりの反応です。'},
   {f:'gen-b2',k:'B · へんてこ',t:'16時のじゃんけん、あいこ',n:'両端から腕が伸び、4時ちょうどにチョキであいこ。照明がついた状態でも、白と青の線画なら日中でも見えます。'},
   {f:'gen-c1',k:'C · 影絵',t:'うさぎの影、時計の中にはスリッパ',n:'手影絵のうさぎが光る壁を横切り、時計の中で本物の赤いスリッパに変わります。方向性Cを最も端的に表す一枚。'},
-  {f:'gen-c2b',k:'C · 影絵',t:'影絵グリッドのフィナーレ',n:'手が見える影絵動物の青いパネルを、時計の壁と帯にだけ投影。SOGOマークは余白で独立させ、店頭には一切かかりません。時計の中のカラー演出はスタイルフレームで追加予定。'}
+  {f:'gen-c2b',k:'C · 影絵',t:'影絵グリッドのフィナーレ',n:'手が見える影絵動物の青いパネルを、時計の壁と帯にだけ投影。SOGOマークは余白で独立させ、店頭には一切かかりません。時計の中のカラー演出はスタイルフレームで追加予定。'},
+  {f:'gen-d-cyanotype',k:'D · 記憶',t:'青写真の記憶',n:'ロビーと横浜の青写真が帯の上で浮かび上がり、時計の中には1985年の家族。もともと青と白なので、大理石の上でも見えます。'},
+  {f:'gen-e-hands',k:'E · 手しごと',t:'包装する手',n:'そごうの包装担当の手が帯の上で折り、結ぶ。完成した贈り物がフルカラーで時計に現れます。照明がついた状態です。'},
+  {f:'gen-f-bay',k:'F · 港',t:'港への窓',n:'壁の向こうに、クジラと橋のある紙のジオラマの港。光る床マーカーに人が並んで写真を撮ります。',flag:'ドラフトでは文字盤が丸窓に置き換わっていますが、実際は時計はそのままで、丸窓のリングを周囲に投影します。'}
 ];
 const cmp=$('#compare'), cmpR=$('#cmpRange');
 cmpR.addEventListener('input',()=>cmp.style.setProperty('--cut',cmpR.value+'%'));
@@ -1030,7 +1102,7 @@ function renderDir(){
         <div class="ideas">${d.ideas.map((it,i)=>`
           <div class="idea"><button type="button" aria-expanded="${i===0}" aria-controls="idea-${i}"><span class="ts">${it[0]}</span>${it[1]}</button><p id="idea-${i}" ${i===0?'':'hidden'}>${it[2]}</p></div>`).join('')}
         </div>
-        <p style="font-size:12px;color:var(--muted)">タイムスタンプは11月18日のミーティング録音の位置です。</p>
+        <p style="font-size:12px;color:var(--muted)">${d.fresh?'この提案で新たに加えた案です（11月18日のミーティングでは未検討）。':'タイムスタンプは11月18日のミーティング録音の位置です。'}</p>
       </div>
       <div class="mood">${d.mood.map(([f,c])=>`<figure><img src="img/${f}.jpg" alt="${c}" loading="lazy"><figcaption>${c}</figcaption></figure>`).join('')}</div>
     </div>
@@ -1039,12 +1111,12 @@ function renderDir(){
   $$('.idea button',$('#dirpanel')).forEach(b=>b.addEventListener('click',()=>{ const p=document.getElementById(b.getAttribute('aria-controls')); const open=b.getAttribute('aria-expanded')==='true'; b.setAttribute('aria-expanded',String(!open)); p.hidden=open; }));
 }
 function setDir(d,scroll){
-  dir=d; store.set('sogo-dir',d); setMode(d); renderDir(); renderDay();
+  dir=d; store.set('sogo-dir',d); if(['tactile','oddball','shadow'].includes(d)) setMode(d); renderDir(); renderDay();
 }
 $$('.dir-tab').forEach(t=>{
   t.addEventListener('click',()=>setDir(t.dataset.dir));
-  t.addEventListener('keydown',e=>{ const order=['tactile','oddball','shadow']; let i=order.indexOf(dir);
-    if(e.key==='ArrowRight'){i=(i+1)%3;} else if(e.key==='ArrowLeft'){i=(i+2)%3;} else return;
+  t.addEventListener('keydown',e=>{ const order=Object.keys(DIRS); const n=order.length; let i=order.indexOf(dir);
+    if(e.key==='ArrowRight'){i=(i+1)%n;} else if(e.key==='ArrowLeft'){i=(i+n-1)%n;} else return;
     e.preventDefault(); setDir(order[i]); $('#tab-'+order[i]).focus(); });
 });
 

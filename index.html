@@ -494,14 +494,17 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-bet
 <section id="directions">
   <div class="wrap">
     <div class="sec-head">
-      <span class="eyebrow">Three directions, each in three tiers</span>
+      <span class="eyebrow">Six directions, each in three tiers</span>
       <h2><span class="jp">提案の方向性</span>Made by hand, played by the hour</h2>
-      <p class="lede">All three are built from real materials shot in camera, not CGI characters. That keeps cost per film low enough to make many short films instead of one expensive loop, and it reads as handmade to people tired of AI and CG.</p>
+      <p class="lede">A to C came out of the 18 Nov session. D to F are three more from creative direction, each aimed at a different word in the brief. All six are built from real materials or real footage shot in camera, not CGI characters. That keeps cost per film low enough to make many short films instead of one expensive loop, and it reads as handmade to people tired of AI and CG.</p>
     </div>
     <div class="dir-tabs" role="tablist" aria-label="Pitch directions">
       <button class="dir-tab" role="tab" id="tab-tactile" data-dir="tactile" aria-selected="true" aria-controls="dirpanel"><span class="k">Direction A</span><span class="t">Tactile Clock</span><span class="s">Paper, sand, fabric and blocks</span></button>
       <button class="dir-tab" role="tab" id="tab-oddball" data-dir="oddball" aria-selected="false" aria-controls="dirpanel"><span class="k">Direction B</span><span class="t">Oddball Hours</span><span class="s">A different surprise every hour</span></button>
       <button class="dir-tab" role="tab" id="tab-shadow" data-dir="shadow" aria-selected="false" aria-controls="dirpanel"><span class="k">Direction C</span><span class="t">Shadow Play</span><span class="s">Hand shadows that turn real</span></button>
+      <button class="dir-tab" role="tab" id="tab-memory" data-dir="memory" aria-selected="false" aria-controls="dirpanel"><span class="k">Direction D · new</span><span class="t">Blueprint of Memory</span><span class="s">Cyanotype archive, one year an hour</span></button>
+      <button class="dir-tab" role="tab" id="tab-hands" data-dir="hands" aria-selected="false" aria-controls="dirpanel"><span class="k">Direction E · new</span><span class="t">Hands of the Hour</span><span class="s">Store craftspeople, magnified</span></button>
+      <button class="dir-tab" role="tab" id="tab-bay" data-dir="bay" aria-selected="false" aria-controls="dirpanel"><span class="k">Direction F · new</span><span class="t">Window to the Bay</span><span class="s">A paper port behind the wall</span></button>
     </div>
     <div id="dirpanel" role="tabpanel" aria-labelledby="tab-tactile"></div>
   </div>
@@ -681,6 +684,72 @@ const DIRS = {
     ],
     day:['Rooster wakes','Rabbit → slippers','Lunch guess','Bird flight','Snail → macaron','Fox → lipstick','Janken shadows','Crab → sandals','Sunset ensemble','Kaleidoscope','Goodnight owl'],
     frames:{1:'gen-c1',8:'gen-c2b'},
+    hue:['#eef3fb','#1f3c7a']
+  },
+  memory:{
+    name:'Blueprint of Memory', jp:'青写真の記憶', fresh:true,
+    para:'Old photographs of this lobby and of Yokohama since 1985 are printed as cyanotypes, the blue-and-white prints made by exposing paper to light, and develop slowly along the band. The clock face holds one family standing under this same clock. In Japanese a cyanotype, 青写真, also means a blueprint for the future, so the wall shows memories turning into plans: 思い出は、未来になる, made visible. Cyanotype is blue and white by nature, so it follows the marble rule without effort. Each hour is a different year; a later phase adds customers\' own photos taken under the old clock, collected and curated in advance by the store.',
+    mediums:['cyanotype prints','archive photos','paper','light exposure','stop motion'],
+    ideas:[
+      ['New','The developing print','Each film starts as a blank white sheet; the image appears the way a cyanotype does, from the edges in, then washes to deep blue.'],
+      ['New','One year an hour','10:00 is 1985, 20:00 is 2027. The band runs the city\'s skyline for that year; the clock shows the lobby that same year.'],
+      ['New','Under this clock','The clock face is reserved for people: families, couples and staff photographed under the clock over 40 years.'],
+      ['New','Then and now','The archive photo slides away to reveal a photo of today\'s lobby taken from the same spot, crowd and all.'],
+      ['New','Bring your photo','Phase 2: customers hand in photos taken under the old clock at the service counter; the best are printed and filmed for the next season.'],
+      ['Risk','Archive rights','Needs Sogo\'s and the city\'s photo archive, and releases for any people shown.']
+    ],
+    mood:[['gen-d-cyanotype','Concept frame: cyanotype archive on the wall'],['cwynar-phone','Reference: Sara Cwynar, collage of photos and hands'],['realtime-clock','Reference: Real Time, a person inside the clock']],
+    tiers:[
+      ['Lite','1 film','One film moving through 40 years, shown every hour.'],
+      ['Core','4 films','Four decades, one per film, rotating through the day.',true],
+      ['Full','11 films','One year per hour, plus customer-photo editions each season.']
+    ],
+    day:['1985 · Opening day','1989 · Yokohama Expo','1993 · Landmark Tower','1997','2000','2004 · Minatomirai Line','2008 · Clock stops','2009 · Port 150','2015','2026 · Clock returns','2027 · GREEN×EXPO'],
+    frames:{0:'gen-d-cyanotype'},
+    hue:['#eef3fb','#1f4fa0']
+  },
+  hands:{
+    name:'Hands of the Hour', jp:'毎時の手しごと', fresh:true,
+    para:'Every hour belongs to a different Sogo craftsperson. Their real hands, magnified across the band, wrap a gift, pipe cream onto a cake, pin a kimono, polish a shoe or open a watch, and the finished piece lands in the clock in full colour. It is live action shot inside the store, cheap to film and free of characters, and it shows the expertise behind the counters. Each hour points to a floor, so the wall sends people where the client wants them to go, and the staff get to see their own work on the landmark.',
+    mediums:['live action','macro photography','store staff','one-take'],
+    ideas:[
+      ['New','Gift wrapping','The store\'s signature: paper folded and ribbon tied at a giant scale, the wrapped box arriving in the clock.'],
+      ['New','Food hall at noon','A pâtissier pipes cream and places fruit; at 12:00 the cake appears in the clock as the lunch crowd passes.'],
+      ['New','Fitting and tailoring','Hands pin a kimono sleeve or chalk a suit, timed to the gentle pace of the afternoon.'],
+      ['New','Shoe shine','Polish, brush and cloth in fast rhythmic cuts; the shoe ends gleaming in the clock.'],
+      ['New','Watch repair','A watchmaker opens a movement under the loupe, a quiet nod to the clock itself.'],
+      ['Risk','Departments on board','Each department has to agree to appear; it must stay craft-led and not become an advert.']
+    ],
+    mood:[['gen-e-hands','Concept frame: gift-wrapping hands, gift in the clock'],['cwynar-clock','Reference: hands and a clock, Sara Cwynar'],['cwynar-room','Reference: objects as moving image']],
+    tiers:[
+      ['Lite','3 films','Three departments rotating through the day.'],
+      ['Core','6 films','Six departments, each tied to its peak hour on its floor.',true],
+      ['Full','11 films','A different department every hour, refreshed each season with new products.']
+    ],
+    day:['Morning prep','Gift wrapping','Food hall cake','Flower arranging','Kimono fitting','Watch repair','Shoe shine','Wagashi','Cosmetics','Tailoring','Closing: lights out'],
+    frames:{1:'gen-e-hands'},
+    hue:['#eef3fb','#2563d6']
+  },
+  bay:{
+    name:'Window to the Bay', jp:'港への窓', fresh:true,
+    para:'The wall seems to open up. Behind the marble lies Yokohama port at night, built as a layered cut-paper diorama and shot in camera, with ships, the bridge, harbour lights and a whale gliding past. The clock becomes a porthole. The depth only lines up from one spot, so a single floor marker becomes the photo spot: people stand on it, take the picture and post it. Each hour opens a different view, and the blue-and-white world of sea and night sky suits the marble rule.',
+    mediums:['layered cut paper','diorama','forced perspective','stop motion','floor marker'],
+    ideas:[
+      ['New','The photo spot','One glowing floor marker where the illusion lines up perfectly. The queue to stand on it is the magnet.'],
+      ['New','Porthole clock','A projected brass ring turns the clock into a ship\'s porthole; the hands keep real time.'],
+      ['New','A view per hour','Dawn harbour, the Red Brick Warehouse, under the sea, the stars over the bay: each hour a new view.'],
+      ['New','Layered paper','Six to eight paper layers lit from the side, shot in camera, so the depth looks handmade, not CG.'],
+      ['New','Seasonal swaps','Cherry blossom over the bay in spring, fireworks in summer, snow on the ships in winter.'],
+      ['Risk','Off-axis views','From the side the illusion flattens; the films still have to read as a picture from anywhere.']
+    ],
+    mood:[['gen-f-bay','Concept frame: Yokohama port in layered paper'],['silhouette-stage','Reference: cut-paper silhouettes'],['weather-project','Reference: The Weather Project, a space people gather in']],
+    tiers:[
+      ['Lite','1 film','One night-port view shown every hour.'],
+      ['Core','4 films','Four views from dawn to night across the day.',true],
+      ['Full','11 films','A new view every hour, seasonal swaps and social cut-downs.']
+    ],
+    day:['Harbour at dawn','Morning ferries','Under the sea','Red Brick Warehouse','Seagulls','Whale passing','Sunset on the bay','Harbour lights','Fireworks','Stars over the bay','Night ships'],
+    frames:{5:'gen-f-bay'},
     hue:['#eef3fb','#1f3c7a']
   }
 };
@@ -964,7 +1033,10 @@ const FRAMES=[
   {f:'gen-b1',k:'B · Oddball',t:'Cave hunters chase the mammoth',n:'Glowing stick hunters run along the band toward a mammoth wrapped round the clock. Families pointing is exactly the reaction we want.'},
   {f:'gen-b2',k:'B · Oddball',t:'Janken tie at 16:00',n:'Two arms stretch in from both ends and tie with scissors at four o\'clock. Shown with house lights on: a white-and-blue cartoon line still reads in daytime.'},
   {f:'gen-c1',k:'C · Shadow',t:'Rabbit shadow, slippers in the clock',n:'A hand-shadow rabbit crosses the lit wall; inside the clock it turns into real red slippers. The clearest single picture of direction C.'},
-  {f:'gen-c2b',k:'C · Shadow',t:'Shadow grid finale',n:'Blue panels of hand-shadow animals, hands visible, on the clock wall and the band only. The SOGO mark sits clear in its own gap and nothing touches the shopfronts. The colour reveal in the clock face is still to come in the style frame.'}
+  {f:'gen-c2b',k:'C · Shadow',t:'Shadow grid finale',n:'Blue panels of hand-shadow animals, hands visible, on the clock wall and the band only. The SOGO mark sits clear in its own gap and nothing touches the shopfronts. The colour reveal in the clock face is still to come in the style frame.'},
+  {f:'gen-d-cyanotype',k:'D · Memory',t:'Blueprint of memory',n:'Cyanotype prints of the lobby and of Yokohama develop along the band; a 1985 family stands inside the clock. Blue and white by nature, so it reads on the marble.'},
+  {f:'gen-e-hands',k:'E · Hands',t:'Gift-wrapping hands',n:'A Sogo wrapper\'s hands fold and tie along the band; the finished gift appears in the clock in full colour. Shown with house lights on.'},
+  {f:'gen-f-bay',k:'F · Bay',t:'Window to the bay',n:'The wall opens onto a paper-diorama port with a whale and the bridge; people line up on the glowing floor marker to take the photo.',flag:'The draft replaces the clock face with a porthole. In reality the clock stays; the porthole ring is projected around it.'}
 ];
 const cmp=$('#compare'), cmpR=$('#cmpRange');
 cmpR.addEventListener('input',()=>cmp.style.setProperty('--cut',cmpR.value+'%'));
@@ -1030,7 +1102,7 @@ function renderDir(){
         <div class="ideas">${d.ideas.map((it,i)=>`
           <div class="idea"><button type="button" aria-expanded="${i===0}" aria-controls="idea-${i}"><span class="ts">${it[0]}</span>${it[1]}</button><p id="idea-${i}" ${i===0?'':'hidden'}>${it[2]}</p></div>`).join('')}
         </div>
-        <p style="font-size:12px;color:var(--muted)">Timestamps point to the 18 Nov session recording.</p>
+        <p style="font-size:12px;color:var(--muted)">${d.fresh?'New for this pitch; not discussed in the 18 Nov session.':'Timestamps point to the 18 Nov session recording.'}</p>
       </div>
       <div class="mood">${d.mood.map(([f,c])=>`<figure><img src="img/${f}.jpg" alt="${c}" loading="lazy"><figcaption>${c}</figcaption></figure>`).join('')}</div>
     </div>
@@ -1039,12 +1111,12 @@ function renderDir(){
   $$('.idea button',$('#dirpanel')).forEach(b=>b.addEventListener('click',()=>{ const p=document.getElementById(b.getAttribute('aria-controls')); const open=b.getAttribute('aria-expanded')==='true'; b.setAttribute('aria-expanded',String(!open)); p.hidden=open; }));
 }
 function setDir(d,scroll){
-  dir=d; store.set('sogo-dir',d); setMode(d); renderDir(); renderDay();
+  dir=d; store.set('sogo-dir',d); if(['tactile','oddball','shadow'].includes(d)) setMode(d); renderDir(); renderDay();
 }
 $$('.dir-tab').forEach(t=>{
   t.addEventListener('click',()=>setDir(t.dataset.dir));
-  t.addEventListener('keydown',e=>{ const order=['tactile','oddball','shadow']; let i=order.indexOf(dir);
-    if(e.key==='ArrowRight'){i=(i+1)%3;} else if(e.key==='ArrowLeft'){i=(i+2)%3;} else return;
+  t.addEventListener('keydown',e=>{ const order=Object.keys(DIRS); const n=order.length; let i=order.indexOf(dir);
+    if(e.key==='ArrowRight'){i=(i+1)%n;} else if(e.key==='ArrowLeft'){i=(i+n-1)%n;} else return;
     e.preventDefault(); setDir(order[i]); $('#tab-'+order[i]).focus(); });
 });
 
