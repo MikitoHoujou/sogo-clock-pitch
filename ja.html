@@ -307,6 +307,38 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-bet
   section{padding-block:56px}
 }
 @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+
+/* ---------- options 01–02 ---------- */
+.opt{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:44px;align-items:start;padding-block:44px;border-top:1px solid var(--line)}
+.opt:first-of-type{border-top:0;padding-top:4px}
+.opt-text{gap:14px}
+.opt-k{font-family:var(--f-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--sogo)}
+.opt-t{font-family:var(--f-display);font-size:clamp(28px,3.4vw,40px);font-weight:500;line-height:1.08}
+.opt-jp{font-family:var(--f-jp);font-size:17px;letter-spacing:.08em;color:var(--brass)}
+.opt-fmt{font-family:var(--f-mono);font-size:12px;letter-spacing:.04em;color:var(--muted)}
+.opt p{max-width:64ch;color:var(--fg-2);font-size:15px}
+.opt p.opt-sum{font-size:18px;line-height:1.6;color:var(--light)}
+.opt-h{font-size:15px;font-weight:700;margin-top:10px}
+.beats{list-style:none;counter-reset:beat;margin:0;padding:0;display:grid;gap:12px}
+.beats li{counter-increment:beat;display:grid;grid-template-columns:28px minmax(0,1fr);gap:12px;font-size:15px;color:var(--fg-2);max-width:66ch}
+.beats li::before{content:counter(beat);display:grid;place-items:center;width:26px;height:26px;border:1px solid var(--line);border-radius:50%;background:var(--hall-2);font-family:var(--f-mono);font-size:12px;color:var(--sogo)}
+.beats b,.opt-seasons b{color:var(--light)}
+.opt-seasons{list-style:none;margin:0;padding:0;display:grid}
+.opt-seasons li{display:grid;grid-template-columns:130px minmax(0,1fr);gap:12px;padding-block:9px;border-top:1px solid var(--line);font-size:15px;color:var(--fg-2)}
+.opt-q{border-left:2px solid var(--brass);padding-left:12px}
+.opt-why{display:grid;grid-template-columns:auto minmax(0,1fr);gap:8px 18px;margin:6px 0 0;padding:16px 18px;background:var(--sogo-tint);border-radius:8px;font-size:15px}
+.opt-why dt{font-family:var(--f-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--sogo);padding-top:4px}
+.opt-why dd{margin:0}
+.opt-media{display:grid;gap:18px;position:sticky;top:76px}
+.opt-media figure{margin:0;display:grid;gap:6px}
+.opt-media img{width:100%;border-radius:6px;display:block}
+.opt-media img.tall{max-width:300px}
+.opt-media figcaption{font-size:12px;color:var(--muted)}
+@media (max-width:860px){
+  .opt{grid-template-columns:minmax(0,1fr);gap:28px}
+  .opt-media{position:static}
+  .opt-seasons li{grid-template-columns:minmax(0,1fr);gap:2px}
+}
 </style>
 </head>
 <body>
@@ -315,7 +347,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-bet
   <div class="wrap">
     <span class="mark">SAS × SOGO YOKOHAMA · B2</span>
     <nav aria-label="Sections">
-      <a href="#frames">フレーム</a><a href="#brief">ブリーフ</a><a href="#site">会場</a><a href="#directions">方向性</a><a href="#shadow-seasons">四季</a><a href="#day">一日</a><a href="#characters">キャラクター</a><a href="#refs">参考</a><a href="#next">次へ</a>
+      <a href="#frames">フレーム</a><a href="#brief">ブリーフ</a><a href="#site">会場</a><a href="#directions">方向性</a><a href="#shadow-seasons">四季</a><a href="#day">一日</a><a href="#characters">キャラクター</a><a href="#refs">参考</a><a href="#next">次へ</a><a href="#options">ストーリー案</a>
     </nav>
     <span class="jst" id="jst" aria-live="off">JST --:--</span>
     <a class="lang" href="index.html" lang="en" hreflang="en">English</a>
@@ -595,6 +627,84 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-bet
       <li><input type="checkbox" id="n5"><label for="n5">映像業者に構成テンプレートとタイマー仕様を確認</label><span class="due">日程調整中</span></li>
       <li><input type="checkbox" id="n6"><label for="n6">現地夜間テスト：大理石上での白・青・グレーの階調</label><span class="due">日程調整中</span></li>
     </ul>
+  </div>
+</section>
+
+<!-- ================= OPTIONS 01–02 ================= -->
+<section id="options">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">2つのストーリー案</span>
+      <h2><span class="jp">Two stories for the clock</span>時計のための、2つの物語</h2>
+      <p class="lede">どちらも毎時上映する1本の映像で、季節ごとに内容が変わります。案01は時計の下で繰り広げられる、セリフのないラブストーリー。案02は時計から、下を行き交う人々へ季節のあいさつを届けます。</p>
+    </div>
+
+    <article class="opt" id="opt-01">
+      <div class="opt-text stack">
+        <span class="opt-k">案 01</span>
+        <h3 class="opt-t">「時計の下で、待ち合わせ」</h3>
+        <p class="opt-jp">“Meet me under the clock”</p>
+        <p class="opt-fmt">毎時 · 2〜3分 · 1本のストーリー映像</p>
+        <p class="opt-sum">おしゃれに敏感なカップルが、シルエットだけの姿で、季節のハプニングを乗り越えて時計の下で落ち合います。</p>
+        <p>百貨店のロビーの時計は、昔から待ち合わせの場所でした。そごう横浜の時計も同じです。この案は、そんな日常のひとコマを物語にします。カップルの顔は一度も見せず、映るのはシルエットと、ファッションアイテムや小物だけ。名前のない二人だからこそ、見る人は自分を重ねられ、マスコットをつくる必要もありません。風や雨、人混みなど、季節そのものが二人の待ち合わせを邪魔し、やっと会えた瞬間には、その季節が魔法に変わります。</p>
+        <h4 class="opt-h">ストーリー（秋編）</h4>
+        <ol class="beats">
+          <li><span><b>正時。</b>時計のパネルの一枚が扉のように開き、おしゃれな若い女性のシルエットが現れて、扉を閉めます。全身がシルエットなので、色を残した1〜2点のファッションアイテムが引き立ちます。上品なコート、季節のスカーフ、帽子やバッグ、赤い口紅など。</span></li>
+          <li><span><b>待つ。</b>彼女はそわそわと周りを見回し、時計の中を左へ右へと歩きながら、誰かを待つように時計の針を見上げます。</span></li>
+          <li><span><b>突風。</b>秋の大きな風が彼女の髪とコートをなびかせ、色とりどりの落ち葉が右からロビーの端から端まで吹き抜けます。それに合わせて、男性のシルエットが丸まったまま風に吹かれて転がり込んできます。立ち上がって埃を払い、彼なりの秋のコーディネートを見せると、腕時計を見て遅刻に気づきます。</span></li>
+          <li><span><b>天気との戦い。</b>風向きが変わり、彼は向かい風に耐えながら必死に前へ進みます。ところが天気はさらに急変。雨に雷、そしておなじみの、傘との勝ち目のない格闘。</span></li>
+          <li><span><b>その頃。</b>彼女は時計の下の縁に腰かけて足をぶらぶら。彼がどんな目にあっているかも知らず、のんきに待っています。</span></li>
+          <li><span><b>到着。</b>秋の天気に2〜3回振り回された末、彼は時計に倒れ込み、彼女を驚かせてから身なりを整えます。彼女の反応は笑いでも、ほっとした喜びでも、どちらでも成立します。</span></li>
+          <li><span><b>二人で。</b>二人が抱き合うと、時計と壁いっぱいに秋の紙吹雪が舞い、季節のお祝いが広がります。そして二人は一緒に時計の中へ入っていきます。</span></li>
+        </ol>
+        <p>引きの画の合間にクローズアップを挟み、ドラマと迫力を加えます。絵はイラスト調でシンプルに。2Dならではの親しみやすい温かさを大切にします。</p>
+        <h4 class="opt-h">季節ごとに、新しいファッションと新しいハプニング</h4>
+        <ul class="opt-seasons">
+          <li><b>冬</b><span>凍った道、雪合戦の流れ弾、イルミネーションに絡まる。</span></li>
+          <li><b>夏</b><span>花火、日陰から日陰へのダッシュ、凧あげ、公園の遊び。</span></li>
+          <li><b>春 · 桜</b><span>花見客の人混み、花粉症、桜並木の川を舟で渡る。</span></li>
+        </ul>
+        <dl class="opt-why">
+          <dt>Magnet</dt><dd>待ち合わせ。そごうの時計が、待ち合わせの場所になります。</dd>
+          <dt>Audience</dt><dd>ファッション好きのカップル。</dd>
+          <dt>Magic</dt><dd>ラブストーリーであること。</dd>
+          <dt>Nostalgia</dt><dd>時計の扉。そして待ち合わせは、誰もが経験したことのある瞬間です。</dd>
+        </dl>
+      </div>
+      <div class="opt-media" id="opt01-media">
+        <figure><img src="img/realtime-clock.jpg" alt="Real Time: a person seen inside a large clock face, keeping time by hand" loading="lazy"><figcaption>参考：Real Time。時計の中で暮らす人</figcaption></figure>
+        <figure><img src="img/silhouette-stage-2.jpg" alt="Flat cut-out silhouettes in front of coloured light washes on a stage" loading="lazy"><figcaption>参考：色光を背にしたシルエット。色を残すのは1点だけ</figcaption></figure>
+      </div>
+    </article>
+
+    <article class="opt" id="opt-02">
+      <div class="opt-text stack">
+        <span class="opt-k">案 02</span>
+        <h3 class="opt-t">時候の挨拶</h3>
+        <p class="opt-jp">Seasonal Greetings</p>
+        <p class="opt-fmt">手書き · 折り紙 · 季節の花 · 天気</p>
+        <p class="opt-sum">時計の中に手書きの手紙が現れ、ひとりでに紙飛行機や折り紙の動物に折り上がり、誰かのもとへ届くため、日本の季節と風景の中を旅立ちます。届いた手紙が開くと、季節のあいさつが壁いっぱいに広がります。</p>
+        <p>分かち合うこと、そしてお客さまを気づかうこと。それがこの案の芯です。</p>
+        <h4 class="opt-h">春編</h4>
+        <p>手紙は春風に乗って野原や川を越え、折り目に花びらを集めながら飛んでいき、新しい季節を迎えるメッセージとして開きます。</p>
+        <h4 class="opt-h">季節ごとに、新しい手紙を</h4>
+        <ul class="opt-seasons">
+          <li><b>夏</b><span>陽炎と風鈴の中を運ばれる「暑中お見舞い申し上げます」。</span></li>
+          <li><b>秋</b><span>月の下を飛んでいく手紙。</span></li>
+          <li><b>新年</b><span>降る雪の中を旅する年賀状。</span></li>
+        </ul>
+        <p class="opt-q">1年に24通？ 二十四節気ごとに1通にすれば、壁のあいさつがおよそ2週間ごとに新しくなります。</p>
+        <dl class="opt-why">
+          <dt>Nostalgia</dt><dd>季節の便りを送り合う習慣は、家族連れや年配のお客さまにとって懐かしいもの。</dd>
+          <dt>Childhood</dt><dd>紙飛行機や折り紙は、誰もが持っている子どもの頃の思い出です。</dd>
+          <dt>Warmth</dt><dd>手書きの文字が、人のぬくもりを添えます。</dd>
+          <dt>Season</dt><dd>そごうが毎回、お客さまに季節のメッセージを届けられます。</dd>
+        </dl>
+      </div>
+      <div class="opt-media" id="opt02-media">
+        <figure><img class="tall" src="img/ref-shochu-mimai.jpg" alt="A summer greeting card: a glass wind chime painted with morning glories, its paper strip reading 暑中お見舞い申し上げます, on a pale blue ground" loading="lazy"><figcaption>参考：暑中見舞いのはがき。風鈴と朝顔</figcaption></figure>
+      </div>
+    </article>
   </div>
 </section>
 

@@ -307,6 +307,38 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-bet
   section{padding-block:56px}
 }
 @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+
+/* ---------- options 01–02 ---------- */
+.opt{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:44px;align-items:start;padding-block:44px;border-top:1px solid var(--line)}
+.opt:first-of-type{border-top:0;padding-top:4px}
+.opt-text{gap:14px}
+.opt-k{font-family:var(--f-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--sogo)}
+.opt-t{font-family:var(--f-display);font-size:clamp(28px,3.4vw,40px);font-weight:500;line-height:1.08}
+.opt-jp{font-family:var(--f-jp);font-size:17px;letter-spacing:.08em;color:var(--brass)}
+.opt-fmt{font-family:var(--f-mono);font-size:12px;letter-spacing:.04em;color:var(--muted)}
+.opt p{max-width:64ch;color:var(--fg-2);font-size:15px}
+.opt p.opt-sum{font-size:18px;line-height:1.6;color:var(--light)}
+.opt-h{font-size:15px;font-weight:700;margin-top:10px}
+.beats{list-style:none;counter-reset:beat;margin:0;padding:0;display:grid;gap:12px}
+.beats li{counter-increment:beat;display:grid;grid-template-columns:28px minmax(0,1fr);gap:12px;font-size:15px;color:var(--fg-2);max-width:66ch}
+.beats li::before{content:counter(beat);display:grid;place-items:center;width:26px;height:26px;border:1px solid var(--line);border-radius:50%;background:var(--hall-2);font-family:var(--f-mono);font-size:12px;color:var(--sogo)}
+.beats b,.opt-seasons b{color:var(--light)}
+.opt-seasons{list-style:none;margin:0;padding:0;display:grid}
+.opt-seasons li{display:grid;grid-template-columns:130px minmax(0,1fr);gap:12px;padding-block:9px;border-top:1px solid var(--line);font-size:15px;color:var(--fg-2)}
+.opt-q{border-left:2px solid var(--brass);padding-left:12px}
+.opt-why{display:grid;grid-template-columns:auto minmax(0,1fr);gap:8px 18px;margin:6px 0 0;padding:16px 18px;background:var(--sogo-tint);border-radius:8px;font-size:15px}
+.opt-why dt{font-family:var(--f-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--sogo);padding-top:4px}
+.opt-why dd{margin:0}
+.opt-media{display:grid;gap:18px;position:sticky;top:76px}
+.opt-media figure{margin:0;display:grid;gap:6px}
+.opt-media img{width:100%;border-radius:6px;display:block}
+.opt-media img.tall{max-width:300px}
+.opt-media figcaption{font-size:12px;color:var(--muted)}
+@media (max-width:860px){
+  .opt{grid-template-columns:minmax(0,1fr);gap:28px}
+  .opt-media{position:static}
+  .opt-seasons li{grid-template-columns:minmax(0,1fr);gap:2px}
+}
 </style>
 </head>
 <body>
@@ -315,7 +347,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-bet
   <div class="wrap">
     <span class="mark">SAS × SOGO YOKOHAMA · B2</span>
     <nav aria-label="Sections">
-      <a href="#frames">Frames</a><a href="#brief">Brief</a><a href="#site">Site</a><a href="#directions">Directions</a><a href="#shadow-seasons">Seasons</a><a href="#day">Day</a><a href="#characters">Characters</a><a href="#refs">References</a><a href="#next">Next</a>
+      <a href="#frames">Frames</a><a href="#brief">Brief</a><a href="#site">Site</a><a href="#directions">Directions</a><a href="#shadow-seasons">Seasons</a><a href="#day">Day</a><a href="#characters">Characters</a><a href="#refs">References</a><a href="#next">Next</a><a href="#options">Options 01–02</a>
     </nav>
     <span class="jst" id="jst" aria-live="off">JST --:--</span>
     <a class="lang" href="ja.html" lang="ja" hreflang="ja">日本語</a>
@@ -595,6 +627,84 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-bet
       <li><input type="checkbox" id="n5"><label for="n5">Ask the projection contractor for the composition template and timer spec</label><span class="due">to schedule</span></li>
       <li><input type="checkbox" id="n6"><label for="n6">Night test on site: white, blue and grey ramps on the marble</label><span class="due">to schedule</span></li>
     </ul>
+  </div>
+</section>
+
+<!-- ================= OPTIONS 01–02 ================= -->
+<section id="options">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Two story options</span>
+      <h2><span class="jp">ストーリー案</span>Two stories for the clock</h2>
+      <p class="lede">Each option is one film that plays on the hour and changes with the season. Option 01 is a silent love story under the clock. Option 02 sends a seasonal greeting from the clock to everyone below.</p>
+    </div>
+
+    <article class="opt" id="opt-01">
+      <div class="opt-text stack">
+        <span class="opt-k">Option 01</span>
+        <h3 class="opt-t">“Meet me under the clock”</h3>
+        <p class="opt-jp">時計の下で、待ち合わせ</p>
+        <p class="opt-fmt">Hourly · 2–3 min · a single narrative film</p>
+        <p class="opt-sum">A fashion-conscious couple, seen only as silhouettes, meet under the clock in the face of seasonal adversity.</p>
+        <p>Clocks in department store lobbies have long been meeting points, and the clock at Sogo Yokohama is no different. This concept turns that everyday moment into the story. We never see the couple’s faces, only their silhouettes, fashion items and accessories. Because they are anonymous, anyone watching can see themselves in them, and we avoid designing a mascot. The season itself is the obstacle to their meeting, through wind, rain or crowds, and it also becomes the magic once they finally meet.</p>
+        <h4 class="opt-h">The story, autumn edition</h4>
+        <ol class="beats">
+          <li><span><b>On the hour.</b> A panel of the clock opens as a door. The silhouette of a well-dressed young woman steps out and closes the door behind her. Because she is a silhouette, the one or two fashion items we leave in colour pop out: an elegant coat, a seasonal scarf, a hat or bag, red lipstick.</span></li>
+          <li><span><b>Waiting.</b> She shuffles, looks around and paces from left to right inside the clock, glancing up at the hands as though waiting.</span></li>
+          <li><span><b>The gust.</b> A big autumn breeze blows her hair and coat, and colourful leaves sweep the full length of the lobby from the right. On cue, the silhouette of a man is blown into the scene in a ball. He stands, dusts himself off, shows his own autumn look, checks his watch and realises he is late.</span></li>
+          <li><span><b>Against the weather.</b> The wind changes. Straining against it, he presses on with renewed urgency, until the weather turns again: rain, lightning and a familiar, futile fight with his umbrella.</span></li>
+          <li><span><b>Meanwhile.</b> She has perched on the bottom edge of the clock, feet dangling, playfully unaware of what he is going through to reach her.</span></li>
+          <li><span><b>Arrival.</b> After two or three autumn weather adventures he collapses into the clock, startling her, then composes himself. Her reaction can be a laugh or pure relief; both work.</span></li>
+          <li><span><b>Together.</b> They embrace, the clock and the whole wall burst into a celebration of the season with autumn confetti, and they step into the clock together.</span></li>
+        </ol>
+        <p>Close-ups between the wide shots add drama and impact. The scenes are illustrative and simple, with the approachable warmth of 2D.</p>
+        <h4 class="opt-h">Each season brings new fashion and new obstacles</h4>
+        <ul class="opt-seasons">
+          <li><b>Winter</b><span>Icy streets, a snowball attack, tangled in illumination lights.</span></li>
+          <li><b>Summer</b><span>Fireworks, running from shade to shade, kites, park activities.</span></li>
+          <li><b>Spring · sakura</b><span>Hanami picnic crowds, hay fever, crossing cherry-lined rivers by boat.</span></li>
+        </ul>
+        <dl class="opt-why">
+          <dt>Magnet</dt><dd>待ち合わせ. Sogo’s clock is the meeting point.</dd>
+          <dt>Audience</dt><dd>Fashion-minded couples.</dd>
+          <dt>Magic</dt><dd>It’s a love story.</dd>
+          <dt>Nostalgia</dt><dd>The door in the clock, and 待ち合わせ is something everyone has done.</dd>
+        </dl>
+      </div>
+      <div class="opt-media" id="opt01-media">
+        <figure><img src="img/realtime-clock.jpg" alt="Real Time: a person seen inside a large clock face, keeping time by hand" loading="lazy"><figcaption>Reference: Real Time, a person living inside the clock</figcaption></figure>
+        <figure><img src="img/silhouette-stage-2.jpg" alt="Flat cut-out silhouettes in front of coloured light washes on a stage" loading="lazy"><figcaption>Reference: silhouettes against coloured light, with one colour item kept</figcaption></figure>
+      </div>
+    </article>
+
+    <article class="opt" id="opt-02">
+      <div class="opt-text stack">
+        <span class="opt-k">Option 02</span>
+        <h3 class="opt-t">Seasonal Greetings</h3>
+        <p class="opt-jp">時候の挨拶</p>
+        <p class="opt-fmt">Handwriting · origami · seasonal flowers · weather</p>
+        <p class="opt-sum">A handwritten letter appears in the clock, folds itself into a paper plane or an origami animal, and sets off on a journey through the seasons and landscapes of Japan to reach someone. When it arrives, it unfolds to reveal its seasonal greeting across the wall.</p>
+        <p>It is about sharing, and about caring for the customer.</p>
+        <h4 class="opt-h">The spring edition</h4>
+        <p>The letter rides a spring breeze over fields and rivers, collecting petals along its folds, and opens to a message welcoming the new season.</p>
+        <h4 class="opt-h">A new letter for every edition</h4>
+        <ul class="opt-seasons">
+          <li><b>Summer</b><span>A greeting carried through heat haze and wind chimes: 暑中お見舞い申し上げます.</span></li>
+          <li><b>Autumn</b><span>A letter flying under the moon.</span></li>
+          <li><b>New Year</b><span>A New Year card travelling through falling snow.</span></li>
+        </ul>
+        <p class="opt-q">24 messages a year? One for each of the 24 solar terms (二十四節気) would give the wall a new greeting about every two weeks.</p>
+        <dl class="opt-why">
+          <dt>Nostalgia</dt><dd>The greeting-card ritual means a lot to families and older visitors.</dd>
+          <dt>Childhood</dt><dd>Paper planes and origami are a memory everyone shares.</dd>
+          <dt>Warmth</dt><dd>Handwriting adds a human touch.</dd>
+          <dt>Season</dt><dd>It gives Sogo a seasonal message to share with customers each time.</dd>
+        </dl>
+      </div>
+      <div class="opt-media" id="opt02-media">
+        <figure><img class="tall" src="img/ref-shochu-mimai.jpg" alt="A summer greeting card: a glass wind chime painted with morning glories, its paper strip reading 暑中お見舞い申し上げます, on a pale blue ground" loading="lazy"><figcaption>Reference: a 暑中見舞い summer greeting card, wind chime and morning glory</figcaption></figure>
+      </div>
+    </article>
   </div>
 </section>
 
