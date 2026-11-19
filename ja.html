@@ -494,9 +494,9 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-bet
 <section id="directions">
   <div class="wrap">
     <div class="sec-head">
-      <span class="eyebrow">6つの方向性 × 3段階</span>
+      <span class="eyebrow">7つの方向性 × 3段階</span>
       <h2><span class="jp">Made by hand, played by the hour</span>手でつくり、毎時上映する</h2>
-      <p class="lede">AからCは11月18日のミーティングから生まれた案。DからFはクリエイティブディレクションとして加えた3案で、それぞれブリーフの別のキーワードを狙っています。6案とも、CGキャラクターではなく実際の素材や実写をカメラで撮影してつくります。1本あたりのコストを抑えられるので、高価なループ1本ではなく短編を何本もつくれます。AIやCGに見慣れた人にも、手づくりの良さが伝わります。</p>
+      <p class="lede">AからCは11月18日のミーティングから生まれた案。DからGはクリエイティブディレクションとして加えた4案で、それぞれブリーフの別のキーワードを狙っています。7案とも、CGアニメーションではなく実際の素材や実写をカメラで撮影してつくります。1本あたりのコストを抑えられるので、高価なループ1本ではなく短編を何本もつくれます。AIやCGに見慣れた人にも、手づくりの良さが伝わります。</p>
     </div>
     <div class="dir-tabs" role="tablist" aria-label="Pitch directions">
       <button class="dir-tab" role="tab" id="tab-tactile" data-dir="tactile" aria-selected="true" aria-controls="dirpanel"><span class="k">方向性 A</span><span class="t">手ざわりの時計</span><span class="s">紙、砂、布、積み木</span></button>
@@ -505,6 +505,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-bet
       <button class="dir-tab" role="tab" id="tab-memory" data-dir="memory" aria-selected="false" aria-controls="dirpanel"><span class="k">方向性 D · 新規</span><span class="t">青写真の記憶</span><span class="s">青写真のアーカイブ、1時間に1年</span></button>
       <button class="dir-tab" role="tab" id="tab-hands" data-dir="hands" aria-selected="false" aria-controls="dirpanel"><span class="k">方向性 E · 新規</span><span class="t">毎時の手しごと</span><span class="s">店の職人の手を大きく</span></button>
       <button class="dir-tab" role="tab" id="tab-bay" data-dir="bay" aria-selected="false" aria-controls="dirpanel"><span class="k">方向性 F · 新規</span><span class="t">港への窓</span><span class="s">壁の向こうに紙の港</span></button>
+      <button class="dir-tab" role="tab" id="tab-hello" data-dir="hello" aria-selected="false" aria-controls="dirpanel"><span class="k">方向性 G · 新規</span><span class="t">あいさつする壁</span><span class="s">建物が毎時あいさつする</span></button>
     </div>
     <div id="dirpanel" role="tabpanel" aria-labelledby="tab-tactile"></div>
   </div>
@@ -556,7 +557,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-bet
       <div class="verdict"><span class="tag no">非推奨</span><h3>実物の人形</h3><p>人形1体あたり10〜12万円、セット制作も必要で、暗い大理石の上ではコントラストが出にくい。平面の2Dや切り絵の方が有効です。</p></div>
       <div class="verdict"><span class="tag later">次のフェーズで</span><h3>リアルタイム参加型</h3><p>QRコードで七夕の願いを送る、ライブカメラ映像を使うなどの案は、春までに確保できない技術パートナーが必要です。</p></div>
     </div>
-    <p class="callout">キャラクターが必須の場合は、毎時ちがう映像ではなく、1本のループを毎時繰り返すことをおすすめします。</p>
+    <p class="callout">キャラクターが必須の場合は、毎時ちがう映像ではなく、1本のループを毎時繰り返すことをおすすめします。方向性Gは、私たちが推す唯一のキャラクター案です。建物そのものが顔になるので、飽きられる別のマスコットは生まれません。</p>
   </div>
 </section>
 
@@ -751,6 +752,28 @@ const DIRS = {
     day:['夜明けの港','朝のフェリー','海の中','赤レンガ倉庫','カモメ','クジラが通る','港の夕日','港の灯り','花火','港の星空','夜の船'],
     frames:{5:'gen-f-bay'},
     hue:['#eef3fb','#1f3c7a']
+  },
+  hello:{
+    name:'あいさつする壁', jp:'あいさつする壁', fresh:true,
+    para:'建物そのものがキャラクターになります。時計のまわりに切り絵の眉、目、口が現れ、壁が通りかかる人に、帯いっぱいの手で切った大きな文字であいさつします。開店時には「おはようございます」、出かける人には「いってらっしゃい」、帰り道には「お疲れさまでした」。毎日通る場所が自分に気づいてくれる、そんな感覚です。顔はシンプルな紙の形でつくり、Miroボードにあるtupera tuperaのような切り絵絵本の精神を参考にしながら、そごうオリジナルとして描きます。現場に音がないので、あいさつの言葉そのものが主役。毎時ちがうセリフがあるので、常連さんは一日の台本を覚えていきます。',
+    mediums:['切り絵','コラージュ','ストップモーション','手で切った文字','表情'],
+    ideas:[
+      ['新規','壁が顔になる','時計のまわりに紙の目と眉が現れ、ベルはほっぺに。マスコットではなく、建物そのものがキャラクターです。'],
+      ['新規','毎時のセリフ','開店時は「おはようございます」、午前は「いってらっしゃい」、正午は「いただきます」、夕方は「お疲れさまでした」。常連さんは台本を覚えていきます。'],
+      ['新規','モノの顔','ケーキ、靴、ギフトボックスなど、店の商品を切り絵にして目と口をつけ、あいさつさせます。'],
+      ['新規','天気のひとこと','雨の日は「足元にお気をつけて」、暑い日は「水分補給を」。短く、タイムリーに。事前に小さなライブラリーとして用意します。'],
+      ['新規','アーティストとのコラボ','絵本作家に1シーズンを依頼し、壁にクレジット。メディア露出のきっかけにもなります。'],
+      ['リスク','文字とオリジナリティ','セリフはロビーの向こうから読める短さに。顔はそごうオリジナルで、特定の作家のスタイルの模倣にならないこと。']
+    ],
+    mood:[['silhouette-stage-2','参考：色光の中の切り絵'],['hand-shadows','参考：手影絵の図'],['realtime-clock','参考：Real Time、時計の中の人']],
+    tiers:[
+      ['Lite','3本','朝・昼・夜の3つのあいさつ。'],
+      ['Core','6本','一日に6つのあいさつと、雨の日用の小さなセット。',true],
+      ['Full','11本','毎時のセリフ、天気のひとこと、作家に依頼する特別シーズン。']
+    ],
+    day:['おはようございます','いってらっしゃい','いただきます','ごちそうさま','こんにちは','おやつの時間','おかえりなさい','お疲れさまでした','今日もありがとう','また明日','おやすみなさい'],
+    frames:{},
+    hue:['#f6e27a','#2563d6']
   }
 };
 const XMAS = {name:'クリスマス工房（上映中）', hue:['#f7d27a','#eef3fb']};

@@ -494,9 +494,9 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-bet
 <section id="directions">
   <div class="wrap">
     <div class="sec-head">
-      <span class="eyebrow">Six directions, each in three tiers</span>
+      <span class="eyebrow">Seven directions, each in three tiers</span>
       <h2><span class="jp">提案の方向性</span>Made by hand, played by the hour</h2>
-      <p class="lede">A to C came out of the 18 Nov session. D to F are three more from creative direction, each aimed at a different word in the brief. All six are built from real materials or real footage shot in camera, not CGI characters. That keeps cost per film low enough to make many short films instead of one expensive loop, and it reads as handmade to people tired of AI and CG.</p>
+      <p class="lede">A to C came out of the 18 Nov session. D to G are four more from creative direction, each aimed at a different word in the brief. All seven are built from real materials or real footage shot in camera, not CGI animation. That keeps cost per film low enough to make many short films instead of one expensive loop, and it reads as handmade to people tired of AI and CG.</p>
     </div>
     <div class="dir-tabs" role="tablist" aria-label="Pitch directions">
       <button class="dir-tab" role="tab" id="tab-tactile" data-dir="tactile" aria-selected="true" aria-controls="dirpanel"><span class="k">Direction A</span><span class="t">Tactile Clock</span><span class="s">Paper, sand, fabric and blocks</span></button>
@@ -505,6 +505,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-bet
       <button class="dir-tab" role="tab" id="tab-memory" data-dir="memory" aria-selected="false" aria-controls="dirpanel"><span class="k">Direction D · new</span><span class="t">Blueprint of Memory</span><span class="s">Cyanotype archive, one year an hour</span></button>
       <button class="dir-tab" role="tab" id="tab-hands" data-dir="hands" aria-selected="false" aria-controls="dirpanel"><span class="k">Direction E · new</span><span class="t">Hands of the Hour</span><span class="s">Store craftspeople, magnified</span></button>
       <button class="dir-tab" role="tab" id="tab-bay" data-dir="bay" aria-selected="false" aria-controls="dirpanel"><span class="k">Direction F · new</span><span class="t">Window to the Bay</span><span class="s">A paper port behind the wall</span></button>
+      <button class="dir-tab" role="tab" id="tab-hello" data-dir="hello" aria-selected="false" aria-controls="dirpanel"><span class="k">Direction G · new</span><span class="t">The Wall Says Hello</span><span class="s">The building greets you by the hour</span></button>
     </div>
     <div id="dirpanel" role="tabpanel" aria-labelledby="tab-tactile"></div>
   </div>
@@ -556,7 +557,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-bet
       <div class="verdict"><span class="tag no">Advise against</span><h3>Physical puppets</h3><p>¥100–120k per puppet, set building, and puppets lose contrast on dark marble. Flat 2D or cut paper does better.</p></div>
       <div class="verdict"><span class="tag later">Later phase</span><h3>Live interaction</h3><p>QR-code Tanabata wishes or a live camera feed need an engineering partner we do not have for spring.</p></div>
     </div>
-    <p class="callout">If characters are required, we recommend one repeating hourly loop rather than a different film each hour.</p>
+    <p class="callout">If characters are required, we recommend one repeating hourly loop rather than a different film each hour. Direction G is the one character idea we would back: the building itself is the face, so there is no separate mascot to tire of.</p>
   </div>
 </section>
 
@@ -751,6 +752,28 @@ const DIRS = {
     day:['Harbour at dawn','Morning ferries','Under the sea','Red Brick Warehouse','Seagulls','Whale passing','Sunset on the bay','Harbour lights','Fireworks','Stars over the bay','Night ships'],
     frames:{5:'gen-f-bay'},
     hue:['#eef3fb','#1f3c7a']
+  },
+  hello:{
+    name:'The Wall Says Hello', jp:'あいさつする壁', fresh:true,
+    para:'The building itself becomes the character. Cut-paper eyebrows, eyes and a mouth appear around the clock, and the wall greets the people walking past in big hand-cut letters on the band: おはようございます when the doors open, いってらっしゃい to people heading out, お疲れさまでした on the way home. It is the feeling of being noticed by a place you pass every day. The faces are simple paper shapes in the spirit of the cut-paper picture books on our Miro board, such as tupera tupera, but drawn as Sogo\'s own. With no sound on site the greeting is the text itself, and every hour has its own line, so regulars learn the day\'s script.',
+    mediums:['cut paper','collage','stop motion','hand-cut lettering','face expressions'],
+    ideas:[
+      ['New','The wall is the face','Paper eyes and brows appear around the clock; the bells become cheeks. The building itself is the character, not a mascot.'],
+      ['New','A line for every hour','おはようございます at opening, いってらっしゃい mid-morning, いただきます at noon, お疲れさまでした in the evening. Regulars learn the script.'],
+      ['New','Faces from things','Store objects in cut paper, a cake, a shoe, a gift box, each get eyes and a mouth and say hello.'],
+      ['New','Weather lines','On rainy days 足元にお気をつけて, on hot days 水分補給を. Short, timely, and made in advance as a small library.'],
+      ['New','Artist collaboration','A season commissioned from a picture-book artist and credited on the wall: a reason for press coverage.'],
+      ['Risk','Text and originality','Lines must be short enough to read across the lobby, and the faces must be Sogo\'s own, not a copy of an artist\'s style.']
+    ],
+    mood:[['silhouette-stage-2','Reference: cut-paper shapes in coloured light'],['hand-shadows','Reference: hand shadow chart'],['realtime-clock','Reference: Real Time, a person inside the clock']],
+    tiers:[
+      ['Lite','3 films','Morning, afternoon and evening greetings.'],
+      ['Core','6 films','Six greetings across the day, plus a small rainy-day set.',true],
+      ['Full','11 films','A line for every hour, weather lines, and a commissioned artist season.']
+    ],
+    day:['おはようございます · Good morning','いってらっしゃい · Have a good day','いただきます · Lunch','ごちそうさま · After lunch','こんにちは · Hello','おやつの時間 · Snack time','おかえりなさい · Welcome back','お疲れさまでした · Well done today','今日もありがとう · Thank you','また明日 · See you tomorrow','おやすみなさい · Good night'],
+    frames:{},
+    hue:['#f6e27a','#2563d6']
   }
 };
 const XMAS = {name:'Christmas workshop (live)', hue:['#f7d27a','#eef3fb']};
