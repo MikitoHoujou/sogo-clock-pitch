@@ -1,5 +1,125 @@
 [
  [
+  "<p class=\"deckpeek-cap\">More on “proud to be me”: pages 8 and 9 of the concept deck. Click to enlarge, then step through all 14 pages.</p>",
+  "<p class=\"deckpeek-cap\">「誇れる、私。」をもっと詳しく：コンセプト案の8・9ページ。クリックで拡大し、全14ページを順に見られます。</p>"
+ ],
+ [
+  "<h3 class=\"cd-h\">The concept deck, all 14 pages</h3>",
+  "<h3 class=\"cd-h\">コンセプト案 全14ページ</h3>"
+ ],
+ [
+  "aria-label=\"Enlarge deck page 1\"><img src=\"img/deck-01.png\" alt=\"Deck page 1: Cover\" loading=\"lazy\"></button><span><b>01</b> Cover</span>",
+  "aria-label=\"1ページを拡大\"><img src=\"img/deck-01.png\" alt=\"1ページ：表紙\" loading=\"lazy\"></button><span><b>01</b> 表紙</span>"
+ ],
+ [
+  "cap:'Concept deck, page 1 · Cover'",
+  "cap:'コンセプト案 1ページ · 表紙'"
+ ],
+ [
+  "aria-label=\"Enlarge deck page 2\"><img src=\"img/deck-02.png\" alt=\"Deck page 2: Starting point\" loading=\"lazy\"></button><span><b>02</b> Starting point</span>",
+  "aria-label=\"2ページを拡大\"><img src=\"img/deck-02.png\" alt=\"2ページ：出発点\" loading=\"lazy\"></button><span><b>02</b> 出発点</span>"
+ ],
+ [
+  "cap:'Concept deck, page 2 · Starting point: 思い出は、未来になる'",
+  "cap:'コンセプト案 2ページ · 出発点：思い出は、未来になる'"
+ ],
+ [
+  "aria-label=\"Enlarge deck page 3\"><img src=\"img/deck-03.png\" alt=\"Deck page 3: Site and conditions\" loading=\"lazy\"></button><span><b>03</b> Site and conditions</span>",
+  "aria-label=\"3ページを拡大\"><img src=\"img/deck-03.png\" alt=\"3ページ：場所と条件\" loading=\"lazy\"></button><span><b>03</b> 場所と条件</span>"
+ ],
+ [
+  "cap:'Concept deck, page 3 · Site and conditions'",
+  "cap:'コンセプト案 3ページ · 場所と条件'"
+ ],
+ [
+  "aria-label=\"Enlarge deck page 4\"><img src=\"img/deck-04.png\" alt=\"Deck page 4: What is missing is a concept\" loading=\"lazy\"></button><span><b>04</b> What is missing is a concept</span>",
+  "aria-label=\"4ページを拡大\"><img src=\"img/deck-04.png\" alt=\"4ページ：足りないのは、コンセプト\" loading=\"lazy\"></button><span><b>04</b> 足りないのは、コンセプト</span>"
+ ],
+ [
+  "cap:'Concept deck, page 4 · What is missing is a concept'",
+  "cap:'コンセプト案 4ページ · 足りないのは、コンセプト'"
+ ],
+ [
+  "aria-label=\"Enlarge deck page 5\"><img src=\"img/deck-05.png\" alt=\"Deck page 5: Option 01 · Concept\" loading=\"lazy\"></button><span><b>05</b> Option 01 · Concept</span>",
+  "aria-label=\"5ページを拡大\"><img src=\"img/deck-05.png\" alt=\"5ページ：案01 · コンセプト\" loading=\"lazy\"></button><span><b>05</b> 案01 · コンセプト</span>"
+ ],
+ [
+  "cap:'Concept deck, page 5 · Option 01 concept: Encounter (一期一会)'",
+  "cap:'コンセプト案 5ページ · 案01 コンセプト：出会い（一期一会）'"
+ ],
+ [
+  "aria-label=\"Enlarge deck page 6\"><img src=\"img/deck-06.png\" alt=\"Deck page 6: Option 01 · Story, autumn\" loading=\"lazy\"></button><span><b>06</b> Option 01 · Story, autumn</span>",
+  "aria-label=\"6ページを拡大\"><img src=\"img/deck-06.png\" alt=\"6ページ：案01 · ストーリー（秋編）\" loading=\"lazy\"></button><span><b>06</b> 案01 · ストーリー（秋編）</span>"
+ ],
+ [
+  "cap:'Concept deck, page 6 · Option 01 story, autumn edition'",
+  "cap:'コンセプト案 6ページ · 案01 ストーリー（秋編）'"
+ ],
+ [
+  "aria-label=\"Enlarge deck page 7\"><img src=\"img/deck-07.png\" alt=\"Deck page 7: Option 01 · Seasons\" loading=\"lazy\"></button><span><b>07</b> Option 01 · Seasons</span>",
+  "aria-label=\"7ページを拡大\"><img src=\"img/deck-07.png\" alt=\"7ページ：案01 · 季節展開\" loading=\"lazy\"></button><span><b>07</b> 案01 · 季節展開</span>"
+ ],
+ [
+  "cap:'Concept deck, page 7 · Option 01 seasons'",
+  "cap:'コンセプト案 7ページ · 案01 季節展開'"
+ ],
+ [
+  "aria-label=\"Enlarge deck page 8\"><img src=\"img/deck-08.png\" alt=\"Deck page 8: Option 02 · Concept\" loading=\"lazy\"></button><span><b>08</b> Option 02 · Concept</span>",
+  "aria-label=\"8ページを拡大\"><img src=\"img/deck-08.png\" alt=\"8ページ：案02 · コンセプト\" loading=\"lazy\"></button><span><b>08</b> 案02 · コンセプト</span>"
+ ],
+ [
+  "cap:'Concept deck, page 8 · Option 02 concept: I am proud to be who I am'",
+  "cap:'コンセプト案 8ページ · 案02 コンセプト：I am proud to be who I am'"
+ ],
+ [
+  "aria-label=\"Enlarge deck page 9\"><img src=\"img/deck-09.png\" alt=\"Deck page 9: Option 02 · The thoughts behind it\" loading=\"lazy\"></button><span><b>09</b> Option 02 · The thoughts behind it</span>",
+  "aria-label=\"9ページを拡大\"><img src=\"img/deck-09.png\" alt=\"9ページ：案02 · コンセプトに込める想い\" loading=\"lazy\"></button><span><b>09</b> 案02 · コンセプトに込める想い</span>"
+ ],
+ [
+  "cap:'Concept deck, page 9 · The thoughts behind it: 誇れる、私。'",
+  "cap:'コンセプト案 9ページ · 案02 コンセプトに込める想い：誇れる、私。'"
+ ],
+ [
+  "aria-label=\"Enlarge deck page 10\"><img src=\"img/deck-10.png\" alt=\"Deck page 10: Option 02 · Seasonal greetings\" loading=\"lazy\"></button><span><b>10</b> Option 02 · Seasonal greetings</span>",
+  "aria-label=\"10ページを拡大\"><img src=\"img/deck-10.png\" alt=\"10ページ：案02 · 時候の挨拶\" loading=\"lazy\"></button><span><b>10</b> 案02 · 時候の挨拶</span>"
+ ],
+ [
+  "cap:'Concept deck, page 10 · Option 02: seasonal greetings'",
+  "cap:'コンセプト案 10ページ · 案02 時候の挨拶'"
+ ],
+ [
+  "aria-label=\"Enlarge deck page 11\"><img src=\"img/deck-11.png\" alt=\"Deck page 11: Option 02 · Story\" loading=\"lazy\"></button><span><b>11</b> Option 02 · Story</span>",
+  "aria-label=\"11ページを拡大\"><img src=\"img/deck-11.png\" alt=\"11ページ：案02 · ストーリー\" loading=\"lazy\"></button><span><b>11</b> 案02 · ストーリー</span>"
+ ],
+ [
+  "cap:'Concept deck, page 11 · Option 02 story'",
+  "cap:'コンセプト案 11ページ · 案02 ストーリー'"
+ ],
+ [
+  "aria-label=\"Enlarge deck page 12\"><img src=\"img/deck-12.png\" alt=\"Deck page 12: Option 02 · Why it works\" loading=\"lazy\"></button><span><b>12</b> Option 02 · Why it works</span>",
+  "aria-label=\"12ページを拡大\"><img src=\"img/deck-12.png\" alt=\"12ページ：案02 · なぜ響くのか\" loading=\"lazy\"></button><span><b>12</b> 案02 · なぜ響くのか</span>"
+ ],
+ [
+  "cap:'Concept deck, page 12 · Option 02: why it works'",
+  "cap:'コンセプト案 12ページ · 案02 なぜ響くのか'"
+ ],
+ [
+  "aria-label=\"Enlarge deck page 13\"><img src=\"img/deck-13.png\" alt=\"Deck page 13: Reference · Three other directions\" loading=\"lazy\"></button><span><b>13</b> Reference · Three other directions</span>",
+  "aria-label=\"13ページを拡大\"><img src=\"img/deck-13.png\" alt=\"13ページ：参考 · ほかに検討した3つの方向性\" loading=\"lazy\"></button><span><b>13</b> 参考 · ほかに検討した3つの方向性</span>"
+ ],
+ [
+  "cap:'Concept deck, page 13 · Reference: three other directions'",
+  "cap:'コンセプト案 13ページ · 参考：ほかに検討した3つの方向性'"
+ ],
+ [
+  "aria-label=\"Enlarge deck page 14\"><img src=\"img/deck-14.png\" alt=\"Deck page 14: Next steps\" loading=\"lazy\"></button><span><b>14</b> Next steps</span>",
+  "aria-label=\"14ページを拡大\"><img src=\"img/deck-14.png\" alt=\"14ページ：次のステップ\" loading=\"lazy\"></button><span><b>14</b> 次のステップ</span>"
+ ],
+ [
+  "cap:'Concept deck, page 14 · Next steps'",
+  "cap:'コンセプト案 14ページ · 次のステップ'"
+ ],
+ [
   "<dialog class=\"deckview\" id=\"lightbox\" aria-label=\"Enlarged image\">",
   "<dialog class=\"deckview\" id=\"lightbox\" aria-label=\"拡大画像\">"
  ],
@@ -16,24 +136,12 @@
   "<button type=\"button\" id=\"lbClose\" class=\"deckview-close\">閉じる</button>"
  ],
  [
-  "<p class=\"deckpeek-cap\">More on “proud to be me”: the two pages from the concept deck.</p>",
-  "<p class=\"deckpeek-cap\">「誇れる、私。」をもっと詳しく：コンセプト案の該当ページ（2枚）。</p>"
- ],
- [
   "aria-label=\"Enlarge deck page 8: the Option 02 concept\"",
   "aria-label=\"8ページを拡大：案02 コンセプト\""
  ],
  [
   "aria-label=\"Enlarge deck page 9: the thoughts behind the concept\"",
   "aria-label=\"9ページを拡大：コンセプトに込める想い\""
- ],
- [
-  "cap:'Concept deck, page 8 · Option 02 concept: I am proud to be who I am'",
-  "cap:'コンセプト案 8ページ · 案02 コンセプト：I am proud to be who I am'"
- ],
- [
-  "cap:'Concept deck, page 9 · The thoughts behind it: 誇れる、私。'",
-  "cap:'コンセプト案 9ページ · コンセプトに込める想い：誇れる、私。'"
  ],
  [
   "<a href=\"#play\">Play</a>",

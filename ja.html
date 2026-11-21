@@ -399,6 +399,11 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-bet
 .deckpeek-btn{padding:0;border:1px solid var(--line);border-radius:6px;overflow:hidden;background:var(--hall);cursor:zoom-in;display:block;transition:border-color .15s,transform .15s}
 .deckpeek-btn:hover{border-color:var(--sogo);transform:translateY(-1px)}
 .deckpeek-btn img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover}
+.deckall{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:12px}
+.deckall li{display:grid;gap:6px;align-content:start;font-size:12px;line-height:1.4;color:var(--fg-2)}
+.deckall b{font-family:var(--f-mono);font-weight:500;color:var(--sogo)}
+@media (max-width:1000px){.deckall{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media (max-width:560px){.deckall{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .deckview{padding:0;border:0;border-radius:10px;background:var(--hall-2);color:var(--light);width:min(980px,calc(100vw - 32px));max-height:calc(100vh - 32px);overflow:auto}
 section img,.hero-photo img{cursor:zoom-in}
 button img,a img,.compare img,#photo img,dialog img{cursor:inherit}
@@ -708,7 +713,7 @@ html[lang="ja"] .concept-quote{font-family:var(--f-jp);font-weight:700}
         </dl>
       </div>
       <div class="opt-media" id="opt01-media">
-        <figure><img src="img/gen-o1-door.jpg" alt="Concept frame: the left three columns of the clock face swing open as one tall door, carrying the numbers 6 to 12, and a black silhouette of a woman in a red beret and red scarf stands in the warm doorway; both brass bells stay in place, autumn leaves along the band" loading="lazy"><figcaption>コンセプト · 正時、時計の扉が開く</figcaption></figure>
+        <figure><img src="img/gen-o1-door.jpg" alt="Concept frame: a door of projected light swings open over the left of the real clock face, with the real numbers and hands still faintly visible through the warm glow, and a black silhouette of a woman in a red beret and red scarf steps out; both brass bells stay in place" loading="lazy"><figcaption>コンセプト · 正時、時計の扉が開く</figcaption></figure>
         <figure><img src="img/gen-o1-gust.jpg" alt="Concept frame: she sits on the clock's edge in her red scarf while, along the band, a man in a mustard scarf fights his inside-out umbrella in a gust of autumn leaves" loading="lazy"><figcaption>コンセプト · 突風。彼は天気と格闘し、彼女は時計の縁で待つ</figcaption></figure>
         <figure><img src="img/gen-o1-together.jpg" alt="Concept frame: two solid black silhouettes, one in a red scarf and one in a mustard scarf, embrace inside the glowing clock face while red, gold and white paper leaves scatter across the clock wall and the band" loading="lazy"><figcaption>コンセプト · 二人で。時計の中で抱き合い、壁いっぱいに秋の紙吹雪</figcaption></figure>
         <figure><img src="img/realtime-clock.jpg" alt="Real Time: a person seen inside a large clock face, keeping time by hand" loading="lazy"><figcaption>参考：Real Time。時計の中で暮らす人</figcaption></figure>
@@ -793,7 +798,7 @@ html[lang="ja"] .concept-quote{font-family:var(--f-jp);font-weight:700}
       </div>
       <h4 class="cd-sub">扉が開いて、再会するまで <span>From the door opening to the reunion</span></h4>
       <ol class="sb">
-        <li><img src="img/sb-o1-1.jpg" data-full="img/gen-o1-door.jpg" alt="Storyboard 1: the left block of the clock face opens as a door and her silhouette, in a red beret and scarf, stands in the doorway" loading="lazy"><span class="sb-n">1</span><b>時計の扉が開く</b><span>正時、女性のシルエットが現れ、針を見上げて待つ。コートやスカーフなど1〜2点だけ色を残す。</span></li>
+        <li><img src="img/sb-o1-1.jpg" data-full="img/gen-o1-door.jpg" alt="Storyboard 1: a door of projected light opens over the real clock face and her silhouette, in a red beret and scarf, steps out" loading="lazy"><span class="sb-n">1</span><b>時計の扉が開く</b><span>正時、女性のシルエットが現れ、針を見上げて待つ。コートやスカーフなど1〜2点だけ色を残す。</span></li>
         <li><img src="img/sb-o1-2.jpg" data-full="img/gen-o1-s2.jpg" alt="Storyboard 2: a gust of red and gold leaves blows along the band and his silhouette in a mustard scarf tumbles head over heels in the wind" loading="lazy"><span class="sb-n">2</span><b>秋風と紅葉</b><span>強い風に紅葉がロビー中を舞い、男性が風に転がされて登場。</span></li>
         <li><img src="img/sb-o1-3.jpg" data-full="img/gen-o1-s3.jpg" alt="Storyboard 3: his silhouette stands up, dusts off his coat and stares at his wristwatch, an exclamation mark above his head" loading="lazy"><span class="sb-n">3</span><b>遅刻に気づく</b><span>ほこりを払い、時計を見て、逆風の中を急ぐ。</span></li>
         <li><img src="img/sb-o1-4.jpg" data-full="img/gen-o1-gust.jpg" alt="Storyboard 4: his silhouette in a mustard scarf fights an inside-out umbrella under rain lines and a small lightning bolt" loading="lazy"><span class="sb-n">4</span><b>雨と雷</b><span>天気はさらに荒れ、お決まりの傘との格闘。</span></li>
@@ -825,10 +830,10 @@ html[lang="ja"] .concept-quote{font-family:var(--f-jp);font-weight:700}
         <p class="concept-belief">大事な人にとって誇れる自分になるために、誰よりも、自分で自分が誇らしいと思えるために。</p>
         <p class="concept-told">表現は「時候の挨拶」。手書きの季節の手紙が時計から旅立ち、誰かのもとへ届きます。</p>
         <div class="deckpeek">
-          <p class="deckpeek-cap">「誇れる、私。」をもっと詳しく：コンセプト案の該当ページ（2枚）。</p>
+          <p class="deckpeek-cap">「誇れる、私。」をもっと詳しく：コンセプト案の8・9ページ。クリックで拡大し、全14ページを順に見られます。</p>
           <div class="deckpeek-row">
-            <button type="button" class="deckpeek-btn" data-deck="0" aria-label="8ページを拡大：案02 コンセプト"><img src="img/deck-o2-08.png" alt="Deck page 8: 案02 コンセプト, I am proud to be who I am" loading="lazy"></button>
-            <button type="button" class="deckpeek-btn" data-deck="1" aria-label="9ページを拡大：コンセプトに込める想い"><img src="img/deck-o2-09.png" alt="Deck page 9: 誇れる、私。 with three points and the closing line" loading="lazy"></button>
+            <button type="button" class="deckpeek-btn" data-deck="7" aria-label="8ページを拡大：案02 コンセプト"><img src="img/deck-08.png" alt="Deck page 8: 案02 コンセプト, I am proud to be who I am" loading="lazy"></button>
+            <button type="button" class="deckpeek-btn" data-deck="8" aria-label="9ページを拡大：コンセプトに込める想い"><img src="img/deck-09.png" alt="Deck page 9: 誇れる、私。 with three points and the closing line" loading="lazy"></button>
           </div>
         </div>
         <a class="concept-link" href="#opt-02">ストーリーとフレームを見る</a>
@@ -857,6 +862,23 @@ html[lang="ja"] .concept-quote{font-family:var(--f-jp);font-weight:700}
       <li><b>現地の夜間テスト</b><span>大理石の上での色とコントラストを確認。</span></li>
       <li><b>ムードボード・スタイルフレーム</b><span>選んだコンセプトを目に見える形に。</span></li>
       <li><b>制作手法・予算</b><span>手法、AIの活用、予算、技術面はコンセプト決定後に。</span></li>
+    </ol>
+    <h3 class="cd-h">コンセプト案 全14ページ</h3>
+    <ol class="deckall">
+        <li><button type="button" class="deckpeek-btn" data-deck="0" aria-label="1ページを拡大"><img src="img/deck-01.png" alt="1ページ：表紙" loading="lazy"></button><span><b>01</b> 表紙</span></li>
+        <li><button type="button" class="deckpeek-btn" data-deck="1" aria-label="2ページを拡大"><img src="img/deck-02.png" alt="2ページ：出発点" loading="lazy"></button><span><b>02</b> 出発点</span></li>
+        <li><button type="button" class="deckpeek-btn" data-deck="2" aria-label="3ページを拡大"><img src="img/deck-03.png" alt="3ページ：場所と条件" loading="lazy"></button><span><b>03</b> 場所と条件</span></li>
+        <li><button type="button" class="deckpeek-btn" data-deck="3" aria-label="4ページを拡大"><img src="img/deck-04.png" alt="4ページ：足りないのは、コンセプト" loading="lazy"></button><span><b>04</b> 足りないのは、コンセプト</span></li>
+        <li><button type="button" class="deckpeek-btn" data-deck="4" aria-label="5ページを拡大"><img src="img/deck-05.png" alt="5ページ：案01 · コンセプト" loading="lazy"></button><span><b>05</b> 案01 · コンセプト</span></li>
+        <li><button type="button" class="deckpeek-btn" data-deck="5" aria-label="6ページを拡大"><img src="img/deck-06.png" alt="6ページ：案01 · ストーリー（秋編）" loading="lazy"></button><span><b>06</b> 案01 · ストーリー（秋編）</span></li>
+        <li><button type="button" class="deckpeek-btn" data-deck="6" aria-label="7ページを拡大"><img src="img/deck-07.png" alt="7ページ：案01 · 季節展開" loading="lazy"></button><span><b>07</b> 案01 · 季節展開</span></li>
+        <li><button type="button" class="deckpeek-btn" data-deck="7" aria-label="8ページを拡大"><img src="img/deck-08.png" alt="8ページ：案02 · コンセプト" loading="lazy"></button><span><b>08</b> 案02 · コンセプト</span></li>
+        <li><button type="button" class="deckpeek-btn" data-deck="8" aria-label="9ページを拡大"><img src="img/deck-09.png" alt="9ページ：案02 · コンセプトに込める想い" loading="lazy"></button><span><b>09</b> 案02 · コンセプトに込める想い</span></li>
+        <li><button type="button" class="deckpeek-btn" data-deck="9" aria-label="10ページを拡大"><img src="img/deck-10.png" alt="10ページ：案02 · 時候の挨拶" loading="lazy"></button><span><b>10</b> 案02 · 時候の挨拶</span></li>
+        <li><button type="button" class="deckpeek-btn" data-deck="10" aria-label="11ページを拡大"><img src="img/deck-11.png" alt="11ページ：案02 · ストーリー" loading="lazy"></button><span><b>11</b> 案02 · ストーリー</span></li>
+        <li><button type="button" class="deckpeek-btn" data-deck="11" aria-label="12ページを拡大"><img src="img/deck-12.png" alt="12ページ：案02 · なぜ響くのか" loading="lazy"></button><span><b>12</b> 案02 · なぜ響くのか</span></li>
+        <li><button type="button" class="deckpeek-btn" data-deck="12" aria-label="13ページを拡大"><img src="img/deck-13.png" alt="13ページ：参考 · ほかに検討した3つの方向性" loading="lazy"></button><span><b>13</b> 参考 · ほかに検討した3つの方向性</span></li>
+        <li><button type="button" class="deckpeek-btn" data-deck="13" aria-label="14ページを拡大"><img src="img/deck-14.png" alt="14ページ：次のステップ" loading="lazy"></button><span><b>14</b> 次のステップ</span></li>
     </ol>
     <p class="cd-src">出典：そごう横浜 ロビー時計 プロジェクションマッピング コンセプト案（Wild Tame、2026年11月 ドラフト）</p>
   </div>
@@ -932,7 +954,7 @@ html[lang="ja"] .concept-quote{font-family:var(--f-jp);font-weight:700}
 </footer>
 
 <dialog class="deckview" id="lightbox" aria-label="拡大画像">
-  <figure class="deckview-fig"><img id="lbImg" src="img/deck-o2-08.png" alt=""><figcaption id="lbCap"></figcaption></figure>
+  <figure class="deckview-fig"><img id="lbImg" src="img/deck-08.png" alt=""><figcaption id="lbCap"></figcaption></figure>
   <div class="deckview-nav">
     <button type="button" id="lbPrev">← 前へ</button>
     <span id="lbCount" class="mono">1 / 2</span>
@@ -1535,8 +1557,20 @@ setDir(dir);
   const img=document.getElementById('lbImg'), cap=document.getElementById('lbCap'), cnt=document.getElementById('lbCount');
   const prev=document.getElementById('lbPrev'), next=document.getElementById('lbNext');
   const DECK=[
-    {src:'img/deck-o2-08.png',cap:'コンセプト案 8ページ · 案02 コンセプト：I am proud to be who I am'},
-    {src:'img/deck-o2-09.png',cap:'コンセプト案 9ページ · コンセプトに込める想い：誇れる、私。'}
+    {src:'img/deck-01.png',cap:'コンセプト案 1ページ · 表紙'},
+    {src:'img/deck-02.png',cap:'コンセプト案 2ページ · 出発点：思い出は、未来になる'},
+    {src:'img/deck-03.png',cap:'コンセプト案 3ページ · 場所と条件'},
+    {src:'img/deck-04.png',cap:'コンセプト案 4ページ · 足りないのは、コンセプト'},
+    {src:'img/deck-05.png',cap:'コンセプト案 5ページ · 案01 コンセプト：出会い（一期一会）'},
+    {src:'img/deck-06.png',cap:'コンセプト案 6ページ · 案01 ストーリー（秋編）'},
+    {src:'img/deck-07.png',cap:'コンセプト案 7ページ · 案01 季節展開'},
+    {src:'img/deck-08.png',cap:'コンセプト案 8ページ · 案02 コンセプト：I am proud to be who I am'},
+    {src:'img/deck-09.png',cap:'コンセプト案 9ページ · 案02 コンセプトに込める想い：誇れる、私。'},
+    {src:'img/deck-10.png',cap:'コンセプト案 10ページ · 案02 時候の挨拶'},
+    {src:'img/deck-11.png',cap:'コンセプト案 11ページ · 案02 ストーリー'},
+    {src:'img/deck-12.png',cap:'コンセプト案 12ページ · 案02 なぜ響くのか'},
+    {src:'img/deck-13.png',cap:'コンセプト案 13ページ · 参考：ほかに検討した3つの方向性'},
+    {src:'img/deck-14.png',cap:'コンセプト案 14ページ · 次のステップ'}
   ];
   const SKIP='button,a,.compare,#photo,.sim,dialog';
   let list=[], i=0;

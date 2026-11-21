@@ -399,6 +399,11 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-bet
 .deckpeek-btn{padding:0;border:1px solid var(--line);border-radius:6px;overflow:hidden;background:var(--hall);cursor:zoom-in;display:block;transition:border-color .15s,transform .15s}
 .deckpeek-btn:hover{border-color:var(--sogo);transform:translateY(-1px)}
 .deckpeek-btn img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover}
+.deckall{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:12px}
+.deckall li{display:grid;gap:6px;align-content:start;font-size:12px;line-height:1.4;color:var(--fg-2)}
+.deckall b{font-family:var(--f-mono);font-weight:500;color:var(--sogo)}
+@media (max-width:1000px){.deckall{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media (max-width:560px){.deckall{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .deckview{padding:0;border:0;border-radius:10px;background:var(--hall-2);color:var(--light);width:min(980px,calc(100vw - 32px));max-height:calc(100vh - 32px);overflow:auto}
 section img,.hero-photo img{cursor:zoom-in}
 button img,a img,.compare img,#photo img,dialog img{cursor:inherit}
@@ -708,7 +713,7 @@ html[lang="ja"] .concept-quote{font-family:var(--f-jp);font-weight:700}
         </dl>
       </div>
       <div class="opt-media" id="opt01-media">
-        <figure><img src="img/gen-o1-door.jpg" alt="Concept frame: the left three columns of the clock face swing open as one tall door, carrying the numbers 6 to 12, and a black silhouette of a woman in a red beret and red scarf stands in the warm doorway; both brass bells stay in place, autumn leaves along the band" loading="lazy"><figcaption>Concept frame · On the hour: the door in the clock opens</figcaption></figure>
+        <figure><img src="img/gen-o1-door.jpg" alt="Concept frame: a door of projected light swings open over the left of the real clock face, with the real numbers and hands still faintly visible through the warm glow, and a black silhouette of a woman in a red beret and red scarf steps out; both brass bells stay in place" loading="lazy"><figcaption>Concept frame · On the hour: the door in the clock opens</figcaption></figure>
         <figure><img src="img/gen-o1-gust.jpg" alt="Concept frame: she sits on the clock's edge in her red scarf while, along the band, a man in a mustard scarf fights his inside-out umbrella in a gust of autumn leaves" loading="lazy"><figcaption>Concept frame · The gust: he fights the weather, she waits on the clock’s edge</figcaption></figure>
         <figure><img src="img/gen-o1-together.jpg" alt="Concept frame: two solid black silhouettes, one in a red scarf and one in a mustard scarf, embrace inside the glowing clock face while red, gold and white paper leaves scatter across the clock wall and the band" loading="lazy"><figcaption>Concept frame · Together: they embrace in the clock as autumn confetti fills the wall</figcaption></figure>
         <figure><img src="img/realtime-clock.jpg" alt="Real Time: a person seen inside a large clock face, keeping time by hand" loading="lazy"><figcaption>Reference: Real Time, a person living inside the clock</figcaption></figure>
@@ -793,7 +798,7 @@ html[lang="ja"] .concept-quote{font-family:var(--f-jp);font-weight:700}
       </div>
       <h4 class="cd-sub">From the door opening to the reunion <span>扉が開いて、再会するまで</span></h4>
       <ol class="sb">
-        <li><img src="img/sb-o1-1.jpg" data-full="img/gen-o1-door.jpg" alt="Storyboard 1: the left block of the clock face opens as a door and her silhouette, in a red beret and scarf, stands in the doorway" loading="lazy"><span class="sb-n">1</span><b>The clock door opens</b><span>On the hour, a woman’s silhouette appears and looks up at the hands, waiting. Only one or two items, a coat or a scarf, keep their colour.</span></li>
+        <li><img src="img/sb-o1-1.jpg" data-full="img/gen-o1-door.jpg" alt="Storyboard 1: a door of projected light opens over the real clock face and her silhouette, in a red beret and scarf, steps out" loading="lazy"><span class="sb-n">1</span><b>The clock door opens</b><span>On the hour, a woman’s silhouette appears and looks up at the hands, waiting. Only one or two items, a coat or a scarf, keep their colour.</span></li>
         <li><img src="img/sb-o1-2.jpg" data-full="img/gen-o1-s2.jpg" alt="Storyboard 2: a gust of red and gold leaves blows along the band and his silhouette in a mustard scarf tumbles head over heels in the wind" loading="lazy"><span class="sb-n">2</span><b>Autumn wind and red leaves</b><span>A strong wind sends red leaves across the whole lobby, and a man tumbles in, rolled along by the gust.</span></li>
         <li><img src="img/sb-o1-3.jpg" data-full="img/gen-o1-s3.jpg" alt="Storyboard 3: his silhouette stands up, dusts off his coat and stares at his wristwatch, an exclamation mark above his head" loading="lazy"><span class="sb-n">3</span><b>He realises he’s late</b><span>He dusts himself off, checks the clock and hurries on into the headwind.</span></li>
         <li><img src="img/sb-o1-4.jpg" data-full="img/gen-o1-gust.jpg" alt="Storyboard 4: his silhouette in a mustard scarf fights an inside-out umbrella under rain lines and a small lightning bolt" loading="lazy"><span class="sb-n">4</span><b>Rain and lightning</b><span>The weather turns worse, and the inevitable fight with his umbrella begins.</span></li>
@@ -825,10 +830,10 @@ html[lang="ja"] .concept-quote{font-family:var(--f-jp);font-weight:700}
         <p class="concept-belief">To be someone the people who matter to you can be proud of, and, more than anyone, to feel proud of yourself.</p>
         <p class="concept-told">Told through 時候の挨拶: a handwritten seasonal letter that leaves the clock to reach someone.</p>
         <div class="deckpeek">
-          <p class="deckpeek-cap">More on “proud to be me”: the two pages from the concept deck.</p>
+          <p class="deckpeek-cap">More on “proud to be me”: pages 8 and 9 of the concept deck. Click to enlarge, then step through all 14 pages.</p>
           <div class="deckpeek-row">
-            <button type="button" class="deckpeek-btn" data-deck="0" aria-label="Enlarge deck page 8: the Option 02 concept"><img src="img/deck-o2-08.png" alt="Deck page 8: 案02 コンセプト, I am proud to be who I am" loading="lazy"></button>
-            <button type="button" class="deckpeek-btn" data-deck="1" aria-label="Enlarge deck page 9: the thoughts behind the concept"><img src="img/deck-o2-09.png" alt="Deck page 9: 誇れる、私。 with three points and the closing line" loading="lazy"></button>
+            <button type="button" class="deckpeek-btn" data-deck="7" aria-label="Enlarge deck page 8: the Option 02 concept"><img src="img/deck-08.png" alt="Deck page 8: 案02 コンセプト, I am proud to be who I am" loading="lazy"></button>
+            <button type="button" class="deckpeek-btn" data-deck="8" aria-label="Enlarge deck page 9: the thoughts behind the concept"><img src="img/deck-09.png" alt="Deck page 9: 誇れる、私。 with three points and the closing line" loading="lazy"></button>
           </div>
         </div>
         <a class="concept-link" href="#opt-02">See the story and frames</a>
@@ -857,6 +862,23 @@ html[lang="ja"] .concept-quote{font-family:var(--f-jp);font-weight:700}
       <li><b>Night test on site</b><span>Check colour and contrast on the marble.</span></li>
       <li><b>Mood boards and style frames</b><span>Make the chosen concept visible.</span></li>
       <li><b>Method and budget</b><span>Production method, use of AI, budget and technical detail, once the concept is chosen.</span></li>
+    </ol>
+    <h3 class="cd-h">The concept deck, all 14 pages</h3>
+    <ol class="deckall">
+        <li><button type="button" class="deckpeek-btn" data-deck="0" aria-label="Enlarge deck page 1"><img src="img/deck-01.png" alt="Deck page 1: Cover" loading="lazy"></button><span><b>01</b> Cover</span></li>
+        <li><button type="button" class="deckpeek-btn" data-deck="1" aria-label="Enlarge deck page 2"><img src="img/deck-02.png" alt="Deck page 2: Starting point" loading="lazy"></button><span><b>02</b> Starting point</span></li>
+        <li><button type="button" class="deckpeek-btn" data-deck="2" aria-label="Enlarge deck page 3"><img src="img/deck-03.png" alt="Deck page 3: Site and conditions" loading="lazy"></button><span><b>03</b> Site and conditions</span></li>
+        <li><button type="button" class="deckpeek-btn" data-deck="3" aria-label="Enlarge deck page 4"><img src="img/deck-04.png" alt="Deck page 4: What is missing is a concept" loading="lazy"></button><span><b>04</b> What is missing is a concept</span></li>
+        <li><button type="button" class="deckpeek-btn" data-deck="4" aria-label="Enlarge deck page 5"><img src="img/deck-05.png" alt="Deck page 5: Option 01 · Concept" loading="lazy"></button><span><b>05</b> Option 01 · Concept</span></li>
+        <li><button type="button" class="deckpeek-btn" data-deck="5" aria-label="Enlarge deck page 6"><img src="img/deck-06.png" alt="Deck page 6: Option 01 · Story, autumn" loading="lazy"></button><span><b>06</b> Option 01 · Story, autumn</span></li>
+        <li><button type="button" class="deckpeek-btn" data-deck="6" aria-label="Enlarge deck page 7"><img src="img/deck-07.png" alt="Deck page 7: Option 01 · Seasons" loading="lazy"></button><span><b>07</b> Option 01 · Seasons</span></li>
+        <li><button type="button" class="deckpeek-btn" data-deck="7" aria-label="Enlarge deck page 8"><img src="img/deck-08.png" alt="Deck page 8: Option 02 · Concept" loading="lazy"></button><span><b>08</b> Option 02 · Concept</span></li>
+        <li><button type="button" class="deckpeek-btn" data-deck="8" aria-label="Enlarge deck page 9"><img src="img/deck-09.png" alt="Deck page 9: Option 02 · The thoughts behind it" loading="lazy"></button><span><b>09</b> Option 02 · The thoughts behind it</span></li>
+        <li><button type="button" class="deckpeek-btn" data-deck="9" aria-label="Enlarge deck page 10"><img src="img/deck-10.png" alt="Deck page 10: Option 02 · Seasonal greetings" loading="lazy"></button><span><b>10</b> Option 02 · Seasonal greetings</span></li>
+        <li><button type="button" class="deckpeek-btn" data-deck="10" aria-label="Enlarge deck page 11"><img src="img/deck-11.png" alt="Deck page 11: Option 02 · Story" loading="lazy"></button><span><b>11</b> Option 02 · Story</span></li>
+        <li><button type="button" class="deckpeek-btn" data-deck="11" aria-label="Enlarge deck page 12"><img src="img/deck-12.png" alt="Deck page 12: Option 02 · Why it works" loading="lazy"></button><span><b>12</b> Option 02 · Why it works</span></li>
+        <li><button type="button" class="deckpeek-btn" data-deck="12" aria-label="Enlarge deck page 13"><img src="img/deck-13.png" alt="Deck page 13: Reference · Three other directions" loading="lazy"></button><span><b>13</b> Reference · Three other directions</span></li>
+        <li><button type="button" class="deckpeek-btn" data-deck="13" aria-label="Enlarge deck page 14"><img src="img/deck-14.png" alt="Deck page 14: Next steps" loading="lazy"></button><span><b>14</b> Next steps</span></li>
     </ol>
     <p class="cd-src">Source: そごう横浜 ロビー時計 プロジェクションマッピング コンセプト案 (Wild Tame, November 2026 draft).</p>
   </div>
@@ -932,7 +954,7 @@ html[lang="ja"] .concept-quote{font-family:var(--f-jp);font-weight:700}
 </footer>
 
 <dialog class="deckview" id="lightbox" aria-label="Enlarged image">
-  <figure class="deckview-fig"><img id="lbImg" src="img/deck-o2-08.png" alt=""><figcaption id="lbCap"></figcaption></figure>
+  <figure class="deckview-fig"><img id="lbImg" src="img/deck-08.png" alt=""><figcaption id="lbCap"></figcaption></figure>
   <div class="deckview-nav">
     <button type="button" id="lbPrev">← Previous</button>
     <span id="lbCount" class="mono">1 / 2</span>
@@ -1535,8 +1557,20 @@ setDir(dir);
   const img=document.getElementById('lbImg'), cap=document.getElementById('lbCap'), cnt=document.getElementById('lbCount');
   const prev=document.getElementById('lbPrev'), next=document.getElementById('lbNext');
   const DECK=[
-    {src:'img/deck-o2-08.png',cap:'Concept deck, page 8 · Option 02 concept: I am proud to be who I am'},
-    {src:'img/deck-o2-09.png',cap:'Concept deck, page 9 · The thoughts behind it: 誇れる、私。'}
+    {src:'img/deck-01.png',cap:'Concept deck, page 1 · Cover'},
+    {src:'img/deck-02.png',cap:'Concept deck, page 2 · Starting point: 思い出は、未来になる'},
+    {src:'img/deck-03.png',cap:'Concept deck, page 3 · Site and conditions'},
+    {src:'img/deck-04.png',cap:'Concept deck, page 4 · What is missing is a concept'},
+    {src:'img/deck-05.png',cap:'Concept deck, page 5 · Option 01 concept: Encounter (一期一会)'},
+    {src:'img/deck-06.png',cap:'Concept deck, page 6 · Option 01 story, autumn edition'},
+    {src:'img/deck-07.png',cap:'Concept deck, page 7 · Option 01 seasons'},
+    {src:'img/deck-08.png',cap:'Concept deck, page 8 · Option 02 concept: I am proud to be who I am'},
+    {src:'img/deck-09.png',cap:'Concept deck, page 9 · The thoughts behind it: 誇れる、私。'},
+    {src:'img/deck-10.png',cap:'Concept deck, page 10 · Option 02: seasonal greetings'},
+    {src:'img/deck-11.png',cap:'Concept deck, page 11 · Option 02 story'},
+    {src:'img/deck-12.png',cap:'Concept deck, page 12 · Option 02: why it works'},
+    {src:'img/deck-13.png',cap:'Concept deck, page 13 · Reference: three other directions'},
+    {src:'img/deck-14.png',cap:'Concept deck, page 14 · Next steps'}
   ];
   const SKIP='button,a,.compare,#photo,.sim,dialog';
   let list=[], i=0;
