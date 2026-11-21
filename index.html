@@ -393,6 +393,23 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-bet
   .sb,.sb.four,.sea{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 .nobr{display:inline-block}
+.deckpeek{display:grid;gap:8px;margin-top:4px;padding-top:12px;border-top:1px solid var(--line)}
+.deckpeek-cap{margin:0;font-size:13px;color:var(--fg-2)}
+.deckpeek-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.deckpeek-btn{padding:0;border:1px solid var(--line);border-radius:6px;overflow:hidden;background:var(--hall);cursor:zoom-in;display:block;transition:border-color .15s,transform .15s}
+.deckpeek-btn:hover{border-color:var(--sogo);transform:translateY(-1px)}
+.deckpeek-btn img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover}
+.deckview{padding:0;border:0;border-radius:10px;background:var(--hall-2);color:var(--light);width:min(980px,calc(100vw - 32px));max-height:calc(100vh - 32px);overflow:auto}
+.deckview::backdrop{background:rgba(17,26,43,.72)}
+.deckview-fig{margin:0}
+.deckview-fig img{display:block;width:100%;height:auto}
+.deckview-fig figcaption{padding:10px 16px 0;font-size:13px;color:var(--muted)}
+.deckview-nav{display:flex;flex-wrap:wrap;align-items:center;gap:10px;padding:12px 16px 16px}
+.deckview-nav button{font:500 13px/1 var(--f-body);color:var(--light);background:var(--hall);border:1px solid var(--line);padding:9px 14px;border-radius:999px;cursor:pointer}
+.deckview-nav button:hover{border-color:var(--sogo)}
+.deckview-close{margin-left:auto}
+@media (prefers-reduced-motion:reduce){.deckpeek-btn{transition:none}}
+
 html[lang="ja"] .cq-en{font-family:var(--f-jp);font-style:normal;font-weight:700}
 html[lang="ja"] .cq-jp{font-family:var(--f-display);font-style:italic;letter-spacing:0}
 html[lang="ja"] .concept-quote{font-family:var(--f-jp);font-weight:700}
@@ -805,6 +822,13 @@ html[lang="ja"] .concept-quote{font-family:var(--f-jp);font-weight:700}
         </ul>
         <p class="concept-belief">To be someone the people who matter to you can be proud of, and, more than anyone, to feel proud of yourself.</p>
         <p class="concept-told">Told through 時候の挨拶: a handwritten seasonal letter that leaves the clock to reach someone.</p>
+        <div class="deckpeek">
+          <p class="deckpeek-cap">More on “proud to be me”: the two pages from the concept deck.</p>
+          <div class="deckpeek-row">
+            <button type="button" class="deckpeek-btn" data-deck="0" aria-label="Enlarge deck page 8: the Option 02 concept"><img src="img/deck-o2-08.png" alt="Deck page 8: 案02 コンセプト, I am proud to be who I am" loading="lazy"></button>
+            <button type="button" class="deckpeek-btn" data-deck="1" aria-label="Enlarge deck page 9: the thoughts behind the concept"><img src="img/deck-o2-09.png" alt="Deck page 9: 誇れる、私。 with three points and the closing line" loading="lazy"></button>
+          </div>
+        </div>
         <a class="concept-link" href="#opt-02">See the story and frames</a>
       </article>
         <figure class="cblock-fig"><img src="img/gen-o2-spring.jpg" alt="Concept frame for Option 02: a handwritten letter in the clock folds into a paper plane that flies along the band over spring fields and a river, trailing petals" loading="lazy"><figcaption>Option 02 · concept frame, spring</figcaption></figure>
@@ -832,6 +856,15 @@ html[lang="ja"] .concept-quote{font-family:var(--f-jp);font-weight:700}
       <li><b>Mood boards and style frames</b><span>Make the chosen concept visible.</span></li>
       <li><b>Method and budget</b><span>Production method, use of AI, budget and technical detail, once the concept is chosen.</span></li>
     </ol>
+    <dialog class="deckview" id="deckview" aria-label="Concept deck pages">
+      <figure class="deckview-fig"><img id="deckviewImg" src="img/deck-o2-08.png" alt=""><figcaption id="deckviewCap"></figcaption></figure>
+      <div class="deckview-nav">
+        <button type="button" id="deckPrev">← Previous</button>
+        <span id="deckCount" class="mono">1 / 2</span>
+        <button type="button" id="deckNext">Next →</button>
+        <button type="button" id="deckClose" class="deckview-close">Close</button>
+      </div>
+    </dialog>
     <p class="cd-src">Source: そごう横浜 ロビー時計 プロジェクションマッピング コンセプト案 (Wild Tame, November 2026 draft).</p>
   </div>
 </section>
@@ -1492,6 +1525,26 @@ renderRefs('all');
 $$('.next-list input').forEach(cb=>{ cb.checked = store.get('sogo-'+cb.id)==='1'; cb.addEventListener('change',()=>store.set('sogo-'+cb.id, cb.checked?'1':'0')); });
 
 setDir(dir);
+
+/* ================= DECK PAGES VIEWER ================= */
+(function(){
+  const DECK=[
+    {src:'img/deck-o2-08.png',cap:'Concept deck, page 8 · Option 02 concept: I am proud to be who I am'},
+    {src:'img/deck-o2-09.png',cap:'Concept deck, page 9 · The thoughts behind it: 誇れる、私。'}
+  ];
+  const dlg=document.getElementById('deckview'); if(!dlg) return;
+  const img=document.getElementById('deckviewImg'), cap=document.getElementById('deckviewCap'), cnt=document.getElementById('deckCount');
+  let i=0;
+  function show(n){ i=(n+DECK.length)%DECK.length; img.src=DECK[i].src; img.alt=DECK[i].cap; cap.textContent=DECK[i].cap; cnt.textContent=(i+1)+' / '+DECK.length; }
+  function open(n){ show(n); if(typeof dlg.showModal==='function'){ if(!dlg.open) dlg.showModal(); } else dlg.setAttribute('open',''); }
+  function close(){ if(typeof dlg.close==='function') dlg.close(); else dlg.removeAttribute('open'); }
+  document.querySelectorAll('.deckpeek-btn').forEach(b=>b.addEventListener('click',()=>open(+b.dataset.deck||0)));
+  document.getElementById('deckPrev').addEventListener('click',()=>show(i-1));
+  document.getElementById('deckNext').addEventListener('click',()=>show(i+1));
+  document.getElementById('deckClose').addEventListener('click',close);
+  dlg.addEventListener('click',e=>{ if(e.target===dlg) close(); });
+  dlg.addEventListener('keydown',e=>{ if(e.key==='ArrowRight') show(i+1); else if(e.key==='ArrowLeft') show(i-1); });
+})();
 })();
 </script>
 

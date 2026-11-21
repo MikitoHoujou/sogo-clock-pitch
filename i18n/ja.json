@@ -1,5 +1,41 @@
 [
  [
+  "<p class=\"deckpeek-cap\">More on “proud to be me”: the two pages from the concept deck.</p>",
+  "<p class=\"deckpeek-cap\">「誇れる、私。」をもっと詳しく：コンセプト案の該当ページ（2枚）。</p>"
+ ],
+ [
+  "aria-label=\"Enlarge deck page 8: the Option 02 concept\"",
+  "aria-label=\"8ページを拡大：案02 コンセプト\""
+ ],
+ [
+  "aria-label=\"Enlarge deck page 9: the thoughts behind the concept\"",
+  "aria-label=\"9ページを拡大：コンセプトに込める想い\""
+ ],
+ [
+  "<dialog class=\"deckview\" id=\"deckview\" aria-label=\"Concept deck pages\">",
+  "<dialog class=\"deckview\" id=\"deckview\" aria-label=\"コンセプト案のページ\">"
+ ],
+ [
+  "<button type=\"button\" id=\"deckPrev\">← Previous</button>",
+  "<button type=\"button\" id=\"deckPrev\">← 前へ</button>"
+ ],
+ [
+  "<button type=\"button\" id=\"deckNext\">Next →</button>",
+  "<button type=\"button\" id=\"deckNext\">次へ →</button>"
+ ],
+ [
+  "<button type=\"button\" id=\"deckClose\" class=\"deckview-close\">Close</button>",
+  "<button type=\"button\" id=\"deckClose\" class=\"deckview-close\">閉じる</button>"
+ ],
+ [
+  "cap:'Concept deck, page 8 · Option 02 concept: I am proud to be who I am'",
+  "cap:'コンセプト案 8ページ · 案02 コンセプト：I am proud to be who I am'"
+ ],
+ [
+  "cap:'Concept deck, page 9 · The thoughts behind it: 誇れる、私。'",
+  "cap:'コンセプト案 9ページ · コンセプトに込める想い：誇れる、私。'"
+ ],
+ [
   "<a href=\"#play\">Play</a>",
   "<a href=\"#play\">壁で試す</a>"
  ],
