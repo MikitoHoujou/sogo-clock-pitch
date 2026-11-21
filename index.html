@@ -334,6 +334,42 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-bet
 .opt-media img{width:100%;border-radius:6px;display:block}
 .opt-media img.tall{max-width:300px}
 .opt-media figcaption{font-size:12px;color:var(--muted)}
+/* ---------- concept deck ---------- */
+#concept{background:var(--sogo-tint)}
+.cq{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-bottom:32px}
+.cq-item{display:grid;gap:4px;margin:0;padding:18px 20px;background:var(--hall-2);border-radius:8px}
+.cq-en{font-family:var(--f-display);font-style:italic;font-size:clamp(20px,2.2vw,26px);line-height:1.2;color:var(--light)}
+.cq-jp{font-family:var(--f-jp);font-size:14px;letter-spacing:.06em;color:var(--muted)}
+.concepts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;align-items:start}
+.concept{display:grid;gap:14px;align-content:start;padding:26px;background:var(--hall-2);border:1px solid var(--line);border-radius:10px}
+.concept-k{font-family:var(--f-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--sogo)}
+.concept-theme{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px;margin:0}
+.concept-theme b{font-size:15px;font-weight:700}
+.concept-theme span{font-family:var(--f-jp);font-size:15px;letter-spacing:.06em;color:var(--brass)}
+.concept-quote{font-family:var(--f-display);font-size:clamp(26px,3vw,34px);line-height:1.15;margin:0;color:var(--light);text-wrap:balance}
+.concept-alt{font-size:13px;color:var(--muted);margin:0}
+.concept-belief{font-size:16px;line-height:1.7;color:var(--fg-2);margin:0;max-width:56ch}
+.concept-points{list-style:none;margin:0;padding:0;display:grid}
+.concept-points li{padding-block:9px;border-top:1px solid var(--line);font-size:14px;color:var(--fg-2)}
+.concept-points b{color:var(--light)}
+.concept-told{font-size:14px;color:var(--fg-2);margin:0}
+.concept-link{font-size:14px;font-weight:500;justify-self:start}
+.cd-h{margin:44px 0 16px}
+.cd-steps{list-style:none;counter-reset:cd;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.cd-steps li{counter-increment:cd;display:grid;gap:6px;align-content:start;padding:18px;background:var(--hall-2);border-radius:8px;font-size:14px;color:var(--fg-2)}
+.cd-steps li::before{content:"0" counter(cd);font-family:var(--f-mono);font-size:12px;color:var(--sogo)}
+.cd-steps b{color:var(--light);font-size:15px}
+.cd-src{margin-top:18px;font-size:12px;color:var(--muted)}
+.nobr{display:inline-block}
+html[lang="ja"] .cq-en{font-family:var(--f-jp);font-style:normal;font-weight:700}
+html[lang="ja"] .cq-jp{font-family:var(--f-display);font-style:italic;letter-spacing:0}
+html[lang="ja"] .concept-quote{font-family:var(--f-jp);font-weight:700}
+@media (max-width:860px){
+  .cq,.concepts{grid-template-columns:minmax(0,1fr)}
+  .cd-steps{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:480px){.cd-steps{grid-template-columns:minmax(0,1fr)}}
+
 @media (max-width:860px){
   .opt{grid-template-columns:minmax(0,1fr);gap:28px}
   .opt-media{position:static}
@@ -347,7 +383,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-bet
   <div class="wrap">
     <span class="mark">SAS × SOGO YOKOHAMA · B2</span>
     <nav aria-label="Sections">
-      <a href="#frames">Frames</a><a href="#brief">Brief</a><a href="#site">Site</a><a href="#directions">Directions</a><a href="#shadow-seasons">Seasons</a><a href="#day">Day</a><a href="#characters">Characters</a><a href="#options">Options 01–02</a><a href="#refs">References</a><a href="#next">Next</a>
+      <a href="#frames">Frames</a><a href="#brief">Brief</a><a href="#site">Site</a><a href="#directions">Directions</a><a href="#shadow-seasons">Seasons</a><a href="#day">Day</a><a href="#characters">Characters</a><a href="#options">Options 01–02</a><a href="#concept">Concept</a><a href="#refs">References</a><a href="#next">Next</a>
     </nav>
     <span class="jst" id="jst" aria-live="off">JST --:--</span>
     <a class="lang" href="ja.html" lang="ja" hreflang="ja">日本語</a>
@@ -673,6 +709,58 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-bet
         <figure><img class="tall" src="img/ref-shochu-mimai.jpg" alt="A summer greeting card: a glass wind chime painted with morning glories, its paper strip reading 暑中お見舞い申し上げます, on a pale blue ground" loading="lazy"><figcaption>Reference: a 暑中見舞い summer greeting card, wind chime and morning glory</figcaption></figure>
       </div>
     </article>
+  </div>
+</section>
+
+<!-- ================= CONCEPT DECK ================= -->
+<section id="concept">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">From the concept deck · Nov 2026 draft</span>
+      <h2><span class="jp">コンセプト案</span>Concept first</h2>
+      <p class="lede">What is missing is a concept, not a technique. Before we choose the visuals, we decide the story this clock tells. Each of the two story options answers three questions.</p>
+    </div>
+    <div class="cq" role="list">
+      <p class="cq-item" role="listitem"><span class="cq-en">Who is it for?</span><span class="cq-jp">誰に向けて？</span></p>
+      <p class="cq-item" role="listitem"><span class="cq-en">What should people feel?</span><span class="cq-jp">どんな気持ちに？</span></p>
+      <p class="cq-item" role="listitem"><span class="cq-en">Why this clock?</span><span class="cq-jp">なぜ、この時計で？</span></p>
+    </div>
+    <div class="concepts">
+      <article class="concept">
+        <span class="concept-k">Option 01 · Concept</span>
+        <p class="concept-theme"><b>Encounter</b><span>出会い（一期一会）</span></p>
+        <p class="concept-quote">“Let’s meet under the clock”</p>
+        <p class="concept-belief">Whatever the season puts in the way, I believe I’ll get to see you.</p>
+        <ul class="concept-points">
+          <li><b>No faces.</b> Only silhouettes, clothes and accessories, so anyone can see themselves in them and no mascot is born.</li>
+          <li><b>The season is the obstacle.</b> Wind, rain and crowds stand between the two of them.</li>
+          <li><b>The season is the magic.</b> The moment they meet, the season celebrates them.</li>
+        </ul>
+        <a class="concept-link" href="#opt-01">See the story and frames</a>
+      </article>
+      <article class="concept">
+        <span class="concept-k">Option 02 · Concept</span>
+        <p class="concept-theme"><b>Proud to be me</b><span>誇れる、私。</span></p>
+        <p class="concept-quote">“I am proud to be who I am”</p>
+        <p class="concept-alt">Alternative line: “something I am proud of”</p>
+        <ul class="concept-points">
+          <li><b>For the next step.</b> For people about to give the next thing their best.</li>
+          <li><b>Hope.</b> Hope for the future.</li>
+          <li><b>Becoming.</b> Becoming someone you are proud of.</li>
+        </ul>
+        <p class="concept-belief">To be someone the people who matter to you can be proud of, and, more than anyone, to feel proud of yourself.</p>
+        <p class="concept-told">Told through 時候の挨拶: a handwritten seasonal letter that leaves the clock to reach someone.</p>
+        <a class="concept-link" href="#opt-02">See the story and frames</a>
+      </article>
+    </div>
+    <h3 class="cd-h">Decide the concept, then how to make it</h3>
+    <ol class="cd-steps">
+      <li><b>One concept</b><span>Who it is for, what feeling, and why.</span></li>
+      <li><b>Night test on site</b><span>Check colour and contrast on the marble.</span></li>
+      <li><b>Mood boards and style frames</b><span>Make the chosen concept visible.</span></li>
+      <li><b>Method and budget</b><span>Production method, use of AI, budget and technical detail, once the concept is chosen.</span></li>
+    </ol>
+    <p class="cd-src">Source: そごう横浜 ロビー時計 プロジェクションマッピング コンセプト案 (Wild Tame, November 2026 draft).</p>
   </div>
 </section>
 

@@ -334,6 +334,42 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-bet
 .opt-media img{width:100%;border-radius:6px;display:block}
 .opt-media img.tall{max-width:300px}
 .opt-media figcaption{font-size:12px;color:var(--muted)}
+/* ---------- concept deck ---------- */
+#concept{background:var(--sogo-tint)}
+.cq{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-bottom:32px}
+.cq-item{display:grid;gap:4px;margin:0;padding:18px 20px;background:var(--hall-2);border-radius:8px}
+.cq-en{font-family:var(--f-display);font-style:italic;font-size:clamp(20px,2.2vw,26px);line-height:1.2;color:var(--light)}
+.cq-jp{font-family:var(--f-jp);font-size:14px;letter-spacing:.06em;color:var(--muted)}
+.concepts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;align-items:start}
+.concept{display:grid;gap:14px;align-content:start;padding:26px;background:var(--hall-2);border:1px solid var(--line);border-radius:10px}
+.concept-k{font-family:var(--f-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--sogo)}
+.concept-theme{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px;margin:0}
+.concept-theme b{font-size:15px;font-weight:700}
+.concept-theme span{font-family:var(--f-jp);font-size:15px;letter-spacing:.06em;color:var(--brass)}
+.concept-quote{font-family:var(--f-display);font-size:clamp(26px,3vw,34px);line-height:1.15;margin:0;color:var(--light);text-wrap:balance}
+.concept-alt{font-size:13px;color:var(--muted);margin:0}
+.concept-belief{font-size:16px;line-height:1.7;color:var(--fg-2);margin:0;max-width:56ch}
+.concept-points{list-style:none;margin:0;padding:0;display:grid}
+.concept-points li{padding-block:9px;border-top:1px solid var(--line);font-size:14px;color:var(--fg-2)}
+.concept-points b{color:var(--light)}
+.concept-told{font-size:14px;color:var(--fg-2);margin:0}
+.concept-link{font-size:14px;font-weight:500;justify-self:start}
+.cd-h{margin:44px 0 16px}
+.cd-steps{list-style:none;counter-reset:cd;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.cd-steps li{counter-increment:cd;display:grid;gap:6px;align-content:start;padding:18px;background:var(--hall-2);border-radius:8px;font-size:14px;color:var(--fg-2)}
+.cd-steps li::before{content:"0" counter(cd);font-family:var(--f-mono);font-size:12px;color:var(--sogo)}
+.cd-steps b{color:var(--light);font-size:15px}
+.cd-src{margin-top:18px;font-size:12px;color:var(--muted)}
+.nobr{display:inline-block}
+html[lang="ja"] .cq-en{font-family:var(--f-jp);font-style:normal;font-weight:700}
+html[lang="ja"] .cq-jp{font-family:var(--f-display);font-style:italic;letter-spacing:0}
+html[lang="ja"] .concept-quote{font-family:var(--f-jp);font-weight:700}
+@media (max-width:860px){
+  .cq,.concepts{grid-template-columns:minmax(0,1fr)}
+  .cd-steps{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:480px){.cd-steps{grid-template-columns:minmax(0,1fr)}}
+
 @media (max-width:860px){
   .opt{grid-template-columns:minmax(0,1fr);gap:28px}
   .opt-media{position:static}
@@ -347,7 +383,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-bet
   <div class="wrap">
     <span class="mark">SAS × SOGO YOKOHAMA · B2</span>
     <nav aria-label="Sections">
-      <a href="#frames">フレーム</a><a href="#brief">ブリーフ</a><a href="#site">会場</a><a href="#directions">方向性</a><a href="#shadow-seasons">四季</a><a href="#day">一日</a><a href="#characters">キャラクター</a><a href="#options">ストーリー案</a><a href="#refs">参考</a><a href="#next">次へ</a>
+      <a href="#frames">フレーム</a><a href="#brief">ブリーフ</a><a href="#site">会場</a><a href="#directions">方向性</a><a href="#shadow-seasons">四季</a><a href="#day">一日</a><a href="#characters">キャラクター</a><a href="#options">ストーリー案</a><a href="#concept">コンセプト</a><a href="#refs">参考</a><a href="#next">次へ</a>
     </nav>
     <span class="jst" id="jst" aria-live="off">JST --:--</span>
     <a class="lang" href="index.html" lang="en" hreflang="en">English</a>
@@ -673,6 +709,58 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-bet
         <figure><img class="tall" src="img/ref-shochu-mimai.jpg" alt="A summer greeting card: a glass wind chime painted with morning glories, its paper strip reading 暑中お見舞い申し上げます, on a pale blue ground" loading="lazy"><figcaption>参考：暑中見舞いのはがき。風鈴と朝顔</figcaption></figure>
       </div>
     </article>
+  </div>
+</section>
+
+<!-- ================= CONCEPT DECK ================= -->
+<section id="concept">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">コンセプト案より · 2026年11月 ドラフト</span>
+      <h2><span class="jp">Concept first</span><span class="nobr">足りないのは、</span><span class="nobr">コンセプト</span></h2>
+      <p class="lede">足りないのは、手法ではなくコンセプトです。映像を選ぶ前に、この時計の「物語」を決める。2つのストーリー案は、それぞれ次の3つの問いに答えます。</p>
+    </div>
+    <div class="cq" role="list">
+      <p class="cq-item" role="listitem"><span class="cq-en">誰に向けて？</span><span class="cq-jp">Who is it for?</span></p>
+      <p class="cq-item" role="listitem"><span class="cq-en">どんな気持ちに？</span><span class="cq-jp">What should people feel?</span></p>
+      <p class="cq-item" role="listitem"><span class="cq-en">なぜ、この時計で？</span><span class="cq-jp">Why this clock?</span></p>
+    </div>
+    <div class="concepts">
+      <article class="concept">
+        <span class="concept-k">案 01 · コンセプト</span>
+        <p class="concept-theme"><b>出会い（一期一会）</b><span>Encounter</span></p>
+        <p class="concept-quote">「時計の下で会いましょう」</p>
+        <p class="concept-belief">季節によっていろんな障害やチャレンジはあるけども、きっとあなたと会えることを信じて。</p>
+        <ul class="concept-points">
+          <li><b>顔は見せない。</b>シルエットと服・小物だけ。誰もが自分を重ねられ、マスコットも生まれない。</li>
+          <li><b>季節が障害に。</b>風、雨、人混み。季節そのものが2人の待ち合わせを阻む。</li>
+          <li><b>季節が魔法に。</b>会えた瞬間、その季節が2人を祝福する。</li>
+        </ul>
+        <a class="concept-link" href="#opt-01">ストーリーとフレームを見る</a>
+      </article>
+      <article class="concept">
+        <span class="concept-k">案 02 · コンセプト</span>
+        <p class="concept-theme"><b>誇れる、私。</b><span>Proud to be me</span></p>
+        <p class="concept-quote">“I am proud to be who I am”</p>
+        <p class="concept-alt">コピー案：「something I am proud of」</p>
+        <ul class="concept-points">
+          <li><b>次に頑張りたい人へ。</b>次の一歩を踏み出す人に向けて。</li>
+          <li><b>未来への希望。</b>これからへの希望を。</li>
+          <li><b>誇れる自分になる。</b>自分を誇れる自分へ。</li>
+        </ul>
+        <p class="concept-belief">大事な人にとって誇れる自分になるために、誰よりも、自分で自分が誇らしいと思えるために。</p>
+        <p class="concept-told">表現は「時候の挨拶」。手書きの季節の手紙が時計から旅立ち、誰かのもとへ届きます。</p>
+        <a class="concept-link" href="#opt-02">ストーリーとフレームを見る</a>
+      </article>
+    </div>
+    <h3 class="cd-h">コンセプトを決めてから、つくり方を決める</h3>
+    <ol class="cd-steps">
+      <li><b>コンセプトを1つに</b><span>誰に、どんな気持ちを、なぜ。</span></li>
+      <li><b>現地の夜間テスト</b><span>大理石の上での色とコントラストを確認。</span></li>
+      <li><b>ムードボード・スタイルフレーム</b><span>選んだコンセプトを目に見える形に。</span></li>
+      <li><b>制作手法・予算</b><span>手法、AIの活用、予算、技術面はコンセプト決定後に。</span></li>
+    </ol>
+    <p class="cd-src">出典：そごう横浜 ロビー時計 プロジェクションマッピング コンセプト案（Wild Tame、2026年11月 ドラフト）</p>
   </div>
 </section>
 
