@@ -360,6 +360,37 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-bet
 .cd-steps li::before{content:"0" counter(cd);font-family:var(--f-mono);font-size:12px;color:var(--sogo)}
 .cd-steps b{color:var(--light);font-size:15px}
 .cd-src{margin-top:18px;font-size:12px;color:var(--muted)}
+.cd-where{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:28px;align-items:center;padding:18px;background:var(--hall-2);border-radius:10px}
+.cd-where img{width:100%;max-width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:6px;display:block}
+.cd-where-h{font-size:17px}
+.cd-cond{list-style:none;margin:0;padding:0;display:grid}
+.cd-cond li{display:grid;gap:2px;padding-block:10px;border-top:1px solid var(--line);font-size:14px;color:var(--fg-2)}
+.cd-cond b{color:var(--light);font-size:15px}
+.cblock{display:grid;gap:20px;margin-top:44px}
+.cblock-top{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:20px;align-items:stretch}
+.cblock-fig{margin:0;display:grid;grid-template-rows:minmax(0,1fr) auto;gap:6px}
+.cblock-fig img{width:100%;height:100%;min-height:260px;object-fit:cover;border-radius:10px;display:block}
+.cblock-fig figcaption{font-size:12px;color:var(--muted)}
+.cd-sub{font-size:16px;font-weight:700;margin-top:10px}
+.cd-sub span{font-family:var(--f-jp);font-weight:500;font-size:14px;color:var(--brass);margin-left:10px;letter-spacing:.04em}
+.sb,.sea{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.sb{grid-template-columns:repeat(6,minmax(0,1fr))}
+.sb.four,.sea{grid-template-columns:repeat(4,minmax(0,1fr))}
+.sb li,.sea li{display:grid;gap:6px;align-content:start;padding:8px 8px 14px;background:var(--hall-2);border-radius:8px;font-size:13px;line-height:1.55;color:var(--fg-2)}
+.sb li>b,.sea li>b{color:var(--light);font-size:14px;line-height:1.35;padding-inline:4px}
+.sb li>span:last-child,.sea li>span:last-child{padding-inline:4px}
+.sb img,.sea img,.sb-todo,.sea-todo{width:100%;max-width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:5px;display:block}
+.sb-todo,.sea-todo{display:grid;place-items:center;background:repeating-linear-gradient(135deg,var(--sogo-tint) 0 9px,var(--hall) 9px 18px);color:var(--muted);text-align:center}
+.sb-todo{font-family:var(--f-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase}
+.sea-todo{font-family:var(--f-jp);font-size:34px;font-weight:700;color:var(--sogo)}
+.sb-n{font-family:var(--f-mono);font-size:12px;color:var(--sogo);padding-inline:4px}
+.cd-note{font-size:13px;color:var(--muted)}
+@media (max-width:1000px){.sb{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:860px){
+  .cd-where,.cblock-top{grid-template-columns:minmax(0,1fr)}
+  .cblock-fig img{min-height:0;aspect-ratio:16/9;height:auto}
+  .sb,.sb.four,.sea{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
 .nobr{display:inline-block}
 html[lang="ja"] .cq-en{font-family:var(--f-jp);font-style:normal;font-weight:700}
 html[lang="ja"] .cq-jp{font-family:var(--f-display);font-style:italic;letter-spacing:0}
@@ -725,8 +756,22 @@ html[lang="ja"] .concept-quote{font-family:var(--f-jp);font-weight:700}
       <p class="cq-item" role="listitem"><span class="cq-en">どんな気持ちに？</span><span class="cq-jp">What should people feel?</span></p>
       <p class="cq-item" role="listitem"><span class="cq-en">なぜ、この時計で？</span><span class="cq-jp">Why this clock?</span></p>
     </div>
-    <div class="concepts">
-      <article class="concept">
+
+    <div class="cd-where">
+      <img src="img/lobby.jpg" alt="The B2 main entrance: the square clock on the dark marble wall at left and the long marble band with the SOGO sign at right" loading="lazy">
+      <div class="stack">
+        <h3 class="cd-where-h">地下2階 正面入口、毎正時に約3分</h3>
+        <ul class="cd-cond">
+          <li><b>時計が主役。</b><span>周りの大理石は暗く、色が沈みやすい。</span></li>
+          <li><b>一目で伝わる強さ。</b><span>通りがかりの人は、長くは立ち止まらない。</span></li>
+          <li><b>季節ごとに更新。</b><span>何度来ても新しい発見がある。</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="cblock" id="c01">
+      <div class="cblock-top">
+  <article class="concept">
         <span class="concept-k">案 01 · コンセプト</span>
         <p class="concept-theme"><b>出会い（一期一会）</b><span>Encounter</span></p>
         <p class="concept-quote">「時計の下で会いましょう」</p>
@@ -738,7 +783,30 @@ html[lang="ja"] .concept-quote{font-family:var(--f-jp);font-weight:700}
         </ul>
         <a class="concept-link" href="#opt-01">ストーリーとフレームを見る</a>
       </article>
-      <article class="concept">
+        <figure class="cblock-fig"><img src="img/gen-o1-gust.jpg" alt="Concept frame for Option 01: she waits on the clock's edge in a red scarf while he fights an inside-out umbrella in a gust of autumn leaves along the band" loading="lazy"><figcaption>案01 · コンセプトフレーム（秋）</figcaption></figure>
+      </div>
+      <h4 class="cd-sub">扉が開いて、再会するまで <span>From the door opening to the reunion</span></h4>
+      <ol class="sb">
+        <li><img src="img/sb-o1-1.jpg" alt="Storyboard 1: the left block of the clock face opens as a door and her silhouette, in a red beret and scarf, stands in the doorway" loading="lazy"><span class="sb-n">1</span><b>時計の扉が開く</b><span>正時、女性のシルエットが現れ、針を見上げて待つ。コートやスカーフなど1〜2点だけ色を残す。</span></li>
+        <li><span class="sb-todo">フレーム制作予定</span><span class="sb-n">2</span><b>秋風と紅葉</b><span>強い風に紅葉がロビー中を舞い、男性が風に転がされて登場。</span></li>
+        <li><span class="sb-todo">フレーム制作予定</span><span class="sb-n">3</span><b>遅刻に気づく</b><span>ほこりを払い、時計を見て、逆風の中を急ぐ。</span></li>
+        <li><img src="img/sb-o1-4.jpg" alt="Storyboard 4: his silhouette in a mustard scarf fights an inside-out umbrella under rain lines and a small lightning bolt" loading="lazy"><span class="sb-n">4</span><b>雨と雷</b><span>天気はさらに荒れ、お決まりの傘との格闘。</span></li>
+        <li><img src="img/sb-o1-5.jpg" alt="Storyboard 5: her silhouette in a red scarf sits on the bottom edge of the clock face, legs dangling" loading="lazy"><span class="sb-n">5</span><b>何も知らない彼女</b><span>時計の縁に腰かけ、足をぶらぶらさせて待っている。</span></li>
+        <li><img src="img/sb-o1-6.jpg" alt="Storyboard 6: the two silhouettes embrace inside the glowing clock face, surrounded by autumn confetti" loading="lazy"><span class="sb-n">6</span><b>再会と祝福</b><span>倒れ込む彼。抱き合う2人を秋の紙吹雪が包み、2人で時計の中へ。</span></li>
+      </ol>
+      <p class="cd-note">2Dのシンプルなイラスト調。要所でアップを入れてドラマを強める。</p>
+      <h4 class="cd-sub">季節ごとに、装いと障害が変わる <span>Each season changes the outfits and the obstacles</span></h4>
+      <ul class="sea">
+        <li><span class="sea-todo" lang="ja">春</span><b>春・桜</b><span>花見の人混み、花粉症、桜並木の川を舟で渡る。</span></li>
+        <li><span class="sea-todo" lang="ja">夏</span><b>夏</b><span>花火、日陰から日陰へ走る、凧、公園での遊び。</span></li>
+        <li><img src="img/gen-o1-gust.jpg" alt="Autumn edition: wind, red leaves and the umbrella fight along the band" loading="lazy"><b>秋</b><span>秋風と紅葉、雨と雷、傘との格闘。</span></li>
+        <li><span class="sea-todo" lang="ja">冬</span><b>冬</b><span>凍った道、雪合戦の雪玉、イルミネーションに絡まる。</span></li>
+      </ul>
+    </div>
+
+    <div class="cblock" id="c02">
+      <div class="cblock-top">
+  <article class="concept">
         <span class="concept-k">案 02 · コンセプト</span>
         <p class="concept-theme"><b>誇れる、私。</b><span>Proud to be me</span></p>
         <p class="concept-quote">“I am proud to be who I am”</p>
@@ -752,7 +820,24 @@ html[lang="ja"] .concept-quote{font-family:var(--f-jp);font-weight:700}
         <p class="concept-told">表現は「時候の挨拶」。手書きの季節の手紙が時計から旅立ち、誰かのもとへ届きます。</p>
         <a class="concept-link" href="#opt-02">ストーリーとフレームを見る</a>
       </article>
+        <figure class="cblock-fig"><img src="img/gen-o2-spring.jpg" alt="Concept frame for Option 02: a handwritten letter in the clock folds into a paper plane that flies along the band over spring fields and a river, trailing petals" loading="lazy"><figcaption>案02 · コンセプトフレーム（春）</figcaption></figure>
+      </div>
+      <h4 class="cd-sub">季節の手紙が、時計から旅立つ <span>A seasonal letter leaves the clock</span></h4>
+      <ol class="sb four">
+        <li><img src="img/sb-o2-1.jpg" alt="A handwritten letter appears over the clock face" loading="lazy"><span class="sb-n">01</span><b>現れる</b><span>時計の中に手書きの手紙。</span></li>
+        <li><img src="img/sb-o2-2.jpg" alt="The letter folds into a white paper plane in front of the clock" loading="lazy"><span class="sb-n">02</span><b>折られる</b><span>紙飛行機、または折り紙の動物に。</span></li>
+        <li><img src="img/sb-o2-3.jpg" alt="The paper plane flies along the band over spring fields, trailing cherry petals" loading="lazy"><span class="sb-n">03</span><b>旅する</b><span>季節と風景の中を飛んでいく。</span></li>
+        <li><img src="img/sb-o2-4.jpg" alt="The letter opens across the band: 暑中お見舞い in blue brush lettering beside the SOGO mark" loading="lazy"><span class="sb-n">04</span><b>ひらく</b><span>壁いっぱいに季節の挨拶が広がる。</span></li>
+      </ol>
+      <h4 class="cd-sub">毎回、新しい手紙と新しいメッセージを <span>A new letter and a new message every time</span></h4>
+      <ul class="sea">
+        <li><img src="img/sb-o2-3.jpg" alt="Spring letter: the paper plane over fields and a river with cherry petals" loading="lazy"><b>春の手紙</b><span>春風に乗って野や川を越え、折り目に花びらを集めながら飛び、新しい季節を迎えるメッセージをひらく。</span></li>
+        <li><img src="img/sb-o2-4.jpg" alt="Summer letter: 暑中お見舞い across the band with morning glories" loading="lazy"><b>夏</b><span>陽炎と風鈴の中を。</span></li>
+        <li><span class="sea-todo" lang="ja">秋</span><b>秋</b><span>月の下を。</span></li>
+        <li><span class="sea-todo" lang="ja">新年</span><b>新年</b><span>降る雪の中を、年賀状が。</span></li>
+      </ul>
     </div>
+
     <h3 class="cd-h">コンセプトを決めてから、つくり方を決める</h3>
     <ol class="cd-steps">
       <li><b>コンセプトを1つに</b><span>誰に、どんな気持ちを、なぜ。</span></li>

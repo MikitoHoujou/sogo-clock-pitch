@@ -1,5 +1,125 @@
 [
  [
+  "<h3 class=\"cd-where-h\">B2 main entrance, about 3 minutes on every hour</h3>",
+  "<h3 class=\"cd-where-h\">地下2階 正面入口、毎正時に約3分</h3>"
+ ],
+ [
+  "<li><b>The clock is the star.</b><span>The marble around it is dark, and colour sinks into it.</span></li>",
+  "<li><b>時計が主役。</b><span>周りの大理石は暗く、色が沈みやすい。</span></li>"
+ ],
+ [
+  "<li><b>Strong enough to read at a glance.</b><span>People passing by don’t stop for long.</span></li>",
+  "<li><b>一目で伝わる強さ。</b><span>通りがかりの人は、長くは立ち止まらない。</span></li>"
+ ],
+ [
+  "<li><b>Refreshed every season.</b><span>Something new to find on every visit.</span></li>",
+  "<li><b>季節ごとに更新。</b><span>何度来ても新しい発見がある。</span></li>"
+ ],
+ [
+  "<figcaption>Option 01 · concept frame, autumn</figcaption>",
+  "<figcaption>案01 · コンセプトフレーム（秋）</figcaption>"
+ ],
+ [
+  "<figcaption>Option 02 · concept frame, spring</figcaption>",
+  "<figcaption>案02 · コンセプトフレーム（春）</figcaption>"
+ ],
+ [
+  "<h4 class=\"cd-sub\">From the door opening to the reunion <span>扉が開いて、再会するまで</span></h4>",
+  "<h4 class=\"cd-sub\">扉が開いて、再会するまで <span>From the door opening to the reunion</span></h4>"
+ ],
+ [
+  "<b>The clock door opens</b><span>On the hour, a woman’s silhouette appears and looks up at the hands, waiting. Only one or two items, a coat or a scarf, keep their colour.</span>",
+  "<b>時計の扉が開く</b><span>正時、女性のシルエットが現れ、針を見上げて待つ。コートやスカーフなど1〜2点だけ色を残す。</span>"
+ ],
+ [
+  "<b>Autumn wind and red leaves</b><span>A strong wind sends red leaves across the whole lobby, and a man tumbles in, rolled along by the gust.</span>",
+  "<b>秋風と紅葉</b><span>強い風に紅葉がロビー中を舞い、男性が風に転がされて登場。</span>"
+ ],
+ [
+  "<b>He realises he’s late</b><span>He dusts himself off, checks the clock and hurries on into the headwind.</span>",
+  "<b>遅刻に気づく</b><span>ほこりを払い、時計を見て、逆風の中を急ぐ。</span>"
+ ],
+ [
+  "<b>Rain and lightning</b><span>The weather turns worse, and the inevitable fight with his umbrella begins.</span>",
+  "<b>雨と雷</b><span>天気はさらに荒れ、お決まりの傘との格闘。</span>"
+ ],
+ [
+  "<b>She has no idea</b><span>She sits on the edge of the clock, swinging her feet as she waits.</span>",
+  "<b>何も知らない彼女</b><span>時計の縁に腰かけ、足をぶらぶらさせて待っている。</span>"
+ ],
+ [
+  "<b>Reunion and celebration</b><span>He collapses into the clock. Autumn confetti wraps them as they embrace and step into the clock together.</span>",
+  "<b>再会と祝福</b><span>倒れ込む彼。抱き合う2人を秋の紙吹雪が包み、2人で時計の中へ。</span>"
+ ],
+ [
+  "<span class=\"sb-todo\">Frame to come</span>",
+  "<span class=\"sb-todo\">フレーム制作予定</span>"
+ ],
+ [
+  "<p class=\"cd-note\">Simple 2D illustration, with close-ups at the key moments to heighten the drama.</p>",
+  "<p class=\"cd-note\">2Dのシンプルなイラスト調。要所でアップを入れてドラマを強める。</p>"
+ ],
+ [
+  "<h4 class=\"cd-sub\">Each season changes the outfits and the obstacles <span>季節ごとに、装いと障害が変わる</span></h4>",
+  "<h4 class=\"cd-sub\">季節ごとに、装いと障害が変わる <span>Each season changes the outfits and the obstacles</span></h4>"
+ ],
+ [
+  "<b>Spring · sakura</b><span>Hanami crowds, hay fever, crossing a cherry-lined river by boat.</span>",
+  "<b>春・桜</b><span>花見の人混み、花粉症、桜並木の川を舟で渡る。</span>"
+ ],
+ [
+  "<b>Summer</b><span>Fireworks, dashing from shade to shade, kites, games in the park.</span>",
+  "<b>夏</b><span>花火、日陰から日陰へ走る、凧、公園での遊び。</span>"
+ ],
+ [
+  "<b>Autumn</b><span>Autumn wind and red leaves, rain and lightning, the umbrella fight.</span>",
+  "<b>秋</b><span>秋風と紅葉、雨と雷、傘との格闘。</span>"
+ ],
+ [
+  "<b>Winter</b><span>Icy streets, a stray snowball, tangled in the illuminations.</span>",
+  "<b>冬</b><span>凍った道、雪合戦の雪玉、イルミネーションに絡まる。</span>"
+ ],
+ [
+  "<h4 class=\"cd-sub\">A seasonal letter leaves the clock <span>季節の手紙が、時計から旅立つ</span></h4>",
+  "<h4 class=\"cd-sub\">季節の手紙が、時計から旅立つ <span>A seasonal letter leaves the clock</span></h4>"
+ ],
+ [
+  "<b>Appears</b><span>A handwritten letter appears in the clock.</span>",
+  "<b>現れる</b><span>時計の中に手書きの手紙。</span>"
+ ],
+ [
+  "<b>Folds</b><span>It folds itself into a paper plane, or an origami animal.</span>",
+  "<b>折られる</b><span>紙飛行機、または折り紙の動物に。</span>"
+ ],
+ [
+  "<b>Travels</b><span>It flies through the seasons and landscapes of Japan.</span>",
+  "<b>旅する</b><span>季節と風景の中を飛んでいく。</span>"
+ ],
+ [
+  "<b>Opens</b><span>A seasonal greeting spreads across the wall.</span>",
+  "<b>ひらく</b><span>壁いっぱいに季節の挨拶が広がる。</span>"
+ ],
+ [
+  "<h4 class=\"cd-sub\">A new letter and a new message every time <span>毎回、新しい手紙と新しいメッセージを</span></h4>",
+  "<h4 class=\"cd-sub\">毎回、新しい手紙と新しいメッセージを <span>A new letter and a new message every time</span></h4>"
+ ],
+ [
+  "<b>Spring letter</b><span>Rides the spring wind over fields and rivers, gathering petals in its folds, and opens to welcome the new season.</span>",
+  "<b>春の手紙</b><span>春風に乗って野や川を越え、折り目に花びらを集めながら飛び、新しい季節を迎えるメッセージをひらく。</span>"
+ ],
+ [
+  "<b>Summer</b><span>Through heat haze and wind chimes.</span>",
+  "<b>夏</b><span>陽炎と風鈴の中を。</span>"
+ ],
+ [
+  "<b>Autumn</b><span>Under the moon.</span>",
+  "<b>秋</b><span>月の下を。</span>"
+ ],
+ [
+  "<b>New Year</b><span>A New Year card through falling snow.</span>",
+  "<b>新年</b><span>降る雪の中を、年賀状が。</span>"
+ ],
+ [
   "<a href=\"#concept\">Concept</a>",
   "<a href=\"#concept\">コンセプト</a>"
  ],

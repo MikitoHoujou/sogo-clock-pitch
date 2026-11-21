@@ -360,6 +360,37 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-bet
 .cd-steps li::before{content:"0" counter(cd);font-family:var(--f-mono);font-size:12px;color:var(--sogo)}
 .cd-steps b{color:var(--light);font-size:15px}
 .cd-src{margin-top:18px;font-size:12px;color:var(--muted)}
+.cd-where{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:28px;align-items:center;padding:18px;background:var(--hall-2);border-radius:10px}
+.cd-where img{width:100%;max-width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:6px;display:block}
+.cd-where-h{font-size:17px}
+.cd-cond{list-style:none;margin:0;padding:0;display:grid}
+.cd-cond li{display:grid;gap:2px;padding-block:10px;border-top:1px solid var(--line);font-size:14px;color:var(--fg-2)}
+.cd-cond b{color:var(--light);font-size:15px}
+.cblock{display:grid;gap:20px;margin-top:44px}
+.cblock-top{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:20px;align-items:stretch}
+.cblock-fig{margin:0;display:grid;grid-template-rows:minmax(0,1fr) auto;gap:6px}
+.cblock-fig img{width:100%;height:100%;min-height:260px;object-fit:cover;border-radius:10px;display:block}
+.cblock-fig figcaption{font-size:12px;color:var(--muted)}
+.cd-sub{font-size:16px;font-weight:700;margin-top:10px}
+.cd-sub span{font-family:var(--f-jp);font-weight:500;font-size:14px;color:var(--brass);margin-left:10px;letter-spacing:.04em}
+.sb,.sea{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.sb{grid-template-columns:repeat(6,minmax(0,1fr))}
+.sb.four,.sea{grid-template-columns:repeat(4,minmax(0,1fr))}
+.sb li,.sea li{display:grid;gap:6px;align-content:start;padding:8px 8px 14px;background:var(--hall-2);border-radius:8px;font-size:13px;line-height:1.55;color:var(--fg-2)}
+.sb li>b,.sea li>b{color:var(--light);font-size:14px;line-height:1.35;padding-inline:4px}
+.sb li>span:last-child,.sea li>span:last-child{padding-inline:4px}
+.sb img,.sea img,.sb-todo,.sea-todo{width:100%;max-width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:5px;display:block}
+.sb-todo,.sea-todo{display:grid;place-items:center;background:repeating-linear-gradient(135deg,var(--sogo-tint) 0 9px,var(--hall) 9px 18px);color:var(--muted);text-align:center}
+.sb-todo{font-family:var(--f-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase}
+.sea-todo{font-family:var(--f-jp);font-size:34px;font-weight:700;color:var(--sogo)}
+.sb-n{font-family:var(--f-mono);font-size:12px;color:var(--sogo);padding-inline:4px}
+.cd-note{font-size:13px;color:var(--muted)}
+@media (max-width:1000px){.sb{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:860px){
+  .cd-where,.cblock-top{grid-template-columns:minmax(0,1fr)}
+  .cblock-fig img{min-height:0;aspect-ratio:16/9;height:auto}
+  .sb,.sb.four,.sea{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
 .nobr{display:inline-block}
 html[lang="ja"] .cq-en{font-family:var(--f-jp);font-style:normal;font-weight:700}
 html[lang="ja"] .cq-jp{font-family:var(--f-display);font-style:italic;letter-spacing:0}
@@ -725,8 +756,22 @@ html[lang="ja"] .concept-quote{font-family:var(--f-jp);font-weight:700}
       <p class="cq-item" role="listitem"><span class="cq-en">What should people feel?</span><span class="cq-jp">どんな気持ちに？</span></p>
       <p class="cq-item" role="listitem"><span class="cq-en">Why this clock?</span><span class="cq-jp">なぜ、この時計で？</span></p>
     </div>
-    <div class="concepts">
-      <article class="concept">
+
+    <div class="cd-where">
+      <img src="img/lobby.jpg" alt="The B2 main entrance: the square clock on the dark marble wall at left and the long marble band with the SOGO sign at right" loading="lazy">
+      <div class="stack">
+        <h3 class="cd-where-h">B2 main entrance, about 3 minutes on every hour</h3>
+        <ul class="cd-cond">
+          <li><b>The clock is the star.</b><span>The marble around it is dark, and colour sinks into it.</span></li>
+          <li><b>Strong enough to read at a glance.</b><span>People passing by don’t stop for long.</span></li>
+          <li><b>Refreshed every season.</b><span>Something new to find on every visit.</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="cblock" id="c01">
+      <div class="cblock-top">
+  <article class="concept">
         <span class="concept-k">Option 01 · Concept</span>
         <p class="concept-theme"><b>Encounter</b><span>出会い（一期一会）</span></p>
         <p class="concept-quote">“Let’s meet under the clock”</p>
@@ -738,7 +783,30 @@ html[lang="ja"] .concept-quote{font-family:var(--f-jp);font-weight:700}
         </ul>
         <a class="concept-link" href="#opt-01">See the story and frames</a>
       </article>
-      <article class="concept">
+        <figure class="cblock-fig"><img src="img/gen-o1-gust.jpg" alt="Concept frame for Option 01: she waits on the clock's edge in a red scarf while he fights an inside-out umbrella in a gust of autumn leaves along the band" loading="lazy"><figcaption>Option 01 · concept frame, autumn</figcaption></figure>
+      </div>
+      <h4 class="cd-sub">From the door opening to the reunion <span>扉が開いて、再会するまで</span></h4>
+      <ol class="sb">
+        <li><img src="img/sb-o1-1.jpg" alt="Storyboard 1: the left block of the clock face opens as a door and her silhouette, in a red beret and scarf, stands in the doorway" loading="lazy"><span class="sb-n">1</span><b>The clock door opens</b><span>On the hour, a woman’s silhouette appears and looks up at the hands, waiting. Only one or two items, a coat or a scarf, keep their colour.</span></li>
+        <li><span class="sb-todo">Frame to come</span><span class="sb-n">2</span><b>Autumn wind and red leaves</b><span>A strong wind sends red leaves across the whole lobby, and a man tumbles in, rolled along by the gust.</span></li>
+        <li><span class="sb-todo">Frame to come</span><span class="sb-n">3</span><b>He realises he’s late</b><span>He dusts himself off, checks the clock and hurries on into the headwind.</span></li>
+        <li><img src="img/sb-o1-4.jpg" alt="Storyboard 4: his silhouette in a mustard scarf fights an inside-out umbrella under rain lines and a small lightning bolt" loading="lazy"><span class="sb-n">4</span><b>Rain and lightning</b><span>The weather turns worse, and the inevitable fight with his umbrella begins.</span></li>
+        <li><img src="img/sb-o1-5.jpg" alt="Storyboard 5: her silhouette in a red scarf sits on the bottom edge of the clock face, legs dangling" loading="lazy"><span class="sb-n">5</span><b>She has no idea</b><span>She sits on the edge of the clock, swinging her feet as she waits.</span></li>
+        <li><img src="img/sb-o1-6.jpg" alt="Storyboard 6: the two silhouettes embrace inside the glowing clock face, surrounded by autumn confetti" loading="lazy"><span class="sb-n">6</span><b>Reunion and celebration</b><span>He collapses into the clock. Autumn confetti wraps them as they embrace and step into the clock together.</span></li>
+      </ol>
+      <p class="cd-note">Simple 2D illustration, with close-ups at the key moments to heighten the drama.</p>
+      <h4 class="cd-sub">Each season changes the outfits and the obstacles <span>季節ごとに、装いと障害が変わる</span></h4>
+      <ul class="sea">
+        <li><span class="sea-todo" lang="ja">春</span><b>Spring · sakura</b><span>Hanami crowds, hay fever, crossing a cherry-lined river by boat.</span></li>
+        <li><span class="sea-todo" lang="ja">夏</span><b>Summer</b><span>Fireworks, dashing from shade to shade, kites, games in the park.</span></li>
+        <li><img src="img/gen-o1-gust.jpg" alt="Autumn edition: wind, red leaves and the umbrella fight along the band" loading="lazy"><b>Autumn</b><span>Autumn wind and red leaves, rain and lightning, the umbrella fight.</span></li>
+        <li><span class="sea-todo" lang="ja">冬</span><b>Winter</b><span>Icy streets, a stray snowball, tangled in the illuminations.</span></li>
+      </ul>
+    </div>
+
+    <div class="cblock" id="c02">
+      <div class="cblock-top">
+  <article class="concept">
         <span class="concept-k">Option 02 · Concept</span>
         <p class="concept-theme"><b>Proud to be me</b><span>誇れる、私。</span></p>
         <p class="concept-quote">“I am proud to be who I am”</p>
@@ -752,7 +820,24 @@ html[lang="ja"] .concept-quote{font-family:var(--f-jp);font-weight:700}
         <p class="concept-told">Told through 時候の挨拶: a handwritten seasonal letter that leaves the clock to reach someone.</p>
         <a class="concept-link" href="#opt-02">See the story and frames</a>
       </article>
+        <figure class="cblock-fig"><img src="img/gen-o2-spring.jpg" alt="Concept frame for Option 02: a handwritten letter in the clock folds into a paper plane that flies along the band over spring fields and a river, trailing petals" loading="lazy"><figcaption>Option 02 · concept frame, spring</figcaption></figure>
+      </div>
+      <h4 class="cd-sub">A seasonal letter leaves the clock <span>季節の手紙が、時計から旅立つ</span></h4>
+      <ol class="sb four">
+        <li><img src="img/sb-o2-1.jpg" alt="A handwritten letter appears over the clock face" loading="lazy"><span class="sb-n">01</span><b>Appears</b><span>A handwritten letter appears in the clock.</span></li>
+        <li><img src="img/sb-o2-2.jpg" alt="The letter folds into a white paper plane in front of the clock" loading="lazy"><span class="sb-n">02</span><b>Folds</b><span>It folds itself into a paper plane, or an origami animal.</span></li>
+        <li><img src="img/sb-o2-3.jpg" alt="The paper plane flies along the band over spring fields, trailing cherry petals" loading="lazy"><span class="sb-n">03</span><b>Travels</b><span>It flies through the seasons and landscapes of Japan.</span></li>
+        <li><img src="img/sb-o2-4.jpg" alt="The letter opens across the band: 暑中お見舞い in blue brush lettering beside the SOGO mark" loading="lazy"><span class="sb-n">04</span><b>Opens</b><span>A seasonal greeting spreads across the wall.</span></li>
+      </ol>
+      <h4 class="cd-sub">A new letter and a new message every time <span>毎回、新しい手紙と新しいメッセージを</span></h4>
+      <ul class="sea">
+        <li><img src="img/sb-o2-3.jpg" alt="Spring letter: the paper plane over fields and a river with cherry petals" loading="lazy"><b>Spring letter</b><span>Rides the spring wind over fields and rivers, gathering petals in its folds, and opens to welcome the new season.</span></li>
+        <li><img src="img/sb-o2-4.jpg" alt="Summer letter: 暑中お見舞い across the band with morning glories" loading="lazy"><b>Summer</b><span>Through heat haze and wind chimes.</span></li>
+        <li><span class="sea-todo" lang="ja">秋</span><b>Autumn</b><span>Under the moon.</span></li>
+        <li><span class="sea-todo" lang="ja">新年</span><b>New Year</b><span>A New Year card through falling snow.</span></li>
+      </ul>
     </div>
+
     <h3 class="cd-h">Decide the concept, then how to make it</h3>
     <ol class="cd-steps">
       <li><b>One concept</b><span>Who it is for, what feeling, and why.</span></li>
