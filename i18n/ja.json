@@ -1,5 +1,21 @@
 [
  [
+  "<a href=\"#play\">Play</a>",
+  "<a href=\"#play\">壁で試す</a>"
+ ],
+ [
+  "<span class=\"eyebrow\">Interactive sketch</span>",
+  "<span class=\"eyebrow\">インタラクティブ・スケッチ</span>"
+ ],
+ [
+  "<h2><span class=\"jp\">壁で試す</span>Play with the wall</h2>",
+  "<h2><span class=\"jp\">Play with the wall</span>壁で試してみる</h2>"
+ ],
+ [
+  "Switch between what is on the wall now and directions A to C, dim the lobby lights, and turn the 800 × 500 mm grid on or off to see how each idea sits on the clock and the band.",
+  "現在の上映内容と方向性A〜Cを切り替え、ロビーの照明を落としたり、800×500mmのグリッドを表示・非表示にしたりして、それぞれの案が時計と帯にどう収まるかを確かめられます。"
+ ],
+ [
   "<h3 class=\"cd-where-h\">B2 main entrance, about 3 minutes on every hour</h3>",
   "<h3 class=\"cd-where-h\">地下2階 正面入口、毎正時に約3分</h3>"
  ],

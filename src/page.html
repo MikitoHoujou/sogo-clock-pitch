@@ -73,7 +73,7 @@ p{margin:0}
 .hero .facts dd{margin:0}
 
 /* ---------- simulator ---------- */
-.sim{margin-top:40px;display:grid;gap:14px}
+.sim{display:grid;gap:14px}
 .sim-scroll{overflow-x:auto;border-radius:6px;border:1px solid var(--line);background:#05080d}
 .sim canvas{display:block;width:100%;min-width:760px;aspect-ratio:16/3}
 .controls{display:flex;flex-wrap:wrap;gap:10px 22px;align-items:center}
@@ -406,7 +406,7 @@ html[lang="ja"] .concept-quote{font-family:var(--f-jp);font-weight:700}
   <div class="wrap">
     <span class="mark">SAS × SOGO YOKOHAMA · B2</span>
     <nav aria-label="Sections">
-      <a href="#frames">Frames</a><a href="#brief">Brief</a><a href="#site">Site</a><a href="#directions">Directions</a><a href="#shadow-seasons">Seasons</a><a href="#day">Day</a><a href="#characters">Characters</a><a href="#options">Options 01–02</a><a href="#concept">Concept</a><a href="#refs">References</a><a href="#next">Next</a>
+      <a href="#frames">Frames</a><a href="#brief">Brief</a><a href="#site">Site</a><a href="#directions">Directions</a><a href="#shadow-seasons">Seasons</a><a href="#day">Day</a><a href="#characters">Characters</a><a href="#options">Options 01–02</a><a href="#concept">Concept</a><a href="#play">Play</a><a href="#refs">References</a><a href="#next">Next</a>
     </nav>
     <span class="jst" id="jst" aria-live="off">JST --:--</span>
     <a class="lang" href="ja.html" lang="ja" hreflang="ja">日本語</a>
@@ -434,20 +434,6 @@ html[lang="ja"] .concept-quote{font-family:var(--f-jp);font-weight:700}
       </figure>
     </div>
 
-    <div class="sim" id="sim">
-      <div class="controls">
-        <div class="seg" role="group" aria-label="What plays on the wall">
-          <button type="button" data-mode="xmas" aria-pressed="false">Now: Christmas</button>
-          <button type="button" data-mode="tactile" aria-pressed="true">A · Tactile</button>
-          <button type="button" data-mode="oddball" aria-pressed="false">B · Oddball</button>
-          <button type="button" data-mode="shadow" aria-pressed="false">C · Shadow play</button>
-        </div>
-        <label class="ctl" for="ambient">Lobby lights <input id="ambient" type="range" min="0" max="100" value="35"></label>
-        <label class="ctl" for="grid"><input id="grid" type="checkbox" checked> 800×500 mm grid</label>
-      </div>
-      <div class="sim-scroll"><canvas id="wall" width="1600" height="300" aria-label="Simulated lobby wall with the clock on the left and the SOGO band on the right, showing the selected concept"></canvas></div>
-      <p class="sim-caption" id="simcap">Sketch of the wall, not to finish. The clock hands show the real time in Yokohama.</p>
-    </div>
   </div>
 </header>
 
@@ -838,6 +824,31 @@ html[lang="ja"] .concept-quote{font-family:var(--f-jp);font-weight:700}
       <li><b>Method and budget</b><span>Production method, use of AI, budget and technical detail, once the concept is chosen.</span></li>
     </ol>
     <p class="cd-src">Source: そごう横浜 ロビー時計 プロジェクションマッピング コンセプト案 (Wild Tame, November 2026 draft).</p>
+  </div>
+</section>
+
+<!-- ================= WALL SIMULATOR ================= -->
+<section id="play">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Interactive sketch</span>
+      <h2><span class="jp">壁で試す</span>Play with the wall</h2>
+      <p class="lede">Switch between what is on the wall now and directions A to C, dim the lobby lights, and turn the 800 × 500 mm grid on or off to see how each idea sits on the clock and the band.</p>
+    </div>
+    <div class="sim" id="sim">
+      <div class="controls">
+        <div class="seg" role="group" aria-label="What plays on the wall">
+          <button type="button" data-mode="xmas" aria-pressed="false">Now: Christmas</button>
+          <button type="button" data-mode="tactile" aria-pressed="true">A · Tactile</button>
+          <button type="button" data-mode="oddball" aria-pressed="false">B · Oddball</button>
+          <button type="button" data-mode="shadow" aria-pressed="false">C · Shadow play</button>
+        </div>
+        <label class="ctl" for="ambient">Lobby lights <input id="ambient" type="range" min="0" max="100" value="35"></label>
+        <label class="ctl" for="grid"><input id="grid" type="checkbox" checked> 800×500 mm grid</label>
+      </div>
+      <div class="sim-scroll"><canvas id="wall" width="1600" height="300" aria-label="Simulated lobby wall with the clock on the left and the SOGO band on the right, showing the selected concept"></canvas></div>
+      <p class="sim-caption" id="simcap">Sketch of the wall, not to finish. The clock hands show the real time in Yokohama.</p>
+    </div>
   </div>
 </section>
 

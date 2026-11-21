@@ -80,7 +80,7 @@ p{margin:0}
 .hero .facts dd{margin:0}
 
 /* ---------- simulator ---------- */
-.sim{margin-top:40px;display:grid;gap:14px}
+.sim{display:grid;gap:14px}
 .sim-scroll{overflow-x:auto;border-radius:6px;border:1px solid var(--line);background:#05080d}
 .sim canvas{display:block;width:100%;min-width:760px;aspect-ratio:16/3}
 .controls{display:flex;flex-wrap:wrap;gap:10px 22px;align-items:center}
@@ -415,7 +415,7 @@ html[lang="ja"] .concept-quote{font-family:var(--f-jp);font-weight:700}
   <div class="wrap">
     <span class="mark">SAS × SOGO YOKOHAMA · B2</span>
     <nav aria-label="Sections">
-      <a href="#frames">フレーム</a><a href="#brief">ブリーフ</a><a href="#site">会場</a><a href="#directions">方向性</a><a href="#shadow-seasons">四季</a><a href="#day">一日</a><a href="#characters">キャラクター</a><a href="#options">ストーリー案</a><a href="#concept">コンセプト</a><a href="#refs">参考</a><a href="#next">次へ</a>
+      <a href="#frames">フレーム</a><a href="#brief">ブリーフ</a><a href="#site">会場</a><a href="#directions">方向性</a><a href="#shadow-seasons">四季</a><a href="#day">一日</a><a href="#characters">キャラクター</a><a href="#options">ストーリー案</a><a href="#concept">コンセプト</a><a href="#play">壁で試す</a><a href="#refs">参考</a><a href="#next">次へ</a>
     </nav>
     <span class="jst" id="jst" aria-live="off">JST --:--</span>
     <a class="lang" href="index.html" lang="en" hreflang="en">English</a>
@@ -443,20 +443,6 @@ html[lang="ja"] .concept-quote{font-family:var(--f-jp);font-weight:700}
       </figure>
     </div>
 
-    <div class="sim" id="sim">
-      <div class="controls">
-        <div class="seg" role="group" aria-label="What plays on the wall">
-          <button type="button" data-mode="xmas" aria-pressed="false">現在：クリスマス</button>
-          <button type="button" data-mode="tactile" aria-pressed="true">A · 手ざわり</button>
-          <button type="button" data-mode="oddball" aria-pressed="false">B · へんてこ</button>
-          <button type="button" data-mode="shadow" aria-pressed="false">C · 影絵</button>
-        </div>
-        <label class="ctl" for="ambient">ロビー照明 <input id="ambient" type="range" min="0" max="100" value="35"></label>
-        <label class="ctl" for="grid"><input id="grid" type="checkbox" checked> 800×500 mm グリッド</label>
-      </div>
-      <div class="sim-scroll"><canvas id="wall" width="1600" height="300" aria-label="Simulated lobby wall with the clock on the left and the SOGO band on the right, showing the selected concept"></canvas></div>
-      <p class="sim-caption" id="simcap">壁のスケッチです（完成イメージではありません）。時計の針は横浜の現在時刻を示します。</p>
-    </div>
   </div>
 </header>
 
@@ -847,6 +833,31 @@ html[lang="ja"] .concept-quote{font-family:var(--f-jp);font-weight:700}
       <li><b>制作手法・予算</b><span>手法、AIの活用、予算、技術面はコンセプト決定後に。</span></li>
     </ol>
     <p class="cd-src">出典：そごう横浜 ロビー時計 プロジェクションマッピング コンセプト案（Wild Tame、2026年11月 ドラフト）</p>
+  </div>
+</section>
+
+<!-- ================= WALL SIMULATOR ================= -->
+<section id="play">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">インタラクティブ・スケッチ</span>
+      <h2><span class="jp">Play with the wall</span>壁で試してみる</h2>
+      <p class="lede">現在の上映内容と方向性A〜Cを切り替え、ロビーの照明を落としたり、800×500mmのグリッドを表示・非表示にしたりして、それぞれの案が時計と帯にどう収まるかを確かめられます。</p>
+    </div>
+    <div class="sim" id="sim">
+      <div class="controls">
+        <div class="seg" role="group" aria-label="What plays on the wall">
+          <button type="button" data-mode="xmas" aria-pressed="false">現在：クリスマス</button>
+          <button type="button" data-mode="tactile" aria-pressed="true">A · 手ざわり</button>
+          <button type="button" data-mode="oddball" aria-pressed="false">B · へんてこ</button>
+          <button type="button" data-mode="shadow" aria-pressed="false">C · 影絵</button>
+        </div>
+        <label class="ctl" for="ambient">ロビー照明 <input id="ambient" type="range" min="0" max="100" value="35"></label>
+        <label class="ctl" for="grid"><input id="grid" type="checkbox" checked> 800×500 mm グリッド</label>
+      </div>
+      <div class="sim-scroll"><canvas id="wall" width="1600" height="300" aria-label="Simulated lobby wall with the clock on the left and the SOGO band on the right, showing the selected concept"></canvas></div>
+      <p class="sim-caption" id="simcap">壁のスケッチです（完成イメージではありません）。時計の針は横浜の現在時刻を示します。</p>
+    </div>
   </div>
 </section>
 
