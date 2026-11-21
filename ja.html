@@ -400,6 +400,8 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-bet
 .deckpeek-btn:hover{border-color:var(--sogo);transform:translateY(-1px)}
 .deckpeek-btn img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover}
 .deckview{padding:0;border:0;border-radius:10px;background:var(--hall-2);color:var(--light);width:min(980px,calc(100vw - 32px));max-height:calc(100vh - 32px);overflow:auto}
+section img,.hero-photo img{cursor:zoom-in}
+button img,a img,.compare img,#photo img,dialog img{cursor:inherit}
 .deckview::backdrop{background:rgba(17,26,43,.72)}
 .deckview-fig{margin:0}
 .deckview-fig img{display:block;width:100%;height:auto}
@@ -791,20 +793,20 @@ html[lang="ja"] .concept-quote{font-family:var(--f-jp);font-weight:700}
       </div>
       <h4 class="cd-sub">扉が開いて、再会するまで <span>From the door opening to the reunion</span></h4>
       <ol class="sb">
-        <li><img src="img/sb-o1-1.jpg" alt="Storyboard 1: the left block of the clock face opens as a door and her silhouette, in a red beret and scarf, stands in the doorway" loading="lazy"><span class="sb-n">1</span><b>時計の扉が開く</b><span>正時、女性のシルエットが現れ、針を見上げて待つ。コートやスカーフなど1〜2点だけ色を残す。</span></li>
-        <li><img src="img/sb-o1-2.jpg" alt="Storyboard 2: a gust of red and gold leaves blows along the band and his silhouette in a mustard scarf tumbles head over heels in the wind" loading="lazy"><span class="sb-n">2</span><b>秋風と紅葉</b><span>強い風に紅葉がロビー中を舞い、男性が風に転がされて登場。</span></li>
-        <li><img src="img/sb-o1-3.jpg" alt="Storyboard 3: his silhouette stands up, dusts off his coat and stares at his wristwatch, an exclamation mark above his head" loading="lazy"><span class="sb-n">3</span><b>遅刻に気づく</b><span>ほこりを払い、時計を見て、逆風の中を急ぐ。</span></li>
-        <li><img src="img/sb-o1-4.jpg" alt="Storyboard 4: his silhouette in a mustard scarf fights an inside-out umbrella under rain lines and a small lightning bolt" loading="lazy"><span class="sb-n">4</span><b>雨と雷</b><span>天気はさらに荒れ、お決まりの傘との格闘。</span></li>
-        <li><img src="img/sb-o1-5.jpg" alt="Storyboard 5: her silhouette in a red scarf sits on the bottom edge of the clock face, legs dangling" loading="lazy"><span class="sb-n">5</span><b>何も知らない彼女</b><span>時計の縁に腰かけ、足をぶらぶらさせて待っている。</span></li>
-        <li><img src="img/sb-o1-6.jpg" alt="Storyboard 6: the two silhouettes embrace inside the glowing clock face, surrounded by autumn confetti" loading="lazy"><span class="sb-n">6</span><b>再会と祝福</b><span>倒れ込む彼。抱き合う2人を秋の紙吹雪が包み、2人で時計の中へ。</span></li>
+        <li><img src="img/sb-o1-1.jpg" data-full="img/gen-o1-door.jpg" alt="Storyboard 1: the left block of the clock face opens as a door and her silhouette, in a red beret and scarf, stands in the doorway" loading="lazy"><span class="sb-n">1</span><b>時計の扉が開く</b><span>正時、女性のシルエットが現れ、針を見上げて待つ。コートやスカーフなど1〜2点だけ色を残す。</span></li>
+        <li><img src="img/sb-o1-2.jpg" data-full="img/gen-o1-s2.jpg" alt="Storyboard 2: a gust of red and gold leaves blows along the band and his silhouette in a mustard scarf tumbles head over heels in the wind" loading="lazy"><span class="sb-n">2</span><b>秋風と紅葉</b><span>強い風に紅葉がロビー中を舞い、男性が風に転がされて登場。</span></li>
+        <li><img src="img/sb-o1-3.jpg" data-full="img/gen-o1-s3.jpg" alt="Storyboard 3: his silhouette stands up, dusts off his coat and stares at his wristwatch, an exclamation mark above his head" loading="lazy"><span class="sb-n">3</span><b>遅刻に気づく</b><span>ほこりを払い、時計を見て、逆風の中を急ぐ。</span></li>
+        <li><img src="img/sb-o1-4.jpg" data-full="img/gen-o1-gust.jpg" alt="Storyboard 4: his silhouette in a mustard scarf fights an inside-out umbrella under rain lines and a small lightning bolt" loading="lazy"><span class="sb-n">4</span><b>雨と雷</b><span>天気はさらに荒れ、お決まりの傘との格闘。</span></li>
+        <li><img src="img/sb-o1-5.jpg" data-full="img/gen-o1-gust.jpg" alt="Storyboard 5: her silhouette in a red scarf sits on the bottom edge of the clock face, legs dangling" loading="lazy"><span class="sb-n">5</span><b>何も知らない彼女</b><span>時計の縁に腰かけ、足をぶらぶらさせて待っている。</span></li>
+        <li><img src="img/sb-o1-6.jpg" data-full="img/gen-o1-together.jpg" alt="Storyboard 6: the two silhouettes embrace inside the glowing clock face, surrounded by autumn confetti" loading="lazy"><span class="sb-n">6</span><b>再会と祝福</b><span>倒れ込む彼。抱き合う2人を秋の紙吹雪が包み、2人で時計の中へ。</span></li>
       </ol>
       <p class="cd-note">2Dのシンプルなイラスト調。要所でアップを入れてドラマを強める。</p>
       <h4 class="cd-sub">季節ごとに、装いと障害が変わる <span>Each season changes the outfits and the obstacles</span></h4>
       <ul class="sea">
-        <li><img src="img/sea-o1-spring.jpg" alt="Spring edition: he rows a boat along a cherry-lined river past hanami crowds on the band; she waits on the clock in a pink scarf as petals fall" loading="lazy"><b>春・桜</b><span>花見の人混み、花粉症、桜並木の川を舟で渡る。</span></li>
-        <li><img src="img/sea-o1-summer.jpg" alt="Summer edition: fireworks and paper parasols along the band as he dashes for shade in a turquoise neckerchief; she waits on the clock in a straw hat" loading="lazy"><b>夏</b><span>花火、日陰から日陰へ走る、凧、公園での遊び。</span></li>
-        <li><img src="img/sea-o1-autumn.jpg" alt="Autumn edition: wind, red leaves and the umbrella fight along the band" loading="lazy"><b>秋</b><span>秋風と紅葉、雨と雷、傘との格闘。</span></li>
-        <li><img src="img/sea-o1-winter.jpg" alt="Winter edition: snow falls and strings of illumination lights loop along the band as he slips on ice in a green scarf, a snowball flying; she waits on the clock in a red knit hat" loading="lazy"><b>冬</b><span>凍った道、雪合戦の雪玉、イルミネーションに絡まる。</span></li>
+        <li><img src="img/sea-o1-spring.jpg" data-full="img/gen-o1-spring.jpg" alt="Spring edition: he rows a boat along a cherry-lined river past hanami crowds on the band; she waits on the clock in a pink scarf as petals fall" loading="lazy"><b>春・桜</b><span>花見の人混み、花粉症、桜並木の川を舟で渡る。</span></li>
+        <li><img src="img/sea-o1-summer.jpg" data-full="img/gen-o1-summer.jpg" alt="Summer edition: fireworks and paper parasols along the band as he dashes for shade in a turquoise neckerchief; she waits on the clock in a straw hat" loading="lazy"><b>夏</b><span>花火、日陰から日陰へ走る、凧、公園での遊び。</span></li>
+        <li><img src="img/sea-o1-autumn.jpg" data-full="img/gen-o1-gust.jpg" alt="Autumn edition: wind, red leaves and the umbrella fight along the band" loading="lazy"><b>秋</b><span>秋風と紅葉、雨と雷、傘との格闘。</span></li>
+        <li><img src="img/sea-o1-winter.jpg" data-full="img/gen-o1-winter.jpg" alt="Winter edition: snow falls and strings of illumination lights loop along the band as he slips on ice in a green scarf, a snowball flying; she waits on the clock in a red knit hat" loading="lazy"><b>冬</b><span>凍った道、雪合戦の雪玉、イルミネーションに絡まる。</span></li>
       </ul>
     </div>
 
@@ -835,17 +837,17 @@ html[lang="ja"] .concept-quote{font-family:var(--f-jp);font-weight:700}
       </div>
       <h4 class="cd-sub">季節の手紙が、時計から旅立つ <span>A seasonal letter leaves the clock</span></h4>
       <ol class="sb four">
-        <li><img src="img/sb-o2-1.jpg" alt="A handwritten letter appears over the clock face" loading="lazy"><span class="sb-n">01</span><b>現れる</b><span>時計の中に手書きの手紙。</span></li>
-        <li><img src="img/sb-o2-2.jpg" alt="The letter folds into a white paper plane in front of the clock" loading="lazy"><span class="sb-n">02</span><b>折られる</b><span>紙飛行機、または折り紙の動物に。</span></li>
-        <li><img src="img/sb-o2-3.jpg" alt="The paper plane flies along the band over spring fields, trailing cherry petals" loading="lazy"><span class="sb-n">03</span><b>旅する</b><span>季節と風景の中を飛んでいく。</span></li>
-        <li><img src="img/sb-o2-4.jpg" alt="The letter opens across the band: 暑中お見舞い in blue brush lettering beside the SOGO mark" loading="lazy"><span class="sb-n">04</span><b>ひらく</b><span>壁いっぱいに季節の挨拶が広がる。</span></li>
+        <li><img src="img/sb-o2-1.jpg" data-full="img/gen-o2-spring.jpg" alt="A handwritten letter appears over the clock face" loading="lazy"><span class="sb-n">01</span><b>現れる</b><span>時計の中に手書きの手紙。</span></li>
+        <li><img src="img/sb-o2-2.jpg" data-full="img/gen-o2-spring.jpg" alt="The letter folds into a white paper plane in front of the clock" loading="lazy"><span class="sb-n">02</span><b>折られる</b><span>紙飛行機、または折り紙の動物に。</span></li>
+        <li><img src="img/sb-o2-3.jpg" data-full="img/gen-o2-spring.jpg" alt="The paper plane flies along the band over spring fields, trailing cherry petals" loading="lazy"><span class="sb-n">03</span><b>旅する</b><span>季節と風景の中を飛んでいく。</span></li>
+        <li><img src="img/sb-o2-4.jpg" data-full="img/gen-o2-summer.jpg" alt="The letter opens across the band: 暑中お見舞い in blue brush lettering beside the SOGO mark" loading="lazy"><span class="sb-n">04</span><b>ひらく</b><span>壁いっぱいに季節の挨拶が広がる。</span></li>
       </ol>
       <h4 class="cd-sub">毎回、新しい手紙と新しいメッセージを <span>A new letter and a new message every time</span></h4>
       <ul class="sea">
-        <li><img src="img/sea-o2-spring.jpg" alt="Spring letter: the paper plane over fields and a river with cherry petals" loading="lazy"><b>春の手紙</b><span>春風に乗って野や川を越え、折り目に花びらを集めながら飛び、新しい季節を迎えるメッセージをひらく。</span></li>
-        <li><img src="img/sea-o2-summer.jpg" alt="Summer letter: 暑中お見舞い across the band with morning glories" loading="lazy"><b>夏</b><span>陽炎と風鈴の中を。</span></li>
-        <li><img src="img/sea-o2-autumn.jpg" alt="Autumn letter: the paper plane glides under a full moon over pampas grass and red maple along the band" loading="lazy"><b>秋</b><span>月の下を。</span></li>
-        <li><img src="img/sea-o2-newyear.jpg" alt="New Year letter: an origami crane flies through falling snow past pine and red plum blossoms along the band" loading="lazy"><b>新年</b><span>降る雪の中を、年賀状が。</span></li>
+        <li><img src="img/sea-o2-spring.jpg" data-full="img/gen-o2-spring.jpg" alt="Spring letter: the paper plane over fields and a river with cherry petals" loading="lazy"><b>春の手紙</b><span>春風に乗って野や川を越え、折り目に花びらを集めながら飛び、新しい季節を迎えるメッセージをひらく。</span></li>
+        <li><img src="img/sea-o2-summer.jpg" data-full="img/gen-o2-summer.jpg" alt="Summer letter: 暑中お見舞い across the band with morning glories" loading="lazy"><b>夏</b><span>陽炎と風鈴の中を。</span></li>
+        <li><img src="img/sea-o2-autumn.jpg" data-full="img/gen-o2-autumn.jpg" alt="Autumn letter: the paper plane glides under a full moon over pampas grass and red maple along the band" loading="lazy"><b>秋</b><span>月の下を。</span></li>
+        <li><img src="img/sea-o2-newyear.jpg" data-full="img/gen-o2-newyear.jpg" alt="New Year letter: an origami crane flies through falling snow past pine and red plum blossoms along the band" loading="lazy"><b>新年</b><span>降る雪の中を、年賀状が。</span></li>
       </ul>
     </div>
 
@@ -856,15 +858,6 @@ html[lang="ja"] .concept-quote{font-family:var(--f-jp);font-weight:700}
       <li><b>ムードボード・スタイルフレーム</b><span>選んだコンセプトを目に見える形に。</span></li>
       <li><b>制作手法・予算</b><span>手法、AIの活用、予算、技術面はコンセプト決定後に。</span></li>
     </ol>
-    <dialog class="deckview" id="deckview" aria-label="コンセプト案のページ">
-      <figure class="deckview-fig"><img id="deckviewImg" src="img/deck-o2-08.png" alt=""><figcaption id="deckviewCap"></figcaption></figure>
-      <div class="deckview-nav">
-        <button type="button" id="deckPrev">← 前へ</button>
-        <span id="deckCount" class="mono">1 / 2</span>
-        <button type="button" id="deckNext">次へ →</button>
-        <button type="button" id="deckClose" class="deckview-close">閉じる</button>
-      </div>
-    </dialog>
     <p class="cd-src">出典：そごう横浜 ロビー時計 プロジェクションマッピング コンセプト案（Wild Tame、2026年11月 ドラフト）</p>
   </div>
 </section>
@@ -937,6 +930,16 @@ html[lang="ja"] .concept-quote{font-family:var(--f-jp);font-weight:700}
     <span>出典：クライアント資料（1002）、仕様表（1104）、プレスリリース案（1107）、ブレスト要約（11/18）、Miroボード。コンセプトフレーム：Magnificドラフト（Space「Sogo Yokohama Clock Wall — Spring Pitch」）。</span>
   </div>
 </footer>
+
+<dialog class="deckview" id="lightbox" aria-label="拡大画像">
+  <figure class="deckview-fig"><img id="lbImg" src="img/deck-o2-08.png" alt=""><figcaption id="lbCap"></figcaption></figure>
+  <div class="deckview-nav">
+    <button type="button" id="lbPrev">← 前へ</button>
+    <span id="lbCount" class="mono">1 / 2</span>
+    <button type="button" id="lbNext">次へ →</button>
+    <button type="button" id="lbClose" class="deckview-close">閉じる</button>
+  </div>
+</dialog>
 
 <script>
 (() => {
@@ -1526,22 +1529,42 @@ $$('.next-list input').forEach(cb=>{ cb.checked = store.get('sogo-'+cb.id)==='1'
 
 setDir(dir);
 
-/* ================= DECK PAGES VIEWER ================= */
+/* ================= IMAGE VIEWER (click any picture to enlarge) ================= */
 (function(){
+  const dlg=document.getElementById('lightbox'); if(!dlg) return;
+  const img=document.getElementById('lbImg'), cap=document.getElementById('lbCap'), cnt=document.getElementById('lbCount');
+  const prev=document.getElementById('lbPrev'), next=document.getElementById('lbNext');
   const DECK=[
     {src:'img/deck-o2-08.png',cap:'コンセプト案 8ページ · 案02 コンセプト：I am proud to be who I am'},
     {src:'img/deck-o2-09.png',cap:'コンセプト案 9ページ · コンセプトに込める想い：誇れる、私。'}
   ];
-  const dlg=document.getElementById('deckview'); if(!dlg) return;
-  const img=document.getElementById('deckviewImg'), cap=document.getElementById('deckviewCap'), cnt=document.getElementById('deckCount');
-  let i=0;
-  function show(n){ i=(n+DECK.length)%DECK.length; img.src=DECK[i].src; img.alt=DECK[i].cap; cap.textContent=DECK[i].cap; cnt.textContent=(i+1)+' / '+DECK.length; }
-  function open(n){ show(n); if(typeof dlg.showModal==='function'){ if(!dlg.open) dlg.showModal(); } else dlg.setAttribute('open',''); }
+  const SKIP='button,a,.compare,#photo,.sim,dialog';
+  let list=[], i=0;
+  function capOf(el){
+    const f=el.closest('figure'), fc=f&&f.querySelector('figcaption');
+    if(fc&&fc.textContent.trim()) return [...fc.childNodes].map(n=>n.textContent.trim()).filter(Boolean).join(' · ');
+    const li=el.closest('li'), b=li&&li.querySelector('b');
+    if(b) return b.textContent.trim();
+    return el.alt||'';
+  }
+  function show(n){
+    i=(n+list.length)%list.length; const it=list[i];
+    img.src=it.src; img.alt=it.alt||it.cap; cap.textContent=it.cap; cnt.textContent=(i+1)+' / '+list.length;
+    const one=list.length<2; prev.hidden=one; next.hidden=one; cnt.hidden=one;
+  }
+  function open(l,n){ list=l; show(n); if(typeof dlg.showModal==='function'){ if(!dlg.open) dlg.showModal(); } else dlg.setAttribute('open',''); }
   function close(){ if(typeof dlg.close==='function') dlg.close(); else dlg.removeAttribute('open'); }
-  document.querySelectorAll('.deckpeek-btn').forEach(b=>b.addEventListener('click',()=>open(+b.dataset.deck||0)));
-  document.getElementById('deckPrev').addEventListener('click',()=>show(i-1));
-  document.getElementById('deckNext').addEventListener('click',()=>show(i+1));
-  document.getElementById('deckClose').addEventListener('click',close);
+  document.querySelectorAll('.deckpeek-btn').forEach(b=>b.addEventListener('click',()=>open(DECK.map(d=>({src:d.src,alt:d.cap,cap:d.cap})),+b.dataset.deck||0)));
+  document.addEventListener('click',e=>{
+    const t=e.target;
+    if(!(t instanceof HTMLImageElement)||t.closest(SKIP)) return;
+    const box=t.closest('section,header'); if(!box) return;
+    const imgs=[...box.querySelectorAll('img')].filter(x=>!x.closest(SKIP)&&x.getClientRects().length);
+    open(imgs.map(x=>({src:x.dataset.full||x.currentSrc||x.src,alt:x.alt,cap:capOf(x)})),Math.max(0,imgs.indexOf(t)));
+  });
+  prev.addEventListener('click',()=>show(i-1));
+  next.addEventListener('click',()=>show(i+1));
+  document.getElementById('lbClose').addEventListener('click',close);
   dlg.addEventListener('click',e=>{ if(e.target===dlg) close(); });
   dlg.addEventListener('keydown',e=>{ if(e.key==='ArrowRight') show(i+1); else if(e.key==='ArrowLeft') show(i-1); });
 })();

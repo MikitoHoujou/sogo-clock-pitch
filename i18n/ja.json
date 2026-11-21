@@ -1,5 +1,21 @@
 [
  [
+  "<dialog class=\"deckview\" id=\"lightbox\" aria-label=\"Enlarged image\">",
+  "<dialog class=\"deckview\" id=\"lightbox\" aria-label=\"拡大画像\">"
+ ],
+ [
+  "<button type=\"button\" id=\"lbPrev\">← Previous</button>",
+  "<button type=\"button\" id=\"lbPrev\">← 前へ</button>"
+ ],
+ [
+  "<button type=\"button\" id=\"lbNext\">Next →</button>",
+  "<button type=\"button\" id=\"lbNext\">次へ →</button>"
+ ],
+ [
+  "<button type=\"button\" id=\"lbClose\" class=\"deckview-close\">Close</button>",
+  "<button type=\"button\" id=\"lbClose\" class=\"deckview-close\">閉じる</button>"
+ ],
+ [
   "<p class=\"deckpeek-cap\">More on “proud to be me”: the two pages from the concept deck.</p>",
   "<p class=\"deckpeek-cap\">「誇れる、私。」をもっと詳しく：コンセプト案の該当ページ（2枚）。</p>"
  ],
@@ -10,22 +26,6 @@
  [
   "aria-label=\"Enlarge deck page 9: the thoughts behind the concept\"",
   "aria-label=\"9ページを拡大：コンセプトに込める想い\""
- ],
- [
-  "<dialog class=\"deckview\" id=\"deckview\" aria-label=\"Concept deck pages\">",
-  "<dialog class=\"deckview\" id=\"deckview\" aria-label=\"コンセプト案のページ\">"
- ],
- [
-  "<button type=\"button\" id=\"deckPrev\">← Previous</button>",
-  "<button type=\"button\" id=\"deckPrev\">← 前へ</button>"
- ],
- [
-  "<button type=\"button\" id=\"deckNext\">Next →</button>",
-  "<button type=\"button\" id=\"deckNext\">次へ →</button>"
- ],
- [
-  "<button type=\"button\" id=\"deckClose\" class=\"deckview-close\">Close</button>",
-  "<button type=\"button\" id=\"deckClose\" class=\"deckview-close\">閉じる</button>"
  ],
  [
   "cap:'Concept deck, page 8 · Option 02 concept: I am proud to be who I am'",
